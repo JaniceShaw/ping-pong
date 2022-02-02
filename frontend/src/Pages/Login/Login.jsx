@@ -3,6 +3,9 @@
 // import { useNavigate } from 'react-router-dom';
 // import { GetUserToken, GetUserData } from '../../sharedFunctions/fetchAPI';
 // import { signInAction } from '../../store/actions/login';
+import { Link } from 'react-router-dom';
+import './styles.scss'
+
 
 export const LoginPage = () => {
   // const [password, setPassword] = useState('');
@@ -42,30 +45,50 @@ export const LoginPage = () => {
     // setEmail(event.target.value);
   };
 
+  const handleUserCheckbox = () => {
+    // setTypeOfUser(event.target.value);
+  };
   return (
     <>
       <h1>Login Page</h1>
-      <div className="loginForm">
-        <form action="">
+      <div className='loginForm'>
+        <form action=''>
           <input
-            className="field-input"
-            type="email"
-            placeholder="e-Mail"
+            className='field-input'
+            type='email'
+            placeholder='e-Mail'
             onChange={handleEmailInput}
           />
           <input
-            className="field-input"
-            type="password"
-            placeholder="password"
+            className='field-input'
+            type='password'
+            placeholder='password'
             onChange={handlePasswordInput}
           />
           <input
-            type="submit"
-            className="field-submit"
-            value="Login"
+            type='submit'
+            className='field-submit'
+            value='Login'
             onClick={handleSignIn}
           />
+          <label>
+            <input
+              type='checkbox'
+              className='user-checkbox'
+              onChange={handleUserCheckbox}
+            />
+            I am a Member
+          </label>
+          <label>
+            <input
+              type='checkbox'
+              className='user-checkbox'
+              onChange={handleUserCheckbox}
+            />
+            I am a Helper
+          </label>
         </form>
+        <Link to='/about'>What is Ping-Pong?</Link>
         {/* <p>{error}</p> */}
       </div>
     </>
