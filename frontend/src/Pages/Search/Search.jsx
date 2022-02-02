@@ -1,7 +1,10 @@
+import { SearchTool } from "../../Components/Searchtool/Searchtool";
+
+
 export const SearchPage = () => {
   return (
     <>
-      <h1>Search Page</h1>
+      <SearchTool/>
     </>
   );
 };
