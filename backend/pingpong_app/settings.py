@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from pathlib import Path
+# from pathlib import Path
 # JWT
 from datetime import timedelta
 
@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'user',
     'member_request',
     'category',
+    'registration',
 ]
 
 MIDDLEWARE = [

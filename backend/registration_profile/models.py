@@ -29,4 +29,3 @@ class RegistrationProfile(models.Model):
 
 # Related name = how to access registration profile from user
 # User.objects.get(pk=1).registration_profile
-
