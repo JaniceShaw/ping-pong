@@ -9,11 +9,11 @@ import {
   ListingPage,
   HelperListPage,
   RequestListPage,
+  RequestViewPage,
   ProfilePage,
   SearchPage,
   AboutPage,
 } from './Pages';
-
 export const RoutesIndex = () => {
   return (
     <>
@@ -22,21 +22,21 @@ export const RoutesIndex = () => {
         <main className='p-5'>
           <Routes>
             <Route index element={<StartPage />} />
-            <Route path="/" element={<StartPage />} />
-            <Route path="registration" element={<RegistrationPage />} />
-            <Route path="profile" element={<ProfilePage />} />
-            <Route path="login" element={<LoginPage />} />
-            <Route path="search" element={<SearchPage />} />
-            <Route path="listing" element={<ListingPage />}>
-              <Route path="helpers" element={<HelperListPage />}/>
-              <Route path="requests" element={<RequestListPage />}/>
+            <Route path='/' element={<StartPage />} />
+            <Route path='registration' element={<RegistrationPage />} />
+            <Route path='profile' element={<ProfilePage />} />
+            <Route path='login' element={<LoginPage />} />
+            <Route path='search' element={<SearchPage />} />
+            <Route path='listing' element={<ListingPage />}>
+              <Route path='helpers' element={<HelperListPage />} />
+              <Route path='requests' element={<RequestListPage />}></Route>
             </Route>
-            <Route path="about" element={<AboutPage />} />
-            <Route path="*" element={<ErrorPage />} />
+            <Route path='request_view' element={<RequestViewPage />} />
+            <Route path='about' element={<AboutPage />} />
+            <Route path='*' element={<ErrorPage />} />
           </Routes>
         </main>
-        <Footer className="p-5" />
-
+        <Footer className='p-5' />
 
         {/* <Route path="search" element={<Search />}>
               <Route index element={<Restaurants />} />
