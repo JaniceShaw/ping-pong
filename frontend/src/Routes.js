@@ -7,11 +7,11 @@ import {
   LoginPage,
   RegistrationPage,
   ListingPage,
+  HelperListPage,
+  RequestListPage,
   ProfilePage,
   SearchPage,
   AboutPage,
-  HelperListPage,
-  RequestListPage,
 } from './Pages';
 
 export const RoutesIndex = () => {
@@ -19,7 +19,7 @@ export const RoutesIndex = () => {
     <>
       <BrowserRouter>
         <Header />
-        <main className="p-5">
+        <main className='p-5'>
           <Routes>
             <Route index element={<StartPage />} />
             <Route path="/" element={<StartPage />} />
