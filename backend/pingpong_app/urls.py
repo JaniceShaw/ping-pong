@@ -13,9 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework_simplejwt import views as jwt_views
+from rest_framework import permissions
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
 
+from django.conf import settings
 schema_view = get_schema_view(
    openapi.Info(
       title="Ping-Pong API",
@@ -30,9 +36,8 @@ schema_view = get_schema_view(
 )
 
 api_patterns = [
-    # path('users', include('users.urls')),
+    path('user', include('user.urls')),
     # drf_yasg
-    # path('/', include('users.urls')),
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     # JWT URLS
     path('auth/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),

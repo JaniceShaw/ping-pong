@@ -15,7 +15,7 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt
 
   backend:
-#    image: registry.gitlab.propulsion-home.ch/full-stack/batch-18-nov-2021/final-projects/ping-pong
+    image: registry.gitlab.propulsion-home.ch/full-stack/batch-18-nov-2021/final-projects/ping-pong
     restart: always
     env_file:
       - ./envs/dev.env

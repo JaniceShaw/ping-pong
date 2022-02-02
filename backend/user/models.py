@@ -3,7 +3,7 @@ from django.db import models
 # from django.contrib.auth import get_user_model
 
 # User = get_user_model()
-import project.settings
+import pingpong_app.settings
 
 
 class User(AbstractUser):
@@ -16,7 +16,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
 
     # following
-    following = models.ManyToManyField(to=project.settings.AUTH_USER_MODEL, related_name='followed_by',  blank=True)
+    # following = models.ManyToManyField(to=pingpong_app.settings.AUTH_USER_MODEL, related_name='followed_by',  blank=True)
 
     # Todo: could add avatar here -- not sure how?
     # avatar =
