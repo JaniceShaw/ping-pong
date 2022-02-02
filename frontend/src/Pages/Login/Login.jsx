@@ -4,11 +4,9 @@
 // import { GetUserToken, GetUserData } from '../../sharedFunctions/fetchAPI';
 // import { signInAction } from '../../store/actions/login';
 import { Link } from 'react-router-dom';
-import './styles.scss'
-
 
 export const LoginPage = () => {
-  // const [password, setPassword] = useState('');
+  // const [password, setPassword] = useState('')
   // const [email, setEmail] = useState('');
   // const [user, setUser] = useState('');
   // // login errors
@@ -45,14 +43,11 @@ export const LoginPage = () => {
     // setEmail(event.target.value);
   };
 
-  const handleUserCheckbox = () => {
-    // setTypeOfUser(event.target.value);
-  };
   return (
     <>
       <h1>Login Page</h1>
       <div className='loginForm'>
-        <form action=''>
+        <form action='' className='flex justify-center flex-col'>
           <input
             className='field-input'
             type='email'
@@ -71,22 +66,6 @@ export const LoginPage = () => {
             value='Login'
             onClick={handleSignIn}
           />
-          <label>
-            <input
-              type='checkbox'
-              className='user-checkbox'
-              onChange={handleUserCheckbox}
-            />
-            I am a Member
-          </label>
-          <label>
-            <input
-              type='checkbox'
-              className='user-checkbox'
-              onChange={handleUserCheckbox}
-            />
-            I am a Helper
-          </label>
         </form>
         <Link to='/about'>What is Ping-Pong?</Link>
         {/* <p>{error}</p> */}
