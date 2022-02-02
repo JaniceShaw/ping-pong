@@ -1,18 +1,18 @@
-// import React, { useState, useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 // import { GetUserToken, GetUserData } from '../../sharedFunctions/fetchAPI';
 // import { signInAction } from '../../store/actions/login';
 
-export const LoginPage = () => {
-  // const [password, setPassword] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [user, setUser] = useState('');
+export const RegistrationPage = () => {
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [user, setUser] = useState('');
   // // login errors
-  // const [error, setError] = useState('');
+  const [error, setError] = useState('');
 
   // for react router to change page
-  // let navigate = useNavigate();
+  let navigate = useNavigate();
 
   // const dispatch = useDispatch();
 
@@ -22,24 +22,24 @@ export const LoginPage = () => {
     // GetUserData(setUser, setError);
   };
 
-  // useEffect(() => {
-  //   dispatch(
-  //     signInAction({
-  //       user: user.first_name,
-  //       user_id: user.id,
-  //     })
-  //   );
-  //   if (user.id) {
-  //     navigate('/profile');
-  //   }
-  // }, []);
+  useEffect(() => {
+    // dispatch(
+    //   signInAction({
+    //     user: user.first_name,
+    //     user_id: user.id,
+    //   })
+    // );
+    if (user.id) {
+      navigate('/profile');
+    }
+  }, []);
 
   const handlePasswordInput = (event) => {
-    // setPassword(event.target.value);
+    setPassword(event.target.value);
   };
 
   const handleEmailInput = (event) => {
-    // setEmail(event.target.value);
+    setEmail(event.target.value);
   };
 
   return (
@@ -66,7 +66,7 @@ export const LoginPage = () => {
             onClick={handleSignIn}
           />
         </form>
-        {/* <p>{error}</p> */}
+        <p>{error}</p>
       </div>
     </>
   );
