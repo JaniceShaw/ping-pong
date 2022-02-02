@@ -1,3 +1,6 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
 export const AboutPage = () => {
   return (
     <>
@@ -12,7 +15,7 @@ export const AboutPage = () => {
         expedita dolorum accusamus debitis repellendus laboriosam, libero
         recusandae neque corrupti et.
       </p>
-      <Link to="/">Return to Home</Link>
+      <Link to="/">Return to Start</Link>
       <Link to="/registration">Register</Link> or <Link to="/login">Login</Link>
     </>
   );
