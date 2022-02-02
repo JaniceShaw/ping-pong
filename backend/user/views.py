@@ -1,7 +1,7 @@
 # from django.shortcuts import render
 from django.contrib.auth import get_user_model
 from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView, get_object_or_404, RetrieveAPIView
-from user.serializers import UserSerializer, UserProfileSerializer
+from user.serializers import UserProfileSerializer
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 # from rest_framework import filters
 # from .models import UserProfile
@@ -59,5 +59,3 @@ class RetrieveUserInfo(RetrieveAPIView):
 #         if username is not None:
 #             queryset = queryset.filter(username=username)
 #         return queryset
-
-
