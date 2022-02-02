@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'user',
     'member_request',
     'category',
+    'registration',
 ]
 
 MIDDLEWARE = [
