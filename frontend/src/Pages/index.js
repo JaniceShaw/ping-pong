@@ -3,13 +3,12 @@ import { ErrorPage } from './Error/Error';
 import { ListingPage } from './Listing/Listing.jsx';
 import { HelperListPage } from './Listing/HelperList/HelperList';
 import { RequestListPage } from './Listing/RequestList/RequestList';
+import { RequestViewPage } from './Request/RequestView.jsx';
 import { LoginPage } from './Login/Login';
 import { ProfilePage } from './Profile/Profile';
 import { RegistrationPage } from './Registration/Registration';
 import { SearchPage } from './Search/Search';
 import { AboutPage } from './About/About';
-
-
 
 export {
   StartPage,
@@ -17,6 +16,7 @@ export {
   ListingPage,
   HelperListPage,
   RequestListPage,
+  RequestViewPage,
   LoginPage,
   ProfilePage,
   RegistrationPage,

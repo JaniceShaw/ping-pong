@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export const RequestListPage = () => {
   return (
     <>
-      <Link to='/profile' className='card_container' class='border-2 flex'>
+      <Link to='/request_view' className='card_container' class='border-2 flex'>
         <img src={Resume} alt='' className='h-24 object-cover' />
         <div className='info-box'>
           <h1>Need Help with Resume</h1>
@@ -24,7 +24,7 @@ export const RequestListPage = () => {
         </div>
       </Link>
 
-      <Link to='/profile' className='card_container border-2 flex'>
+      <Link to='/request_view' className='card_container border-2 flex'>
         <img src={Resume} alt='' className='h-24 object-cover' />
         <div className='info-box'>
           <h1>Need Help with Resume</h1>{' '}
@@ -43,7 +43,7 @@ export const RequestListPage = () => {
         </div>
       </Link>
 
-      <Link to='/profile' className='card_container border-2 flex'>
+      <Link to='/request_view' className='card_container border-2 flex'>
         <img src={Resume} alt='' className='h-24 object-cover' />
         <div className='info-box'>
           <h1>Need Help with Resume</h1>{' '}

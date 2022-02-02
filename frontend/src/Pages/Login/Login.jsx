@@ -1,4 +1,4 @@
-// import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 // import { useDispatch } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
 // import { GetUserToken, GetUserData } from '../../sharedFunctions/fetchAPI';
@@ -6,8 +6,8 @@
 import { Link } from 'react-router-dom';
 
 export const LoginPage = () => {
-  // const [password, setPassword] = useState('')
-  // const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
   // const [user, setUser] = useState('');
   // // login errors
   // const [error, setError] = useState('');
@@ -36,11 +36,11 @@ export const LoginPage = () => {
   // }, []);
 
   const handlePasswordInput = (event) => {
-    // setPassword(event.target.value);
+    setPassword(event.target.value);
   };
 
   const handleEmailInput = (event) => {
-    // setEmail(event.target.value);
+    setEmail(event.target.value);
   };
 
   return (

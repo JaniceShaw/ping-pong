@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
 import RodrigoImage from '../../../assets/placeholder/rodrigo-image.jpg';
 
 export const HelperListPage = () => {
