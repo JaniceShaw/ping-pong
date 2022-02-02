@@ -1,20 +1,35 @@
-import './App.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ErrorPage } from './Pages/Error/Error';
 import { Header } from './Components/Header/header';
-import { HomePage } from './Pages/Home/Home';
-import { LoginPage } from './Pages/Login/Login';
+import { Footer } from './Components/Footer/footer';
+import {
+  ErrorPage,
+  HomePage,
+  LoginPage,
+  RegistrationPage,
+  ListingPage,
+  ProfilePage,
+  SearchPage,
+} from './Pages';
 
-function App() {
+export const RoutesIndex = () => {
   return (
     <>
       <BrowserRouter>
         <Header />
-        <main>
+        <main className="p-5">
           <Routes>
             <Route index element={<HomePage />} />
             <Route path="/" element={<HomePage />} />
-            {/* <Route path="search" element={<Search />}>
+            <Route path="registration" element={<RegistrationPage />} />
+            <Route path="profile" element={<ProfilePage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="search" element={<SearchPage />} />
+            <Route path="listing" element={<ListingPage />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </main>
+        <Footer className="p-5" />
+        {/* <Route path="search" element={<Search />}>
               <Route index element={<Restaurants />} />
               <Route path="restaurants" element={<Restaurants />} />
               <Route path="reviews" element={<SearchReviews />} />
@@ -42,15 +57,7 @@ function App() {
               <Route path="new_user" element={<NewUserForm />} />
               <Route path="*" element={<ErrorPage />} />
             </Route> */}
-
-            <Route path="login" element={<LoginPage />} />
-            <Route path="*" element={<ErrorPage />} />
-          </Routes>
-        </main>
-        {/* <Footer /> */}
       </BrowserRouter>
     </>
   );
-}
-
-export default App;
+};
