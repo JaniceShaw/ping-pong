@@ -3,7 +3,7 @@ import { Header } from './Components/Header/header';
 import { Footer } from './Components/Footer/footer';
 import {
   ErrorPage,
-  HomePage,
+  StartPage,
   LoginPage,
   RegistrationPage,
   ListingPage,
@@ -21,21 +21,23 @@ export const RoutesIndex = () => {
         <Header />
         <main className='p-5'>
           <Routes>
-            <Route index element={<HomePage />} />
-            <Route path='/' element={<HomePage />} />
-            <Route path='registration' element={<RegistrationPage />} />
-            <Route path='profile' element={<ProfilePage />} />
-            <Route path='login' element={<LoginPage />} />
-            <Route path='search' element={<SearchPage />} />
-            <Route path='listing' element={<ListingPage />}>
-              <Route path='helpers' element={<HelperListPage />} />
-              <Route path='requests' element={<RequestListPage />} />
+            <Route index element={<StartPage />} />
+            <Route path="/" element={<StartPage />} />
+            <Route path="registration" element={<RegistrationPage />} />
+            <Route path="profile" element={<ProfilePage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="search" element={<SearchPage />} />
+            <Route path="listing" element={<ListingPage />}>
+              <Route path="helpers" element={<HelperListPage />}/>
+              <Route path="requests" element={<RequestListPage />}/>
             </Route>
-            <Route path='about' element={<AboutPage />} />
-            <Route path='*' element={<ErrorPage />} />
+            <Route path="about" element={<AboutPage />} />
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </main>
-        <Footer className='p-5' />
+        <Footer className="p-5" />
+
+
         {/* <Route path="search" element={<Search />}>
               <Route index element={<Restaurants />} />
               <Route path="restaurants" element={<Restaurants />} />
