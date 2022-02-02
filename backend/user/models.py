@@ -30,7 +30,7 @@ class User(AbstractUser):
     helper_available_choices = (
         (1, 'Available'),
         (2, 'Busy'),
-        (2, 'Not available'),
+        (3, 'Not available'),
     )
     helper_available = models.PositiveSmallIntegerField(choices=helper_available_choices, null=False, default=1)
     helper_available_text = models.TextField(blank=True, null=True)

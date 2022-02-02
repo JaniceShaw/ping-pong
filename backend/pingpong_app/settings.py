@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # own
     'registration_profile',
     'user',
+    'member_request',
     'category',
 ]
 
