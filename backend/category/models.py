@@ -18,5 +18,8 @@ class SubCategory(models.Model):
     def __str__(self):
         return self.name
 
+    def __unicode__(self):
+        return f'{self.name}'
+
     class Meta:
         verbose_name_plural = " Sub categories"

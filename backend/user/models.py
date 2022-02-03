@@ -17,7 +17,7 @@ class User(AbstractUser):
         (1, 'Member'),
         (2, 'Helper'),
     )
-    type = models.PositiveSmallIntegerField(choices=type_choices, null=False, default=1)
+    type = models.PositiveSmallIntegerField(choices=type_choices, null=False)
     street = models.CharField(max_length=150, blank=True, null=True)
     city = models.CharField(max_length=150, blank=True, null=True)
     zip = models.CharField(max_length=10, blank=True, null=True)

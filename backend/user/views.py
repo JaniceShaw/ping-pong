@@ -14,28 +14,38 @@ User = get_user_model()
 #     permission_classes = [IsAuthenticatedOrReadOnly]
 
 
-# class RetrieveUpdateUserProfileView(RetrieveUpdateAPIView):
-#     """
-#     get:
-#     Returns profile of logged-in user
-#
-#     patch:
-#     Updates profile of logged-in user
-#     """
+class RetrieveUpdateMemberProfileView(RetrieveUpdateAPIView):
+    """
+    get:
+    Returns profile of logged-in Member
 
-    # queryset = User.objects.all()
-    # serializer_class = UserProfileSerializer    """
-# #     get:
-# #     Returns profile of logged-in user
-# #
-# #     patch:
-# #     Updates profile of logged-in user
-# #     """
-    # permission_classes = [IsAuthenticated]
-    #
-    # def get_object(self):
-    #     profile = User.objects.filter(id=self.request.user.id)
-    #     return get_object_or_404(profile, id=self.request.user.id)
+    patch:
+    Updates profile of logged-in Member
+    """
+    queryset = User.objects.all()
+    serializer_class = MemberProfileSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        profile = User.objects.filter(id=self.request.user.id)
+        return get_object_or_404(profile, id=self.request.user.id)
+
+
+class RetrieveUpdateHelperProfileView(RetrieveUpdateAPIView):
+    """
+    get:
+    Returns profile of logged-in Member
+
+    patch:
+    Updates profile of logged-in Member
+    """
+    queryset = User.objects.all()
+    serializer_class = HelperProfileSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        profile = User.objects.filter(id=self.request.user.id)
+        return get_object_or_404(profile, id=self.request.user.id)
 
 
 class ListHelperInfo(ListAPIView):
@@ -72,3 +82,20 @@ class RetrieveHelperInfo(RetrieveAPIView):
     serializer_class = HelperProfileSerializer
     permission_classes = [IsAuthenticated]
     lookup_url_kwarg = 'user_id'
+
+
+# class RetrieveUpdateDeleteMemberView(RetrieveUpdateDestroyAPIView):
+#     """
+#     get:
+#     Return details of restaurant by given id
+#
+#     patch:
+#     update restaurant by given id
+#
+#     delete:
+#     Delete restaurant by given id
+#     """
+#     queryset = Restaurant.objects.all()
+#     serializer_class = RestaurantSerializer
+#     lookup_field = 'id'
+#     permission_classes = [IsAuthenticated]

@@ -10,18 +10,12 @@ class SubCategorySerializer(serializers.ModelSerializer):
 
 
 class ListCategoriesSerializer(serializers.ModelSerializer):
-    # sub_categories = serializers.CharField(source='sub_categories.id', read_only=True)
-    # sub_categories = SubCategory.objects.all()
-    # sub_categories_name = sub_categories['name']
-    # sub_categories = serializers.SerializerMethodField()
+    # get all info from related foreign key
+    sub_categories = SubCategorySerializer(many=True)
 
     class Meta:
         model = Category
-        fields = ['name', 'sub_categories']
-
-    @staticmethod
-    def get_sub_categories(obj):
-        return SubCategorySerializer(obj, many=True, read_only=True).data.name
+        fields = ['id', 'name', 'sub_categories']
 
 
 
