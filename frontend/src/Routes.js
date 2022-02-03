@@ -9,12 +9,14 @@ import {
   ListingPage,
   HelperListPage,
   RequestListPage,
-  RequestViewPage,
-  ProfilePage,
+  HelperProfilePage,
   SearchPage,
   AboutPage,
+  MyProfilePage,
   NewJob,
+  Job,
 } from './Pages';
+
 export const RoutesIndex = () => {
   return (
     <>
@@ -24,14 +26,17 @@ export const RoutesIndex = () => {
           <Routes>
             <Route path='/' element={<StartPage />} />
             <Route path='registration' element={<RegistrationPage />} />
-            <Route path='profile' element={<ProfilePage />} />
+            <Route path='helper-profile' element={<HelperProfilePage />} />
+            <Route path='my-profile' element={<MyProfilePage />} />
             <Route path='login' element={<LoginPage />} />
             <Route path='search' element={<SearchPage />} />
+            <Route path='new-job' element={<NewJob />} />
+
             <Route path='listing' element={<ListingPage />}>
               <Route path='helpers' element={<HelperListPage />} />
-              <Route path='requests' element={<RequestListPage />}></Route>
+              <Route path='requests' element={<RequestListPage />} />
             </Route>
-            <Route path='request_view' element={<RequestViewPage />} />
+            <Route path='Job' element={<Job />} />
             <Route path='about' element={<AboutPage />} />
             <Route path='*' element={<ErrorPage />} />
           </Routes>

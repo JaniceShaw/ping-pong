@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { SearchTool } from '../../Components/Searchtool/Searchtool';
 
 export const ListingPage = () => {
   return (
@@ -13,6 +14,7 @@ export const ListingPage = () => {
           <button className='btn btn-blue'>Help Requests</button>
         </Link>
       </div>
+      <SearchTool />
       <Outlet />
     </>
   );

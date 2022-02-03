@@ -1,7 +1,9 @@
+import Logo from '../../assets/icons/Logo.png'
+
 export const Header = () => {
   return (
-    <div className='flex flex-col justify-center items-center'>
-      <h1 className='text-7xl font-bold text-red-500'>Ping Pong</h1>
+    <div className=' flex flex-col justify-start items-start'>
+      <img src={Logo} alt='here should be the logo' />
     </div>
   );
 };
