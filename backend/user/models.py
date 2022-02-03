@@ -26,6 +26,7 @@ class User(AbstractUser):
     description = models.TextField(blank=True, null=True)
     # helper
     helper_verified = models.BooleanField(default=False)
+    helper_hourly_rate = models.CharField(max_length=40, blank=True, null=True)
     helper_verify_pic = models.ImageField(blank=True, null=True)
     helper_available_choices = (
         (1, 'Available'),
@@ -34,8 +35,6 @@ class User(AbstractUser):
     )
     helper_available = models.PositiveSmallIntegerField(choices=helper_available_choices, null=False, default=1)
     helper_available_text = models.TextField(blank=True, null=True)
-    # todo: change to many to many as user should be able to select more than one category
-
     helper_categories = models.ManyToManyField(to=Category, related_name='helper_category', blank=True)
     helper_sub_categories = models.ManyToManyField(to=SubCategory, related_name='helper_sub_category', blank=True)
     # helper_category = models.ForeignKey(to=Category, related_name='helper_category',

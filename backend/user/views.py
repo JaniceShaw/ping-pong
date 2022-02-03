@@ -1,7 +1,7 @@
 # from django.shortcuts import render
 from django.contrib.auth import get_user_model
 from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView, get_object_or_404, RetrieveAPIView
-from user.serializers import MemberPublicProfileSerializer, HelperPublicProfileSerializer, ProfileSerializer
+from user.serializers import MemberPublicProfileSerializer, HelperPublicProfileSerializer, MemberProfileSerializer, HelperProfileSerializer
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 # from rest_framework import filters
 # from .models import UserProfile
@@ -52,12 +52,23 @@ class ListMemberInfo(ListAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
 
-class RetrieveUserInfo(RetrieveAPIView):
+class RetrieveMemberInfo(RetrieveAPIView):
     """
     get:
-    Return user profile of user id in url
+    Return Member profile of user id in url
     """
     queryset = User.objects.all()
-    serializer_class = ProfileSerializer
+    serializer_class = MemberProfileSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_url_kwarg = 'user_id'
+
+
+class RetrieveHelperInfo(RetrieveAPIView):
+    """
+    get:
+    Return Helper profile of user id in url
+    """
+    queryset = User.objects.all()
+    serializer_class = HelperProfileSerializer
     permission_classes = [IsAuthenticated]
     lookup_url_kwarg = 'user_id'
