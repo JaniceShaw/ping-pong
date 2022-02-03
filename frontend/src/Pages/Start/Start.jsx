@@ -12,7 +12,7 @@ export const StartPage = () => {
         </Link>
       </div>
       <div>
-        <Link to='/listing/requests'>
+        <Link to='/listing/jobs'>
           <button>
             <span>I want to help</span>
           </button>

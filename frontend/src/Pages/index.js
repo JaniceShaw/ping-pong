@@ -2,7 +2,7 @@ import { StartPage } from './Start/Start';
 import { ErrorPage } from './Error/Error';
 import { ListingPage } from './Listing/Listing.jsx';
 import { HelperListPage } from './Listing/HelperList/HelperList';
-import { RequestListPage } from './Listing/RequestList/RequestList';
+import { JobListPage } from './Listing/JobList/JobList';
 import { LoginPage } from './Login/Login';
 import { HelperProfilePage } from './Profile/HelperProfile/HelperProfile';
 import { RegistrationPage } from './Registration/Registration';
@@ -17,7 +17,7 @@ export {
   ErrorPage,
   ListingPage,
   HelperListPage,
-  RequestListPage,
+  JobListPage,
   LoginPage,
   HelperProfilePage,
   RegistrationPage,
