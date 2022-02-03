@@ -3,7 +3,7 @@ import Resume from '../../assets/placeholder/resume.jpg'
 
 export const RequestCard = () => {
   return (
-    <Link to='/request_view' className='card_container border-2 flex'>
+    <Link to='/new-job' className='card_container border-2 flex'>
       <img src={Resume} alt='' className='h-24 object-cover' />
       <div className='info-box'>
         <h1>Need Help with Resume</h1>{' '}

@@ -9,7 +9,6 @@ import {
   ListingPage,
   HelperListPage,
   RequestListPage,
-  RequestViewPage,
   HelperProfilePage,
   SearchPage,
   AboutPage,
@@ -37,7 +36,6 @@ export const RoutesIndex = () => {
               <Route path='requests' element={<RequestListPage />} />
             </Route>
 
-            <Route path='request_view' element={<RequestViewPage />} />
             <Route path='about' element={<AboutPage />} />
             <Route path='*' element={<ErrorPage />} />
           </Routes>

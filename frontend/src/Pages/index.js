@@ -3,7 +3,6 @@ import { ErrorPage } from './Error/Error';
 import { ListingPage } from './Listing/Listing.jsx';
 import { HelperListPage } from './Listing/HelperList/HelperList';
 import { RequestListPage } from './Listing/RequestList/RequestList';
-import { RequestViewPage } from './Request/RequestView.jsx';
 import { LoginPage } from './Login/Login';
 import { HelperProfilePage } from './Profile/HelperProfile/HelperProfile';
 import { RegistrationPage } from './Registration/Registration';
@@ -18,7 +17,6 @@ export {
   ListingPage,
   HelperListPage,
   RequestListPage,
-  RequestViewPage,
   LoginPage,
   HelperProfilePage,
   RegistrationPage,
