@@ -13,8 +13,6 @@ import {
   ProfilePage,
   SearchPage,
   AboutPage,
-  HelperListPage,
-  RequestListPage,
   NewJob,
 } from './Pages';
 export const RoutesIndex = () => {
