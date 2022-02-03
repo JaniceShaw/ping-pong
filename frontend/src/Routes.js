@@ -13,6 +13,7 @@ import {
   ProfilePage,
   SearchPage,
   AboutPage,
+  NewJob,
 } from './Pages';
 export const RoutesIndex = () => {
   return (
@@ -21,7 +22,6 @@ export const RoutesIndex = () => {
         <Header />
         <main className='p-5'>
           <Routes>
-            <Route index element={<StartPage />} />
             <Route path='/' element={<StartPage />} />
             <Route path='registration' element={<RegistrationPage />} />
             <Route path='profile' element={<ProfilePage />} />
