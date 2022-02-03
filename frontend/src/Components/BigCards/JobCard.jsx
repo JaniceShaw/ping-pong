@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Resume from '../../assets/placeholder/resume.jpg'
 
-export const RequestCard = () => {
+export const JobCard = () => {
   return (
     <Link to='/job' className='card_container border-2 flex'>
       <img src={Resume} alt='' className='h-24 object-cover' />

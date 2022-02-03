@@ -3,21 +3,21 @@ import { Link } from 'react-router-dom';
 export const Footer = () => {
   return (
     <footer>
-      <ul className="text-gray-300">
+      <ul className='text-gray-300'>
         <li>
-          <Link to="/">Home</Link>
+          <Link to='/'>Home</Link>
         </li>
         <li>
-          <Link to="login">Login</Link>
+          <Link to='login'>Login</Link>
         </li>
         <li>
-          <Link to="registration">Registration</Link>
+          <Link to='registration'>Registration</Link>
         </li>
         <li>
           <Link to='/my-profile'>My Profile</Link>
         </li>
         <li>
-          <Link to="listing">Listing</Link>
+          <Link to='listing'>Listing</Link>
         </li>
       </ul>
     </footer>

@@ -13,7 +13,7 @@ export const SearchTool = () => {
 
     const handleSearchRequest = (event) => {
         event.preventDefault();
-        navigate("/listing/helpers")
+        navigate('/listing/helpers')
     }
 
     const handleKeywordInput = (event) => {
@@ -30,16 +30,16 @@ export const SearchTool = () => {
 
     return (
     <form>
-    <input onChange={handleKeywordInput} type="text" placeholder="Search..."/>
-    <select onChange={handleCategoryInput} id="categories" name="categories">
-      <option value="Selector" selected>Select a category</option>
-      <option value="cat1">Category 1</option>
-      <option value="cat2">Category 2</option>
-      <option value="cat3">Category 3</option>
-      <option value="cat4">Category 4</option>
+    <input onChange={handleKeywordInput} type='text' placeholder='Search...'/>
+    <select onChange={handleCategoryInput} id='categories' name='categories'>
+      <option value='Selector' selected>Select a category</option>
+      <option value='cat1'>Category 1</option>
+      <option value='cat2'>Category 2</option>
+      <option value='cat3'>Category 3</option>
+      <option value='cat4'>Category 4</option>
     </select>
-    <input onChange={handleZIPCode} type="text" placeholder="Enter your ZIP Code"/>
-    <input onClick={handleSearchRequest} type="submit" placeholder="GO"/>
+    <input onChange={handleZIPCode} type='text' placeholder='Enter your ZIP Code'/>
+    <input onClick={handleSearchRequest} type='submit' placeholder='GO'/>
   </form>
   )
 }
