@@ -36,7 +36,8 @@ schema_view = get_schema_view(
 )
 
 api_patterns = [
-    path('user', include('user.urls')),
+    path('user/', include('user.urls')),
+    path('category/', include('category.urls')),
     # drf_yasg
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     # JWT URLS

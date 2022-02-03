@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from category.models import Category
+from category.models import Category, SubCategory
 # from django.contrib.auth import get_user_model
 # User = get_user_model()
 
@@ -35,8 +35,11 @@ class User(AbstractUser):
     helper_available = models.PositiveSmallIntegerField(choices=helper_available_choices, null=False, default=1)
     helper_available_text = models.TextField(blank=True, null=True)
     # todo: change to many to many as user should be able to select more than one category
-    helper_category = models.ForeignKey(to=Category, related_name='helper_category',
-                                        on_delete=models.CASCADE, null=True)
+
+    helper_categories = models.ManyToManyField(to=Category, related_name='helper_category', blank=True)
+    helper_sub_categories = models.ManyToManyField(to=SubCategory, related_name='helper_sub_category', blank=True)
+    # helper_category = models.ForeignKey(to=Category, related_name='helper_category',
+    #                                     on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.email

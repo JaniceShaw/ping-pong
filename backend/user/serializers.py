@@ -10,8 +10,21 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username']
 
 
-class UserProfileSerializer(serializers.ModelSerializer):
+# todo: add rating field for members and helpers
+class MemberPublicProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'phone', 'type',
-                  'street', 'city', 'zip', 'country']
+        fields = ['id', 'username', 'first_name', 'last_name', 'city', 'zip']
+
+
+class HelperPublicProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'first_name', 'last_name', 'city', 'zip', 'profile_pic', 'helper_categories',
+                  'helper_available']
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
