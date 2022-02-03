@@ -1,16 +1,16 @@
 from django.db import models
 
 
-class Category(models.Model):
+class SubCategory(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.name
+        return f"{self.name}"
 
 
-class SubCategory(models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=50)
-    category = models.ForeignKey(to=Category, related_name='sub_category', on_delete=models.CASCADE, null=True)
+    sub_categories = models.ManyToManyField(to=SubCategory, related_name='category', blank=True)
 
     def __str__(self):
         return self.name

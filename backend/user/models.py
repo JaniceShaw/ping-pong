@@ -34,6 +34,7 @@ class User(AbstractUser):
     )
     helper_available = models.PositiveSmallIntegerField(choices=helper_available_choices, null=False, default=1)
     helper_available_text = models.TextField(blank=True, null=True)
+    # todo: change to many to many as user should be able to select more than one category
     helper_category = models.ForeignKey(to=Category, related_name='helper_category',
                                         on_delete=models.CASCADE, null=True)
 
