@@ -10,10 +10,12 @@ import {
   HelperListPage,
   RequestListPage,
   RequestViewPage,
-  ProfilePage,
+  HelperProfilePage,
   SearchPage,
   AboutPage,
+  MyProfilePage,
 } from './Pages';
+
 export const RoutesIndex = () => {
   return (
     <>
@@ -24,13 +26,17 @@ export const RoutesIndex = () => {
             <Route index element={<StartPage />} />
             <Route path='/' element={<StartPage />} />
             <Route path='registration' element={<RegistrationPage />} />
-            <Route path='profile' element={<ProfilePage />} />
+            <Route path='helper-profile' element={<HelperProfilePage />} />
+            {/* <Route path='helper-jobs' element={<HelperJobs />} /> */}
+            <Route path='my-profile' element={<MyProfilePage />} />
             <Route path='login' element={<LoginPage />} />
             <Route path='search' element={<SearchPage />} />
+
             <Route path='listing' element={<ListingPage />}>
               <Route path='helpers' element={<HelperListPage />} />
               <Route path='requests' element={<RequestListPage />}></Route>
             </Route>
+
             <Route path='request_view' element={<RequestViewPage />} />
             <Route path='about' element={<AboutPage />} />
             <Route path='*' element={<ErrorPage />} />
