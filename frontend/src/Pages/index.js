@@ -9,6 +9,7 @@ import { ProfilePage } from './Profile/Profile';
 import { RegistrationPage } from './Registration/Registration';
 import { SearchPage } from './Search/Search';
 import { AboutPage } from './About/About';
+import { NewJob } from './NewJob/NewJob'
 
 export {
   StartPage,
@@ -22,4 +23,5 @@ export {
   RegistrationPage,
   SearchPage,
   AboutPage,
+  NewJob
 };

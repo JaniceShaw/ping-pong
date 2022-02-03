@@ -5,14 +5,14 @@ export const StartPage = () => {
   return (
     <>
       <div>
-        <Link to="/search">
+        <Link to='/search'>
           <button>
             <span>I need help</span>
           </button>
         </Link>
       </div>
       <div>
-        <Link to="/listing/requests">
+        <Link to='/listing/requests'>
           <button>
             <span>I want to help</span>
           </button>
@@ -21,12 +21,12 @@ export const StartPage = () => {
 
       <div className='loginButton'>
         <p>Have an account?</p>
-        <Link to="/login">
+        <Link to='/login'>
           <span>Log in</span>
         </Link>
       </div>
 
-      <Link to="/about">
+      <Link to='/about'>
         <p>What is ping-pong?</p>
       </Link>
       
