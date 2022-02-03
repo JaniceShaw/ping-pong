@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export const SearchTool = () => {
     
-    const [keyword, setKeyword] = useState("");
+    const [keyword, setKeyword] = useState('');
     const [category, setCategory] = useState("");
     const [zipcode, setZIPCode] = useState("");
 

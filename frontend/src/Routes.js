@@ -12,6 +12,7 @@ import {
   AboutPage,
   HelperListPage,
   RequestListPage,
+  NewJob,
 } from './Pages';
 
 export const RoutesIndex = () => {
@@ -27,6 +28,7 @@ export const RoutesIndex = () => {
             <Route path="profile" element={<ProfilePage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="search" element={<SearchPage />} />
+            <Route path='createjob' element={<NewJob />} />
             <Route path="listing" element={<ListingPage />}>
               <Route path="helpers" element={<HelperListPage />}/>
               <Route path="requests" element={<RequestListPage />}/>

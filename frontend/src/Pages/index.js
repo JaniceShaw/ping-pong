@@ -8,6 +8,8 @@ import { SearchPage } from './Search/Search';
 import { AboutPage } from './About/About';
 import { HelperListPage } from './Listing/HelperList/HelperList';
 import { RequestListPage } from './Listing/RequestList/RequestList';
+import { NewJob } from './NewJob/NewJob';
+
 
 
 export {
@@ -21,4 +23,5 @@ export {
   AboutPage,
   RequestListPage,
   HelperListPage,
+  NewJob,
 };
