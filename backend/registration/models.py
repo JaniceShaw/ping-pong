@@ -12,6 +12,11 @@ class Registration(models.Model):
     email = models.EmailField(blank=False, null=False, max_length=100, unique=True)
     status = models.CharField(blank=False, null=False, max_length=12, default='inactive')
     code = models.CharField(blank=False, null=False, max_length=12, default=random_number)
+    type_choices = (
+        (1, 'Member'),
+        (2, 'Helper'),
+    )
+    type = models.PositiveSmallIntegerField(choices=type_choices, null=False, default=1)
 
     def __str__(self):
         return f'email: {self.email} status: {self.status} code:{self.code}'

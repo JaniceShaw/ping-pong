@@ -5,6 +5,8 @@ import { HelperListPage } from './Listing/HelperList/HelperList';
 import { JobListPage } from './Listing/JobList/JobList';
 import { LoginPage } from './Login/Login';
 import { HelperProfilePage } from './Profile/HelperProfile/HelperProfile';
+import { HelperInfo } from '../Components/ProfileComponents/HelperInfo';
+import { HelperJobs } from '../Components/ProfileComponents/HelperJobs';
 import { RegistrationPage } from './Registration/Registration';
 import { SearchPage } from './Search/Search';
 import { AboutPage } from './About/About';
@@ -12,6 +14,7 @@ import { MyProfilePage } from './Profile/MyProfile';
 import { NewJob } from './NewJob/NewJob';
 import { Job } from './Job/Job';
 import { ViewJob } from './ViewJob/ViewJob';
+import { PrivateJob } from './PrivateJob/PrivateJob';
 
 export {
   StartPage,
@@ -21,6 +24,8 @@ export {
   JobListPage,
   LoginPage,
   HelperProfilePage,
+  HelperInfo,
+  HelperJobs,
   RegistrationPage,
   SearchPage,
   AboutPage,
@@ -28,4 +33,5 @@ export {
   NewJob,
   Job,
   ViewJob,
+  PrivateJob,
 };
