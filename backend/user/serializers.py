@@ -37,4 +37,3 @@ class HelperProfileSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'first_name', 'last_name', 'email', 'phone', 'street', 'city', 'zip',
                   'profile_pic', 'description', 'last_login', 'helper_hourly_rate', 'helper_categories',
                   'helper_available', 'helper_verified']
-

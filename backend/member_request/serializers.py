@@ -36,4 +36,3 @@ class MemberRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = MemberRequest
         fields = '__all__'
-

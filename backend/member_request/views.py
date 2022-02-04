@@ -5,6 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 # from category.models import Category, SubCategory
 from member_request.models import MemberRequest
 
+
 # display info for job list page
 class ListMemberRequestView(ListAPIView):
 
