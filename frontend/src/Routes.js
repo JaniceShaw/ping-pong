@@ -10,11 +10,14 @@ import {
   HelperListPage,
   JobListPage,
   HelperProfilePage,
+  HelperInfo,
+  HelperJobs,
   SearchPage,
   AboutPage,
   MyProfilePage,
   NewJob,
   Job,
+  PrivateJob,
 } from './Pages';
 
 export const RoutesIndex = () => {
@@ -26,17 +29,27 @@ export const RoutesIndex = () => {
           <Routes>
             <Route path='/' element={<StartPage />} />
             <Route path='registration' element={<RegistrationPage />} />
-            <Route path='helper-profile' element={<HelperProfilePage />} />
-            <Route path='my-profile' element={<MyProfilePage />} />
             <Route path='login' element={<LoginPage />} />
             <Route path='search' element={<SearchPage />} />
             <Route path='new-job' element={<NewJob />} />
 
             <Route path='listing' element={<ListingPage />}>
+              <Route index element={<HelperListPage />} />
               <Route path='helpers' element={<HelperListPage />} />
-              <Route path='requests' element={<JobListPage />} />
+              <Route path='jobs' element={<JobListPage />} />
             </Route>
+
             <Route path='Job' element={<Job />} />
+
+            <Route path='helper-profile' element={<HelperProfilePage />}>
+              <Route index element={<HelperInfo />} />
+              <Route path='info' element={<HelperInfo />} />
+              <Route path='jobs' element={<HelperJobs />} />
+            </Route>
+
+            <Route path='private-job' element={<PrivateJob />} />
+            <Route path='my-profile' element={<MyProfilePage />} />
+
             <Route path='about' element={<AboutPage />} />
             <Route path='*' element={<ErrorPage />} />
           </Routes>
