@@ -1,6 +1,6 @@
 from rest_framework.generics import CreateAPIView, UpdateAPIView, GenericAPIView
 from .serializers import RegisterSerializer, RegistrationValidationSerializer, PasswordResetSerializer, PasswordResetValidationSerializer
-# from .models import Registration
+from .models import Registration
 from django.contrib.auth import get_user_model
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
 
@@ -27,19 +27,20 @@ class RegistrationView(CreateAPIView):
         serializer.save()
         email = serializer.data['email']
         code = serializer.data['code']
+        # type = serializer.data['type']
 
-        html_mail = '<div style="background-color:#EBEBEB; margin:0 auto; ' \
+        html_mail = '<div style="background-color:#E6E1FC; margin:0 auto; ' \
                     'border-radius:5px; width:100%; text-align:center; height:400px; padding:0">' \
-                    '<h1 style="color:#E47D31; padding:30px">Thank you for registering at Ping-Pong!</h1>' \
+                    '<h1 style="color:#3B1A74; padding:30px">Thank you for registering at Ping-pong!</h1>' \
                     '<p style="font-size:14px; padding-bottom:40px;">' \
                     'Your validation code is: <strong>{}</strong></p>' \
-                    '<p><a href="https://ping-pong.propulsion-learn.ch" target="_blank">Ping-Pong</a>' \
+                    '<p><a href="https://ping-pong.propulsion-learn.ch" target="_blank">Ping-pong</a>' \
                     '</p></div>'.format(code)
 
         send_mail(
             'Thank you for registering!',
             'Thank you for registering: your validation code is: {}'.format(code),
-            'admin@ping-pong.ch',
+            'ping-pong@gmail.com',
             [email],
             fail_silently=False,
             html_message=html_mail
@@ -64,18 +65,18 @@ class PasswordResetView(GenericAPIView):
             email = serializer.data['email']
             code = Registration.objects.filter(email=email)[0].code
 
-            html_mail = '<div style="background-color:#EBEBEB; margin:0 auto; ' \
+            html_mail = '<div style="background-color:#E6E1FC; margin:0 auto; ' \
                         'border-radius:5px; width:100%; text-align:center; height:400px; padding:0">' \
-                        '<h1 style="color:#E47D31; padding:30px">Your validation code for Ping-Pong!</h1>' \
+                        '<h1 style="color:#3B1A74; padding:30px">Your validation code for Ping-pong!</h1>' \
                         '<p style="font-size:14px; padding-bottom:40px;">' \
-                        'Your validation code for resetting your password is: <strong>{}</strong></p>' \
-                        '<p><a href="https://ping-pong.propulsion-learn.ch" target="_blank">Ping-Pong</a>' \
+                        'Your validation code is: <strong>{}</strong></p>' \
+                        '<p><a href="https://motion-jos.propulsion-learn.ch" target="_blank">Ping-pong</a>' \
                         '</p></div>'.format(code)
 
             send_mail(
                 'Password reset',
-                'your validation code for resetting your password is: {}'.format(code),
-                'admin@luna.ch',
+                'your validation code is: {}'.format(code),
+                'ping-pong@gmail.com',
                 [email],
                 fail_silently=False,
                 html_message=html_mail
@@ -94,6 +95,7 @@ class RegistrationValidationView(UpdateAPIView):
         if serializer.is_valid(raise_exception=True):
             User.objects.create_user(email=serializer.validated_data['email'],
                                      password=serializer.validated_data['password'],
+                                     type=serializer.validated_data['type'],
                                      username=serializer.validated_data['username'],
                                      first_name=serializer.validated_data['first_name'],
                                      last_name=serializer.validated_data['last_name'])

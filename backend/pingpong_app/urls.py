@@ -36,13 +36,20 @@ schema_view = get_schema_view(
 )
 
 api_patterns = [
-    path('user', include('user.urls')),
+    path('user/', include('user.urls')),
+    path('category/', include('category.urls')),
+
     # drf_yasg
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+
     # JWT URLS
     path('auth/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     path('auth/verify/', jwt_views.TokenVerifyView.as_view(), name='token_refresh'),
+
+    # password reset and registration
+    path('', include('registration.urls')),
+    # path('registration/', include('registration.urls')),
 ]
 
 urlpatterns = [
