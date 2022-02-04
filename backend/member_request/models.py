@@ -39,3 +39,36 @@ class MemberRequest(models.Model):
     helper_status = models.PositiveSmallIntegerField(choices=helper_status_choices, null=False, default=1)
     private = models.BooleanField(default=False)
     budget = models.CharField(max_length=50, blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+
+class HelperReview(models.Model):
+    text_content = models.TextField(blank=False, null=False)
+    rating_choices = (
+        (0, '0'),
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+    )
+    rating = models.PositiveSmallIntegerField(choices=rating_choices, null=False, default=0)
+    member_request = models.ForeignKey(to=MemberRequest, on_delete=models.CASCADE, related_name='helper_review')
+    created = models.DateTimeField(auto_now_add=True)
+
+
+class MemberReview(models.Model):
+    text_content = models.TextField(blank=False, null=False)
+    rating_choices = (
+        (0, '0'),
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+    )
+    rating = models.PositiveSmallIntegerField(choices=rating_choices, null=False, default=0)
+    member_request = models.ForeignKey(to=MemberRequest, on_delete=models.CASCADE, related_name='member_review')
+    created = models.DateTimeField(auto_now_add=True)
