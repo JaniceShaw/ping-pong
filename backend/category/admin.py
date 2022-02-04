@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from category.models import SubCategory, Category
 
 admin.site.register(Category)
@@ -7,7 +6,7 @@ admin.site.register(Category)
 
 class SubCategoryAdmin(admin.ModelAdmin):
     # fields which are shown when looking at a list of instances
-    list_display = ('name', 'category', )
+    list_display = ('name', 'category')
     ordering = ('category',)
     list_filter = ('category',)
 
