@@ -22,6 +22,8 @@ class User(AbstractUser):
     city = models.CharField(max_length=150, blank=True, null=True)
     zip = models.CharField(max_length=10, blank=True, null=True)
     country = models.CharField(max_length=100, blank=True, null=True)
+    lon = models.FloatField(null=True, blank=True)
+    lat = models.FloatField(null=True, blank=True)
     profile_pic = models.ImageField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     # helper

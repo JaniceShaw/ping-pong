@@ -25,8 +25,6 @@ class MemberRequest(models.Model):
     img_two = models.ImageField(blank=True, null=True)
     img_three = models.ImageField(blank=True, null=True)
     img_four = models.ImageField(blank=True, null=True)
-    img_five = models.ImageField(blank=True, null=True)
-    img_six = models.ImageField(blank=True, null=True)
     category = models.ForeignKey(to=Category, related_name='request_category', on_delete=models.CASCADE, null=True)
     # not sure if this is the best way or if we need sub_category
     # sub_category = models.ForeignKey(to=SubCategory, related_name='request_sub_category',
