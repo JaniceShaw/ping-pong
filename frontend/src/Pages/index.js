@@ -15,6 +15,9 @@ import { NewJob } from './NewJob/NewJob';
 import { Job } from './Job/Job';
 import { ViewJob } from './ViewJob/ViewJob';
 import { PrivateJob } from './PrivateJob/PrivateJob';
+import { RegisterHomepage } from './RegisterHomepage/RegisterHomepage';
+import { RegisterHelper } from './RegisterHelper/RegisterHelper';
+import { RegisterMember } from './RegisterMember/RegisterMember';
 
 export {
   StartPage,
@@ -34,4 +37,7 @@ export {
   Job,
   ViewJob,
   PrivateJob,
+  RegisterHomepage,
+  RegisterHelper,
+  RegisterMember,
 };
