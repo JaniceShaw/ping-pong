@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SelectInput } from '../../Components/SelectInput.jsx/SelectInput';
+import { SelectInput } from '../../Components/TailwindComp/SelectInput';
 import { InputFile } from '../../Components/TailwindComp/InputFile';
 import { useNavigate } from 'react-router-dom';
 
