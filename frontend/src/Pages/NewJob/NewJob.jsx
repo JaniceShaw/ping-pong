@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { SelectInput } from '../../Components/SelectInput.jsx/SelectInput';
 import { InputFile } from '../../Components/TailwindComp/InputFile';
+import { useNavigate } from 'react-router-dom';
 
 export const NewJob = () => {
   const [title, setTitle] = useState('');
@@ -8,10 +9,19 @@ export const NewJob = () => {
   const [max_reward, setMaxReward] = useState('');
   const [description, setDescription] = useState('');
 
+  let navigate = useNavigate();
+
+  const handleSubmitButton = (event) => {
+    event.preventDefault();
+    navigate('/listing/helpers');
+  };
+
   return (
     <>
       <h1>Create a New Job Request!</h1>
-      <form className='flex flex-col justify-center items-center'>
+      <form
+        className='flex flex-col justify-center items-center'
+        onSubmit={handleSubmitButton}>
         <SelectInput />
         <input
           type='text'
@@ -44,7 +54,11 @@ export const NewJob = () => {
         <InputFile />
         <InputFile />
         <InputFile />
-        <input type='submit' value='submit changes' className='btn' />
+        <input
+          type='submit'
+          value='submit changes'
+          className='border-2 border-black cursor-pointer'
+        />
       </form>
     </>
   );
