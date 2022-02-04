@@ -58,6 +58,12 @@ class HelperReview(models.Model):
     member_request = models.ForeignKey(to=MemberRequest, on_delete=models.CASCADE, related_name='helper_review')
     created = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.rating
+
+    def __unicode__(self):
+        return f'{self.rating}'
+
 
 class MemberReview(models.Model):
     text_content = models.TextField(blank=False, null=False)
