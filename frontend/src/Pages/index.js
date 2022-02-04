@@ -11,6 +11,7 @@ import { AboutPage } from './About/About';
 import { MyProfilePage } from './Profile/MyProfile';
 import { NewJob } from './NewJob/NewJob';
 import { Job } from './Job/Job';
+import { ViewJob } from './ViewJob/ViewJob';
 
 export {
   StartPage,
@@ -25,5 +26,6 @@ export {
   AboutPage,
   MyProfilePage,
   NewJob,
-  Job
+  Job,
+  ViewJob,
 };
