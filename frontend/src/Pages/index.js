@@ -14,7 +14,7 @@ import { MyProfilePage } from './Profile/MyProfile';
 import { NewJob } from './NewJob/NewJob';
 import { Job } from './Job/Job';
 import { PrivateJob } from './PrivateJob/PrivateJob';
-
+import { MenuBar } from './Menu/Menu';
 export {
   StartPage,
   ErrorPage,
@@ -32,4 +32,5 @@ export {
   NewJob,
   Job,
   PrivateJob,
+  MenuBar,
 };
