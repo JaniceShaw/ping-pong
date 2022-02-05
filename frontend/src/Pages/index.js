@@ -15,6 +15,11 @@ import { NewJob } from './NewJob/NewJob';
 import { Job } from './Job/Job';
 import { PrivateJob } from './PrivateJob/PrivateJob';
 import { MenuBar } from './Menu/Menu';
+import { MemberProfilePage } from './Profile/MemberProfile/MemberProfile';
+import { MemberInfo } from '../Components/ProfileComponents/MemberInfo';
+import { MemberJobs } from '../Components/ProfileComponents/MemberJobs';
+import { EditProfile } from '../Components/ProfileComponents/EditProfile';
+
 export {
   StartPage,
   ErrorPage,
@@ -33,4 +38,8 @@ export {
   Job,
   PrivateJob,
   MenuBar,
+  MemberProfilePage,
+  MemberInfo,
+  MemberJobs,
+  EditProfile,
 };
