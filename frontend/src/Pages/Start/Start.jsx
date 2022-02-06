@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import StudentsPicture from '../../assets/UnDraw/students_undraw.png';
 
 export const StartPage = () => {
   return (
@@ -29,7 +30,8 @@ export const StartPage = () => {
       <Link to='/about'>
         <p>What is ping-pong?</p>
       </Link>
-      
+
+      <img src={StudentsPicture} alt='here should be a Students drawing' />
     </>
   );
 };

@@ -8,7 +8,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Registration
-        fields = ['email', 'status', 'code']
+        fields = ['email', 'status', 'code', 'type']
 
         def perform_create(self, serializer):
             serializer.save()
@@ -18,6 +18,8 @@ class RegistrationValidationSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(min_length=1)
     username = serializers.CharField(max_length=200, min_length=1)
     code = serializers.CharField(min_length=1)
+    # new for type
+    type = serializers.IntegerField()
     password = serializers.CharField(min_length=1, max_length=100)
     password_repeat = serializers.CharField(min_length=1, max_length=100)
     first_name = serializers.CharField(min_length=1)
@@ -27,6 +29,8 @@ class RegistrationValidationSerializer(serializers.ModelSerializer):
         request_username = data.get('username')
         request_email = data.get('email')
         request_code = data.get('code')
+        # new for type
+        # request_type = data.get('type')
         request_password = data.get('password')
         request_password_repeat = data.get('password_repeat')
 
@@ -47,7 +51,7 @@ class RegistrationValidationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Registration
-        fields = ['email', 'username', 'code', 'password', 'password_repeat', 'first_name', 'last_name']
+        fields = ['email', 'username', 'code', 'type', 'password', 'password_repeat', 'first_name', 'last_name']
 
 
 # class RegistrationInfoSerializer(serializers.ModelSerializer):
