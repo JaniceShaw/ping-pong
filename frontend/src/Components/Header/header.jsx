@@ -1,4 +1,4 @@
-import Logo from '../../assets/icons/Logo.png';
+import Logo from '../../Assets/icons/Logo.png';
 import { MenuBar } from '../../Pages/Menu/Menu';
 
 export const Header = () => {
