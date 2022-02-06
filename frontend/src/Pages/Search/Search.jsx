@@ -8,7 +8,7 @@ export const SearchPage = () => {
 
   const handleCreateNewJob = (event) => {
       event.preventDefault();
-      navigate('/newjob')
+      navigate('/new-job')
   }
 
   return (
