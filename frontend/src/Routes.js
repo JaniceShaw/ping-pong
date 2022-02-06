@@ -15,6 +15,7 @@ import {
   MyProfilePage,
   NewJob,
   Job,
+  MapPage,
 } from './Pages';
 
 export const RoutesIndex = () => {
@@ -22,26 +23,27 @@ export const RoutesIndex = () => {
     <>
       <BrowserRouter>
         <Header />
-        <main className='p-5'>
+        <main className="p-5">
           <Routes>
-            <Route path='/' element={<StartPage />} />
-            <Route path='registration' element={<RegistrationPage />} />
-            <Route path='helper-profile' element={<HelperProfilePage />} />
-            <Route path='my-profile' element={<MyProfilePage />} />
-            <Route path='login' element={<LoginPage />} />
-            <Route path='search' element={<SearchPage />} />
-            <Route path='new-job' element={<NewJob />} />
+            <Route path="/" element={<StartPage />} />
+            <Route path="registration" element={<RegistrationPage />} />
+            <Route path="helper-profile" element={<HelperProfilePage />} />
+            <Route path="my-profile" element={<MyProfilePage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="search" element={<SearchPage />} />
+            <Route path="new-job" element={<NewJob />} />
 
-            <Route path='listing' element={<ListingPage />}>
-              <Route path='helpers' element={<HelperListPage />} />
-              <Route path='requests' element={<JobListPage />} />
+            <Route path="listing" element={<ListingPage />}>
+              <Route path="helpers" element={<HelperListPage />} />
+              <Route path="requests" element={<JobListPage />} />
             </Route>
-            <Route path='Job' element={<Job />} />
-            <Route path='about' element={<AboutPage />} />
-            <Route path='*' element={<ErrorPage />} />
+            <Route path="Job" element={<Job />} />
+            <Route path="about" element={<AboutPage />} />
+            <Route path="maps" element={<MapPage />} />
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </main>
-        <Footer className='p-5' />
+        <Footer className="p-5" />
 
         {/* <Route path="search" element={<Search />}>
               <Route index element={<Restaurants />} />
