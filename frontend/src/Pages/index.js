@@ -18,7 +18,7 @@ import { PrivateJob } from './PrivateJob/PrivateJob';
 import { RegisterHomepage } from './RegisterHomepage/RegisterHomepage';
 import { RegisterHelper } from './RegisterHelper/RegisterHelper';
 import { RegisterMember } from './RegisterMember/RegisterMember';
-
+import { MenuBar } from './Menu/Menu';
 export {
   StartPage,
   ErrorPage,
@@ -40,4 +40,5 @@ export {
   RegisterHomepage,
   RegisterHelper,
   RegisterMember,
+  MenuBar,
 };
