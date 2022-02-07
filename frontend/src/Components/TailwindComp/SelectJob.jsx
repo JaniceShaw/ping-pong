@@ -1,12 +1,13 @@
 import { useState } from 'react';
 
-export const SelectInput = () => {
+export const SelectJob = () => {
   const [option, setOption] = useState('');
   let options = [
-    { label: 'Mechanic', value: 'Mechanic' },
-    { label: 'Electrician', value: 'Electrician'},
-    { label: 'Developer', value: 'Developer'},
-    { label: 'Plumber', value: 'Plumber' },
+    { label: 'Job 1', value: 'Job 1' },
+    { label: 'Job 2', value: 'Job 2' },
+    { label: 'Job 3', value: 'Job 3' },
+    { label: 'Job 4', value: 'Job 4' },
+
   ];
   return (
     <select
