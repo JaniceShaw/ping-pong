@@ -25,6 +25,11 @@ import { RegisterHomepage } from './RegisterHomepage/RegisterHomepage';
 import { RegisterHelper } from './RegisterHelper/RegisterHelper';
 import { RegisterMember } from './RegisterMember/RegisterMember';
 import { MenuBar } from './Menu/Menu';
+import { MemberProfilePage } from './Profile/MemberProfile/MemberProfile';
+import { MemberInfo } from '../Components/ProfileComponents/MemberInfo';
+import { MemberJobs } from '../Components/ProfileComponents/MemberJobs';
+import { EditProfile } from '../Components/ProfileComponents/EditProfile';
+
 export {
   StartPage,
   ErrorPage,
@@ -52,4 +57,8 @@ export {
   RegisterHelper,
   RegisterMember,
   MenuBar,
+  MemberProfilePage,
+  MemberInfo,
+  MemberJobs,
+  EditProfile,
 };
