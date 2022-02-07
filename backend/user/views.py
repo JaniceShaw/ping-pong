@@ -1,6 +1,6 @@
 # from django.shortcuts import render
 from django.contrib.auth import get_user_model
-from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView, get_object_or_404, RetrieveAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListAPIView, get_object_or_404, RetrieveAPIView, RetrieveUpdateDestroyAPIView
 from user.serializers import MemberPublicProfileSerializer, HelperPublicProfileSerializer, MemberProfileSerializer, HelperProfileSerializer
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from django.db.models import Avg
@@ -64,6 +64,7 @@ class ListHelperInfo(ListAPIView):
 
     # def get_queryset(self):
     #     return User.objects.filter(type=2).annotate(avg_rating=Avg('helper_reviews__rating'))
+
 
 class ListMemberInfo(ListAPIView):
 
