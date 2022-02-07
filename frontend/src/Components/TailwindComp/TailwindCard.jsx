@@ -14,16 +14,16 @@ export const TailwindCard = () => {
           <h5 className='text-gray-900 text-xl font-medium mb-2'>Resume</h5>
           <div className='info-box'>
             <h1>Need Help with Resume</h1>{' '}
-            <label for='Salary' className='flex'>
+            <label htmlFor='Salary' className='flex'>
               Salary :<p id='Salary'>Salary</p>
             </label>
-            <label for='Skills required' className='flex'>
+            <label htmlFor='Skills required' className='flex'>
               Skills required :<p id='Skills required'>Writing Resumes</p>
             </label>
-            <label for='location' className='flex'>
+            <label htmlFor='location' className='flex'>
               Location :<p id='location'>8050 Zurich</p>
             </label>
-            <label for='language' className='flex'>
+            <label htmlFor='language' className='flex'>
               Language :<p id='language'>ENG, DE</p>
             </label>
           </div>

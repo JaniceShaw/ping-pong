@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   return (
     <footer>
-      <ul className='text-gray-300'>
+      {/* <ul className='text-gray-300'>
         <li>
           <Link to='/'>Home</Link>
         </li>
@@ -19,7 +19,7 @@ export const Footer = () => {
         <li>
           <Link to='listing'>Listing</Link>
         </li>
-      </ul>
+      </ul> */}
     </footer>
   );
 };
