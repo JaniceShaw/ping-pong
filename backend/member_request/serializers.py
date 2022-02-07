@@ -18,7 +18,6 @@ class MemberRequestSerializer(serializers.ModelSerializer):
     # category_name = serializers.CharField(source='category.name', read_only=True)
     category_name = serializers.CharField(source='category.name', read_only=True)
 
-
     def create(self, validated_data):
         request = self.context.get('request', None)
         member = request.user
