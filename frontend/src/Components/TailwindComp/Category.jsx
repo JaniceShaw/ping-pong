@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const SelectInput = () => {
+export const Category = () => {
   const [option, setOption] = useState('');
   let options = [
     { label: 'Mechanic', value: 'mechanic' },

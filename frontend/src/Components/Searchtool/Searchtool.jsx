@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { SelectInput } from '../TailwindComp/SelectInput';
+import { Category } from '../TailwindComp/Category';
 
 export const SearchTool = () => {
   const [keyword, setKeyword] = useState('');
@@ -30,7 +30,7 @@ export const SearchTool = () => {
         value={keyword}
         placeholder='Search...'
       />
-      <SelectInput />
+      <Category />
       <input
         onChange={handleZIPCode}
         type='text'
