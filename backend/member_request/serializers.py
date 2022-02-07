@@ -10,10 +10,13 @@ class MemberRequestSerializer(serializers.ModelSerializer):
     # to get the logged-in user id
     member = serializers.PrimaryKeyRelatedField(read_only=True)
     member_username = serializers.CharField(source='member.username', read_only=True)
+    helper_username = serializers.CharField(source='helper.username', read_only=True)
     member_zip = serializers.CharField(source='member.zip', read_only=True)
     member_city = serializers.CharField(source='member.city', read_only=True)
     member_lon = serializers.CharField(source='member.lon', read_only=True)
     member_lat = serializers.CharField(source='member.lat', read_only=True)
+    # category_name = serializers.CharField(source='category.name', read_only=True)
+    category_name = serializers.CharField(source='category.name', read_only=True)
 
 
     def create(self, validated_data):
