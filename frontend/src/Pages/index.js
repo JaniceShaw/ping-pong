@@ -8,15 +8,19 @@ import { HelperProfilePage } from './Profile/HelperProfile/HelperProfile';
 import { HelperInfo } from '../Components/ProfileComponents/HelperInfo';
 import { HelperJobs } from '../Components/ProfileComponents/HelperJobs';
 import { RegistrationPage } from './Registration/Registration';
+import { Validation } from './Validation/Validation';
+import { CreateUserPage } from './CreateUser/CreateUser';
 import { SearchPage } from './Search/Search';
 import { AboutPage } from './About/About';
+import { FAQPage } from './FAQ/FAQ';
+import { SupportPage } from './Support/Support';
 import { MyProfilePage } from './Profile/MyProfile';
 import { NewJob } from './NewJob/NewJob';
+import { PrivateJob } from './PrivateJob/PrivateJob';
 import { Job } from './Job/Job';
 import { MapPage } from './Map/Map';
 
 import { ViewJob } from './ViewJob/ViewJob';
-import { PrivateJob } from './PrivateJob/PrivateJob';
 import { RegisterHomepage } from './RegisterHomepage/RegisterHomepage';
 import { RegisterHelper } from './RegisterHelper/RegisterHelper';
 import { RegisterMember } from './RegisterMember/RegisterMember';
@@ -37,14 +41,18 @@ export {
   HelperInfo,
   HelperJobs,
   RegistrationPage,
+  Validation,
+  CreateUserPage,
   SearchPage,
   AboutPage,
+  FAQPage,
+  SupportPage,
   MyProfilePage,
   NewJob,
+  PrivateJob,
   Job,
   MapPage,
   ViewJob,
-  PrivateJob,
   RegisterHomepage,
   RegisterHelper,
   RegisterMember,
