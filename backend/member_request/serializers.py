@@ -9,6 +9,14 @@ from member_request.models import MemberRequest, MemberReview, HelperReview
 class MemberRequestSerializer(serializers.ModelSerializer):
     # to get the logged-in user id
     member = serializers.PrimaryKeyRelatedField(read_only=True)
+    member_username = serializers.CharField(source='member.username', read_only=True)
+    helper_username = serializers.CharField(source='helper.username', read_only=True)
+    member_zip = serializers.CharField(source='member.zip', read_only=True)
+    member_city = serializers.CharField(source='member.city', read_only=True)
+    member_lon = serializers.CharField(source='member.lon', read_only=True)
+    member_lat = serializers.CharField(source='member.lat', read_only=True)
+    # category_name = serializers.CharField(source='category.name', read_only=True)
+    category_name = serializers.CharField(source='category.name', read_only=True)
 
     def create(self, validated_data):
         request = self.context.get('request', None)
@@ -37,6 +45,7 @@ class HelperReviewSerializer(serializers.ModelSerializer):
         model = HelperReview
         fields = ['id', 'text_content', 'rating', 'member_request', 'helper_username', 'helper', 'job_title']
 
+
 # not sure if need these check
 class MemberReviewRateSerializer(serializers.ModelSerializer):
     # member_username = serializers.CharField(source='member_request.member.username', read_only=True)
@@ -44,6 +53,7 @@ class MemberReviewRateSerializer(serializers.ModelSerializer):
     class Meta:
         model = MemberReview
         fields = ['rating']
+
 
 # not sure if need these check
 class HelperReviewRateSerializer(serializers.ModelSerializer):
