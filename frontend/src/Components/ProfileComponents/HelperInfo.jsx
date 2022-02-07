@@ -1,18 +1,18 @@
-import RobertoRodriguez from '../../assets/placeholder/rodrigo-image.jpg';
-import RatingBalls from '../../assets/icons/Rating balls.svg';
+import RobertoRodriguez from '../../Assets/placeholder/rodrigo-image.jpg';
+import RatingBalls from '../../Assets/icons/Rating balls.svg';
 import { Link, Outlet } from 'react-router-dom';
 
 export const HelperInfo = () => {
   return (
     <>
-      <div className='upper_container'>
+      <div className="upper_container">
         <h2>Member since 02.1.2022</h2>
 
-        <div className='quick_intro flex'>
+        <div className="quick_intro flex">
           <img
             src={RobertoRodriguez}
-            alt='here should be the profile page'
-            className='h-24'
+            alt="here should be the profile page"
+            className="h-24"
           />
           <div>
             <p>8050 Zürich</p>
@@ -23,9 +23,9 @@ export const HelperInfo = () => {
           </div>
         </div>
 
-        <div className='flex w-72 justify-evenly'>
-          <img src={RatingBalls} alt='here should be the rating' />
-          <div className='languages w-1/2 flex justify-evenly'>
+        <div className="flex w-72 justify-evenly">
+          <img src={RatingBalls} alt="here should be the rating" />
+          <div className="languages w-1/2 flex justify-evenly">
             <p>💬</p>
             <p>DE</p>
             <p>ENG</p>
@@ -42,8 +42,8 @@ export const HelperInfo = () => {
 
         <h1>Verified User</h1>
 
-        <Link to='/private-job' className='flex justify-end'>
-          <button className='border-2 border-black rounded-lg bg-orange-400'>
+        <Link to="/private-job" className="flex justify-end">
+          <button className="border-2 border-black rounded-lg bg-orange-400">
             send direct job-request
           </button>
         </Link>

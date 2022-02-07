@@ -13,7 +13,13 @@ import { AboutPage } from './About/About';
 import { MyProfilePage } from './Profile/MyProfile';
 import { NewJob } from './NewJob/NewJob';
 import { Job } from './Job/Job';
+import { MapPage } from './Map/Map';
+
+import { ViewJob } from './ViewJob/ViewJob';
 import { PrivateJob } from './PrivateJob/PrivateJob';
+import { RegisterHomepage } from './RegisterHomepage/RegisterHomepage';
+import { RegisterHelper } from './RegisterHelper/RegisterHelper';
+import { RegisterMember } from './RegisterMember/RegisterMember';
 import { MenuBar } from './Menu/Menu';
 import { MemberProfilePage } from './Profile/MemberProfile/MemberProfile';
 import { MemberInfo } from '../Components/ProfileComponents/MemberInfo';
@@ -36,7 +42,12 @@ export {
   MyProfilePage,
   NewJob,
   Job,
+  MapPage,
+  ViewJob,
   PrivateJob,
+  RegisterHomepage,
+  RegisterHelper,
+  RegisterMember,
   MenuBar,
   MemberProfilePage,
   MemberInfo,

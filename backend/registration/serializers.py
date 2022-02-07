@@ -30,7 +30,7 @@ class RegistrationValidationSerializer(serializers.ModelSerializer):
         request_email = data.get('email')
         request_code = data.get('code')
         # new for type
-        request_type = data.get('type')
+        # request_type = data.get('type')
         request_password = data.get('password')
         request_password_repeat = data.get('password_repeat')
 

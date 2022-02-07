@@ -1,5 +1,5 @@
-import Anemarie from '../../assets/placeholder/anemarie.png';
-import RatingBalls from '../../assets/icons/Rating balls.svg';
+import Anemarie from '../../Assets/placeholder/anemarie.png';
+import RatingBalls from '../../Assets/icons/Rating balls.svg';
 import { Link, Outlet } from 'react-router-dom';
 
 export const MemberInfo = () => {
