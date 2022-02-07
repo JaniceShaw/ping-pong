@@ -9,7 +9,7 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
 
     # Additional fields required when using createsuperuser
-    REQUIRED_FIELDS = ['username']
+    REQUIRED_FIELDS = ['username', 'type']
 
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=25, blank=True, null=True)
