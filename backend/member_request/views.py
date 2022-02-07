@@ -50,10 +50,10 @@ class MemberRequestView(ListAPIView):
     permission_classes = [IsAuthenticated]
 
 
-class CreateMemberRequest(CreateAPIView):
+class CreateHelperReviewView(CreateAPIView):
 
-    queryset = MemberRequest.objects.all()
-    serializer_class = MemberRequestSerializer
+    queryset = HelperReview.objects.all()
+    serializer_class = HelperReviewSerializer
     permission_classes = [IsAuthenticated]
 
 
