@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { Category } from '../TailwindComp/Category';
+import { Category } from '../TailwindComp/CategorySelect';
 
 export const SearchTool = () => {
   const [keyword, setKeyword] = useState('');

@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Category } from '../../Components/TailwindComp/Category';
+import { Category } from '../../Components/TailwindComp/CategorySelect';
 import { InputFile } from '../../Components/TailwindComp/InputFile';
 import { useNavigate } from 'react-router-dom';
-import { MaxReward } from '../../Components/TailwindComp/MaxReward';
+import { MaxReward } from '../../Components/TailwindComp/MaxRewardSelect';
 
 export const NewJob = () => {
   const [title, setTitle] = useState('');
@@ -23,7 +23,6 @@ export const NewJob = () => {
       <form
         className='flex flex-col justify-center items-center'
         onSubmit={handleSubmitButton}>
-        <Category />
         <input
           type='text'
           placeholder='Title'
@@ -31,6 +30,8 @@ export const NewJob = () => {
           className='outline-none border-2 '
           onChange={(e) => setTitle(e.target.value)}
         />
+        <Category />
+
         <input
           type='text'
           placeholder='hourly rate'
