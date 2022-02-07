@@ -19,7 +19,7 @@ export const MenuBar = () => {
         <a className='menu-item' href='/listing'>
           Listing
         </a>
-        <a className='menu-item' href='/job'>
+        <a className='menu-item' href='/view-job'>
           Job
         </a>
         <a className='menu-item' href='/new-job'>
