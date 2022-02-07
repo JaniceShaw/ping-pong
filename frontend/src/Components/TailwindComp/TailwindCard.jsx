@@ -3,7 +3,7 @@ import Resume from '../../Assets/placeholder/resume.jpg';
 
 export const TailwindCard = () => {
   return (
-    <Link to="/job" className="flex justify-center">
+    <Link to="/view-job" className="flex justify-center">
       <div className="flex flex-col md:flex-row md:max-w-xs rounded-lg bg-white shadow-lg">
         <img
           className=" w-full h-full md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg"
