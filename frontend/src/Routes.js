@@ -34,27 +34,26 @@ export const RoutesIndex = () => {
     <>
       <BrowserRouter>
         <Header />
-        <main className="p-5">
+        <main className='p-5'>
           <Routes>
-            <Route path="/" element={<StartPage />} />
-            <Route path="registration" element={<RegistrationPage />} />
-            <Route path="login" element={<LoginPage />} />
-            <Route path="search" element={<SearchPage />} />
-            <Route path="menu" element={<MenuBar />} />
-            <Route path="new-job" element={<NewJob />} />
-            <Route path="view-job" element={<ViewJob />} />
+            <Route path='/' element={<StartPage />} />
+            <Route path='registration' element={<RegistrationPage />} />
+            <Route path='login' element={<LoginPage />} />
+            <Route path='search' element={<SearchPage />} />
+            <Route path='new-job' element={<NewJob />} />
+            <Route path='view-job' element={<ViewJob />} />
 
-            <Route path="register" element={<RegisterHomepage />} />
-            <Route path="member-register" element={<RegisterMember />} />
-            <Route path="helper-register" element={<RegisterHelper />} />
+            <Route path='register' element={<RegisterHomepage />} />
+            <Route path='member-register' element={<RegisterMember />} />
+            <Route path='helper-register' element={<RegisterHelper />} />
 
-            <Route path="listing" element={<ListingPage />}>
+            <Route path='listing' element={<ListingPage />}>
               <Route index element={<HelperListPage />} />
-              <Route path="helpers" element={<HelperListPage />} />
-              <Route path="jobs" element={<JobListPage />} />
+              <Route path='helpers' element={<HelperListPage />} />
+              <Route path='jobs' element={<JobListPage />} />
             </Route>
 
-            <Route path="Job" element={<Job />} />
+            <Route path='Job' element={<Job />} />
 
             <Route path='member-profile' element={<MemberProfilePage />}>
               <Route index element={<MemberInfo />} />
@@ -72,16 +71,16 @@ export const RoutesIndex = () => {
               <Route path='jobs' element={<HelperJobs />} />
             </Route>
 
-            <Route path="private-job" element={<PrivateJob />} />
-            <Route path="my-profile" element={<MyProfilePage />} />
+            <Route path='private-job' element={<PrivateJob />} />
+            <Route path='my-profile' element={<MyProfilePage />} />
 
-            <Route path="maps" element={<MapPage />} />
+            <Route path='maps' element={<MapPage />} />
 
-            <Route path="about" element={<AboutPage />} />
-            <Route path="*" element={<ErrorPage />} />
+            <Route path='about' element={<AboutPage />} />
+            <Route path='*' element={<ErrorPage />} />
           </Routes>
         </main>
-        <Footer className="p-5" />
+        <Footer className='p-5' />
       </BrowserRouter>
     </>
   );
