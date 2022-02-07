@@ -1,5 +1,6 @@
 import Anemarie from '../../assets/placeholder/anemarie.png';
 import RatingBalls from '../../assets/icons/Rating balls.svg';
+import { Link, Outlet } from 'react-router-dom';
 
 export const MemberInfo = () => {
   return (
@@ -27,6 +28,12 @@ export const MemberInfo = () => {
           </div>
         </div>
 
+        <Link to='/member-profile/edit'>
+          <button className='border-2 rounded border-black bg-orange-500'>
+            Edit Profile
+          </button>
+        </Link>
+        <Outlet />
       </div>
     </>
   );

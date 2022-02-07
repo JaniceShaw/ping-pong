@@ -1,6 +1,6 @@
 import RobertoRodriguez from '../../assets/placeholder/rodrigo-image.jpg';
 import RatingBalls from '../../assets/icons/Rating balls.svg';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 export const HelperInfo = () => {
   return (
@@ -32,6 +32,13 @@ export const HelperInfo = () => {
             <p>IT</p>
           </div>
         </div>
+         
+        <Link to='/helper-profile/edit/'>
+        <button className='border-2 rounded border-black bg-orange-500'>
+          Edit Profile
+        </button>
+      </Link>
+      <Outlet/>
 
         <h1>Verified User</h1>
 
@@ -42,30 +49,27 @@ export const HelperInfo = () => {
         </Link>
       </div>
 
-      
       <div className='lower_container'>
-        
         <div className='border-b-4 border-orange-400'>
           <h1>
             <b>Skills</b>
           </h1>
         </div>
 
-        <div className="skills-card">
-            <b>Plumbing</b>
-            <p>subcategory1</p>
+        <div className='skills-card'>
+          <b>Plumbing</b>
+          <p>subcategory1</p>
         </div>
 
-        <div className="skills-card">
-            <b>Painting</b>
-            <p>subcategory1</p>
+        <div className='skills-card'>
+          <b>Painting</b>
+          <p>subcategory1</p>
         </div>
 
-        <div className="skills-card">
-            <b>Painting</b>
-            <p>subcategory1</p>
+        <div className='skills-card'>
+          <b>Painting</b>
+          <p>subcategory1</p>
         </div>
-
       </div>
     </>
   );

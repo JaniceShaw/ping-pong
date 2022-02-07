@@ -40,11 +40,7 @@ export const MemberProfilePage = () => {
       </div>
 
       <h1>anemarie</h1>
-      <Link to='edit/'>
-        <button className='border-2 rounded border-black bg-orange-500'>
-          Edit Profile
-        </button>
-      </Link>
+
       <Outlet />
     </>
   );
