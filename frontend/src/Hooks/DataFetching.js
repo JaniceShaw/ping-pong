@@ -19,7 +19,7 @@ export const getData = (urlEnding, stateToUpdate, errorState) => {
       stateToUpdate(response.data);
     })
     .catch((err) => {
-      errorState(err.response.request.responseText);
+      errorState(err.response.data);
     });
 };
 
@@ -34,7 +34,7 @@ export const postData = (urlEnding, bodyObject, errorState) => {
     .post(`${apiBaseURL}${urlEnding}`, formData, config)
     .then((response) => console.log(response))
     .catch((err) => {
-      errorState(err.response.request.responseText);
+      errorState(err.response.data);
     });
 };
 
@@ -48,7 +48,7 @@ export const patchData = (urlEnding, id, bodyObject, errorState) => {
     .patch(`${apiBaseURL}${urlEnding}${id}/`, formData, config)
     .then(() => {})
     .catch((err) => {
-      errorState(err.response.request.responseText);
+      errorState(err.response.data);
     });
 };
 
@@ -59,6 +59,6 @@ export const deleteData = (urlEnding, id, errorState) => {
       console.log(response);
     })
     .catch((err) => {
-      errorState(err.response.request.responseText);
+      errorState(err.response.data);
     });
 };
