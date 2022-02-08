@@ -4,10 +4,41 @@ import React, { useState, useEffect } from 'react';
 // import { GetUserToken, GetUserData } from '../../sharedFunctions/fetchAPI';
 // import { signInAction } from '../../store/actions/login';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export const LoginPage = () => {
+
+  const APIurlPrefix = 'https://ping-pong.propulsion-learn.ch/backend/api/';
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+  
+  const GetUserToken = (email, password, errorMessage) => {
+    axios
+      .post(`${APIurlPrefix}auth/`, {
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          return response.data;
+        } else {
+          console.log(response);
+          return errorMessage(response.statusText);
+        }
+      })
+      .then((data) => {
+        if (data.access) {
+          localStorage.setItem('token', data.access);
+          // GetUserData();
+          return data;
+        }
+      })
+      .catch((error) => {
+        // console.log('in error', error);
+      });
+  };
+  
   // const [user, setUser] = useState('');
   // // login errors
   // const [error, setError] = useState('');
@@ -19,7 +50,7 @@ export const LoginPage = () => {
 
   const handleSignIn = (event) => {
     event.preventDefault();
-    // GetUserToken(email, password, setError);
+    GetUserToken(email, password, setError);
     // GetUserData(setUser, setError);
   };
 
