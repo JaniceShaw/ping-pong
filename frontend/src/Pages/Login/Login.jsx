@@ -1,71 +1,45 @@
 import React, { useState, useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
-// import { GetUserToken, GetUserData } from '../../sharedFunctions/fetchAPI';
+import { useNavigate } from 'react-router-dom';
 // import { signInAction } from '../../store/actions/login';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-import {postData,} from '../../Hooks/DataFetching';
+import {postLoginData,} from '../../Hooks/DataFetching';
 
 export const LoginPage = () => {
 
-  const APIurlPrefix = 'https://ping-pong.propulsion-learn.ch/backend/api/';
+  // const APIurlPrefix = 'https://ping-pong.propulsion-learn.ch/backend/api/';
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
-  
-  const GetUserToken = (email, password, errorMessage) => {
-    axios
-      .post(`${APIurlPrefix}auth/`, {
-        email: email,
-        password: password,
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          return response.data;
-        } else {
-          console.log(response);
-          return errorMessage(response.statusText);
-        }
-      })
-      .then((data) => {
-        if (data.access) {
-          localStorage.setItem('token', data.access);
-          // GetUserData();
-          return data;
-        }
-      })
-      .catch((error) => {
-        // console.log('in error', error);
-      });
-  };
-  
-  // const [user, setUser] = useState('');
-  // // login errors
-
   const [response, setResponse] = useState({});
 
   // for react router to change page
-  // let navigate = useNavigate();
+  let navigate = useNavigate();
+      const HomeLink = () => {
+        navigate('/');
+    }
 
   // const dispatch = useDispatch();
 
   const handleSignIn = (event) => {
     event.preventDefault();
 
-    postData(
+    postLoginData(
       'auth/',
       { email: email, password: password },
       setResponse
     );
-
-    // GetUserToken(email, password, setError);
-
-    GetUserToken(email, password, setError);
-
-    // GetUserData(setUser, setError);
+     HomeLink();
   };
+
+    // hook version - componentDidMount
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            HomeLink();
+        }
+    });
+
+
 
   // useEffect(() => {
   //   dispatch(
@@ -128,7 +102,7 @@ export const LoginPage = () => {
 
         <Link to='/about'>What is Ping-Pong?</Link>
           </div>
-        {/* <p>{error}</p> */}
+
       </div>
     </>
   );

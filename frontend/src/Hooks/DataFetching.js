@@ -62,3 +62,19 @@ export const deleteData = (urlEnding, id, errorState) => {
       errorState(err.response.data);
     });
 };
+
+export const postLoginData = (urlEnding, bodyObject, errorState) => {
+  const formData = new FormData();
+
+  for (let entry in bodyObject) {
+    formData.append(entry, bodyObject[entry]);
+  }
+
+  axios
+      .post(`${apiBaseURL}${urlEnding}`, formData, config)
+      .then((response) => {
+        console.log('logged in!');
+        localStorage.setItem('token', response.data.access)
+      })
+      .catch((err) => {errorState(err.response.data)})
+};
