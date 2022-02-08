@@ -24,6 +24,10 @@ class MemberRequestSerializer(serializers.ModelSerializer):
         member_request = MemberRequest.objects.create(member=member, **validated_data)
         return member_request
 
+    # def validate(self, data):
+    #     request_code = data.get('code')
+    #     request_email = data.get('email')
+
     class Meta:
         model = MemberRequest
         fields = '__all__'
