@@ -1,39 +1,57 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Select from 'react-select';
 
-export const Category = () => {
-  const [option, setOption] = useState('');
-  let options = [
-    { label: 'Mechanic', value: 'mechanic' },
-    { label: 'Electrician', value: 'electrician'},
-    { label: 'Developer', value: 'developer'},
-    { label: 'Plumber', value: 'plumber' },
-  ];
+export const Category = (props) => {
+  const APIurlPrefix = 'https://ping-pong.propulsion-learn.ch/backend/api/';
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const url = `${APIurlPrefix}category/list/`;
+    const method = 'GET';
+
+    const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ0NzA0OTczLCJqdGkiOiJhMzE2ZDJkMDQ2ZDU0MWMyYmFlYTAxMGFjNWU4MDAxMSIsInVzZXJfaWQiOjF9.LRpbBVpsj4tk1ApggAlOAWuWjX0Sf1coZhNxzt5e2ps"
+
+    const headers = new Headers({
+      authorization: `Bearer ${token}`,
+    });
+
+    const config = {
+      method: method,
+      headers: headers,
+    };
+
+    fetch(url, config)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+
+        setCategories(data);
+      })
+
+      .catch((error) => {
+        console.log('in error', error);
+      });
+  }, []);
+
+  const categoryOptions = [];
+
+  categories.map((category, i) => {
+    const catName = Object.values(category)[1];
+    const catID = Object.values(category)[0];
+    const catObject = { value: catID, label: catName };
+    return categoryOptions.push(catObject);
+  });
+
   return (
-    <select
-      onChange={(e) => setOption(e.target.value)}
-      value={option}
-      className='form-select appearance-none
-      block
-      w-1/2
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-      bg-white bg-clip-padding bg-no-repeat
-      border border-solid border-gray-300
-      rounded
-      transition
-      ease-in-out
-      m-0
-      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
-      aria-label='Default select example'>
-      {options.map((option) => (
-        <option value={option.value}>{option.value}</option>
-      ))}
-      {/* <option value='mechanic'>Mechanic</option>
-      <option value='electrician'>Electrician</option>
-      <option value='developer'>Developer</option> */}
-    </select>
+    <>
+      <Select
+        className='category-filter'
+        options={categoryOptions}
+        name='category-filter'
+        onChange={props.onChange}
+      />
+    </>
   );
 };
