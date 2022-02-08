@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from member_request.serializers import HelperRatingSerializer
+from category.serializers import ListCategoriesSerializer
 
 User = get_user_model()
 
@@ -21,11 +22,12 @@ class MemberPublicProfileSerializer(serializers.ModelSerializer):
 
 class HelperPublicProfileSerializer(serializers.ModelSerializer):
     helper_reviews = HelperRatingSerializer(many=True)
+    helper_categories = ListCategoriesSerializer(many=True)
 
     class Meta:
         model = User
         fields = ['id', 'username', 'first_name', 'last_name', 'city', 'zip', 'profile_pic', 'helper_categories',
-                  'helper_available', 'helper_verified', 'helper_reviews']
+                  'helper_available', 'helper_verified', 'helper_reviews', 'date_joined']
 
 
 class MemberProfileSerializer(serializers.ModelSerializer):

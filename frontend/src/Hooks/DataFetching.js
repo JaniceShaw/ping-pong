@@ -18,25 +18,27 @@ export const getData = (urlEnding, stateToUpdate) => {
     .then((response) => {
       stateToUpdate(response.data);
     })
-    .catch((error) => console.log('error'));
+    .catch((err) => {
+      errorState(err.response.data);
+    });
 };
 
 export const postData = (urlEnding, body, stateToUpdate) => {
   axios
-    .post(`${apiBaseURL}${urlEnding}`, body, config)
-    .then((response) => {
-      stateToUpdate(response);
-    })
-    .catch((error) => console.log('error'));
+    .post(`${apiBaseURL}${urlEnding}`, formData, config)
+    .then((response) => console.log(response))
+    .catch((err) => {
+      errorState(err.response.data);
+    });
 };
 
 export const patchData = (urlEnding, id, body, stateToUpdate) => {
   axios
-    .patch(`${apiBaseURL}${urlEnding}${id}/`, body, config)
-    .then((response) => {
-      stateToUpdate(response);
-    })
-    .catch((error) => console.log('error'));
+    .patch(`${apiBaseURL}${urlEnding}${id}/`, formData, config)
+    .then(() => {})
+    .catch((err) => {
+      errorState(err.response.data);
+    });
 };
 
 export const deleteData = (urlEnding, id) => {
@@ -45,5 +47,7 @@ export const deleteData = (urlEnding, id) => {
     .then((response) => {
       console.log(response);
     })
-    .catch((error) => console.log('error'));
+    .catch((err) => {
+      errorState(err.response.data);
+    });
 };
