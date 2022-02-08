@@ -25,7 +25,7 @@ export const Category = (props) => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
 
         setCategories(data);
       })
