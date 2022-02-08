@@ -32,9 +32,9 @@ export const postData = (urlEnding, bodyObject, errorState) => {
 
   axios
     .post(`${apiBaseURL}${urlEnding}`, formData, config)
-    .then((response) => console.log(response))
+    .then((response) => console.log('hk',response))
     .catch((err) => {
-      errorState(err.response.request.responseText);
+      errorState(err.response.data);
     });
 };
 

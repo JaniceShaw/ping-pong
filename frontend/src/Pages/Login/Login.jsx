@@ -13,7 +13,7 @@ export const LoginPage = () => {
   // const [user, setUser] = useState('');
   // // login errors
   const [error, setError] = useState('');
-  const [response, setResponse] = useState([]);
+  const [response, setResponse] = useState({});
 
   // for react router to change page
   // let navigate = useNavigate();
@@ -24,10 +24,10 @@ export const LoginPage = () => {
     event.preventDefault();
     postData(
       'auth/',
-      { email: 'hello@janiceshaw.co.uk', password: 'password' },
+      { email: email, password: password },
       setResponse
     );
-    console.log(response)
+
     // GetUserToken(email, password, setError);
     // GetUserData(setUser, setError);
   };
@@ -50,9 +50,8 @@ export const LoginPage = () => {
 
   const handleEmailInput = (event) => {
     setEmail(event.target.value);
-    console.log(email)
   };
-
+    console.log(response)
   return (
     <>
 
@@ -64,10 +63,11 @@ export const LoginPage = () => {
            <input
               className='field-input'
               type='email'
+              required
               placeholder='e-Mail'
               onChange={handleEmailInput}
             />
-            <span className="text-xs text-red-700" id="emailHelp">{error}</span>
+            <div className="text-xs text-red-500 h-2" id="emailHelp">{response['email']}</div>
           </div>
 
         <div className="pb-4">
@@ -77,7 +77,7 @@ export const LoginPage = () => {
             placeholder='password'
             onChange={handlePasswordInput}
           />
-          <span className="text-xs text-red-700" id="passwordHelp">{error}</span>
+          <div className="text-xs text-red-500 h-2" id="passwordHelp">{response['password']}</div>
         </div>
 
           <input
@@ -86,9 +86,13 @@ export const LoginPage = () => {
             value='Login'
             onClick={handleSignIn}
           />
-
+<div className="text-sm text-red-500 h-8 mt-4" id="passwordHelp">{response['detail']}</div>
         </form>
+        <div className="mt-4">
+
+
         <Link to='/about'>What is Ping-Pong?</Link>
+          </div>
         {/* <p>{error}</p> */}
       </div>
     </>
