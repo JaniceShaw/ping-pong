@@ -5,12 +5,15 @@ import React, { useState, useEffect } from 'react';
 // import { signInAction } from '../../store/actions/login';
 import { Link } from 'react-router-dom';
 
+import {postData,} from '../../Hooks/DataFetching';
+
 export const LoginPage = () => {
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('');
   // const [user, setUser] = useState('');
   // // login errors
-  // const [error, setError] = useState('');
+  const [error, setError] = useState('');
+  const [response, setResponse] = useState([]);
 
   // for react router to change page
   // let navigate = useNavigate();
@@ -19,6 +22,12 @@ export const LoginPage = () => {
 
   const handleSignIn = (event) => {
     event.preventDefault();
+    postData(
+      'auth/',
+      { email: 'hello@janiceshaw.co.uk', password: 'password' },
+      setResponse
+    );
+    console.log(response)
     // GetUserToken(email, password, setError);
     // GetUserData(setUser, setError);
   };
@@ -41,31 +50,43 @@ export const LoginPage = () => {
 
   const handleEmailInput = (event) => {
     setEmail(event.target.value);
+    console.log(email)
   };
 
   return (
     <>
-      <h1>Login Page</h1>
-      <div className='loginForm'>
+
+      <div className='loginForm w-full max-w-sm  text-center m-auto'>
+        <h1 className="text-lg pb-6 font-bold">Login Page</h1>
         <form action='' className='flex justify-center flex-col'>
-          <input
-            className='field-input'
-            type='email'
-            placeholder='e-Mail'
-            onChange={handleEmailInput}
-          />
+
+          <div className="pb-4">
+           <input
+              className='field-input'
+              type='email'
+              placeholder='e-Mail'
+              onChange={handleEmailInput}
+            />
+            <span className="text-xs text-red-700" id="emailHelp">{error}</span>
+          </div>
+
+        <div className="pb-4">
           <input
             className='field-input'
             type='password'
             placeholder='password'
             onChange={handlePasswordInput}
           />
+          <span className="text-xs text-red-700" id="passwordHelp">{error}</span>
+        </div>
+
           <input
             type='submit'
             className='field-submit'
             value='Login'
             onClick={handleSignIn}
           />
+
         </form>
         <Link to='/about'>What is Ping-Pong?</Link>
         {/* <p>{error}</p> */}
