@@ -12,7 +12,7 @@ const config = {
   },
 };
 
-export const getData = (urlEnding, stateToUpdate) => {
+export const getData = (urlEnding, stateToUpdate, errorState) => {
   axios
     .get(`${apiBaseURL}${urlEnding}`, config)
     .then((response) => {
@@ -23,7 +23,13 @@ export const getData = (urlEnding, stateToUpdate) => {
     });
 };
 
-export const postData = (urlEnding, body, stateToUpdate) => {
+export const postData = (urlEnding, bodyObject, errorState) => {
+  const formData = new FormData();
+
+  for (let entry in bodyObject) {
+    formData.append(entry, bodyObject[entry]);
+  }
+
   axios
     .post(`${apiBaseURL}${urlEnding}`, formData, config)
     .then((response) => console.log(response))
@@ -32,7 +38,12 @@ export const postData = (urlEnding, body, stateToUpdate) => {
     });
 };
 
-export const patchData = (urlEnding, id, body, stateToUpdate) => {
+export const patchData = (urlEnding, id, bodyObject, errorState) => {
+  const formData = new FormData();
+
+  for (let entry in bodyObject) {
+    formData.append(entry, bodyObject[entry]);
+  }
   axios
     .patch(`${apiBaseURL}${urlEnding}${id}/`, formData, config)
     .then(() => {})
@@ -41,7 +52,7 @@ export const patchData = (urlEnding, id, body, stateToUpdate) => {
     });
 };
 
-export const deleteData = (urlEnding, id) => {
+export const deleteData = (urlEnding, id, errorState) => {
   axios
     .delete(`${apiBaseURL}${urlEnding}${id}/`, config)
     .then((response) => {

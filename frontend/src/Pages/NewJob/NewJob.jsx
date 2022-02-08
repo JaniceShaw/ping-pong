@@ -3,6 +3,7 @@ import { Category } from '../../Components/TailwindComp/CategorySelect';
 import Select from 'react-select';
 import { postData } from '../../Hooks/DataFetching';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 const UrgencyOptions = [
   { value: '1', label: 'I can wait' },
   { value: '2', label: 'Soon please' },
@@ -20,7 +21,7 @@ export const NewJob = () => {
   const [img_three, setImageThree] = useState('');
   const [img_four, setImageFour] = useState('');
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState();
 
   const navigate = useNavigate();
 
@@ -39,10 +40,11 @@ export const NewJob = () => {
   const HandleSubmitButton = (event) => {
     event.preventDefault();
     postData('job/request/', form, setError);
-    if (!error) {
-      navigate('/listing/jobs');
-    }
+    // if (!error) {
+    //   // navigate('/listing/helpers');
+    // }
   };
+  // console.log(error.title);
 
   const handleUrgencySelect = (event) => {
     console.log(event);
@@ -55,7 +57,7 @@ export const NewJob = () => {
     const categoryOptions = event.value;
     setCategory(categoryOptions);
   };
-
+  useEffect(() => {}, []);
   return (
     <>
       <h1>Create a New Job Request!</h1>
@@ -64,17 +66,20 @@ export const NewJob = () => {
         onSubmit={HandleSubmitButton}>
         <input
           type='text'
-          placeholder='Title..'
+          placeholder={error ? error.title : 'title'}
           value={title}
           className='outline-none border-2 '
           onChange={(e) => setTitle(e.target.value)}
         />
+       
         <textarea
           value={description}
+          placeholder={error ? error.description : 'describe your job'}
           className='border-2'
           cols='20'
           onChange={(e) => setDescription(e.target.value)}
           rows='5'></textarea>
+        
 
         <Select
           className='urgency'
@@ -122,7 +127,7 @@ export const NewJob = () => {
           className='border-2 border-black cursor-pointer'
         />
       </form>
-      <p>{error}</p>
+      {/* <p>{error}</p> */}
     </>
   );
 };
