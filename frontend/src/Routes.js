@@ -46,7 +46,11 @@ export const RoutesIndex = () => {
             <Route path="menu" element={<MenuBar />} />
             <Route path="new-job" element={<NewJob />} />
             <Route path="private-job" element={<PrivateJob />} />
-            <Route path="view-job" element={<ViewJob />} />
+             
+            <Route path="view-job">
+              <Route path=':jobID' element={<ViewJob />} />
+            </Route>
+
             <Route path="faq" element={<FAQPage />} />
             <Route path="support" element={<SupportPage />} />
 
