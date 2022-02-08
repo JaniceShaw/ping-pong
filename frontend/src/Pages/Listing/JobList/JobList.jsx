@@ -34,16 +34,6 @@ export const JobListPage = () => {
   }, [jobsList]);
   return (
     <div id='results_list' className='grid gap-4'>
-      {/* <button className='btn btn-blue' onClick={makePost}>
-        make post
-      </button>
-      <p>{error}</p> */}
-      {/* <button className="btn btn-blue" onClick={deletePost}>
-        delete post
-      </button>
-      <button className="btn btn-blue" onClick={patchPost}>
-        edit post
-      </button> */}
       {jobsList.map((job, i) => (
         <JobCard key={i} job={job} />
       ))}
