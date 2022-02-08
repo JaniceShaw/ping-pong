@@ -1,10 +1,5 @@
 import { useState, useEffect } from 'react';
-import {
-  GeoapifyGeocoderAutocomplete,
-  GeoapifyContext,
-} from '@geoapify/react-geocoder-autocomplete';
-import '@geoapify/geocoder-autocomplete/styles/minimal.css';
-// import { HelperCard } from '../../Components/BigCards/HelperCard';
+import { AddressAutoComplete } from '../../Components/AddressAutoComplete/AddressAutoComplete';
 
 export const MapPage = () => {
   const [filteredEntries, setFilteredEntries] = useState([]);
@@ -56,25 +51,6 @@ export const MapPage = () => {
     return d;
   };
 
-  const geocoderToken = '0dda38a2ffe34c53a35e8a91a1fd6b75';
-
-  function onPlaceSelect(location) {
-    if (location) {
-      setCoordUser(location.properties);
-      filterEntries();
-    }
-    console.log(location.properties);
-  }
-
-  function onSuggectionChange(value) {
-    // console.log(value);
-  }
-
-  function preprocessHook(value) {
-    console.log(value);
-    return `${value}, Munich, Germany`;
-  }
-
   const filterEntries = () => {
     const initialEntriesList = [...jobsArray];
     setFilteredEntries(
@@ -101,6 +77,10 @@ export const MapPage = () => {
     );
   };
 
+  const getAddress = (data) => {
+    return setCoordUser(data);
+  };
+
   const handleDistanceInput = (event) => {
     setFilterDistance(event.target.value);
   };
@@ -120,29 +100,8 @@ export const MapPage = () => {
   return (
     <>
       <div>
-        <h1 className="font-extrabold text-3xl uppercase">Search</h1>
-        <GeoapifyContext apiKey={geocoderToken}>
-          <GeoapifyGeocoderAutocomplete
-            placeholder="Enter address here"
-            type={['amenity']}
-            skipIcons={true}
-            // lang={language}
-            position={`${(coordUser.lat, coordUser.lon)}`}
-            // value="Heinrichstrasse 200, 8005 Zürich"
-            placeSelect={onPlaceSelect}
-            suggestionsChange={onSuggectionChange}
-            // position={position}
-            // countryCodes={countryCodes}
-            filterByCountryCode={['ch']}
-            // filterByCircle={filterByCircle}
-            // filterByRect={filterByRect}
-            // biasByCountryCode={biasByCountryCode}
-            // biasByCircle={biasByCircle}
-            // biasByRect={biasByRect}
-            // biasByProximity={biasByProximity}
-            preprocessHook={preprocessHook}
-          />
-        </GeoapifyContext>
+        <h1 className="font-bold text-2xl uppercase">Search</h1>
+        <AddressAutoComplete passAddress={getAddress} />
         <p>
           {!filteredEntries
             ? 'no jobs found here'
@@ -212,7 +171,11 @@ export const MapPage = () => {
             <div key={i} className="border-2 border-blue-400 mb-6">
               <h2 className="font-bold">{job.title}</h2>
               <h2 className="">{job.category}</h2>
-              <p>{`distance ${job.distance.toFixed(1)} km`}</p>
+              <p>
+                {coordUser
+                  ? `distance ${job.distance.toFixed(1)} km`
+                  : 'set start position'}
+              </p>
             </div>
           );
         })}
