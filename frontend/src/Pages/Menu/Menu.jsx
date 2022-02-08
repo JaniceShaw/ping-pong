@@ -16,10 +16,13 @@ export const MenuBar = () => {
         <a className='menu-item' href='/login'>
           Login
         </a>
+        <a className='menu-item' href='/create-user'>
+          Create User
+        </a>
         <a className='menu-item' href='/listing'>
           Listing
         </a>
-        <a className='menu-item' href='/job'>
+        <a className='menu-item' href='/view-job'>
           Job
         </a>
         <a className='menu-item' href='/new-job'>

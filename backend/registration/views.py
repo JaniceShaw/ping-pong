@@ -1,6 +1,5 @@
 from rest_framework.generics import CreateAPIView, UpdateAPIView, GenericAPIView
 from .serializers import RegisterSerializer, RegistrationValidationSerializer, PasswordResetSerializer, PasswordResetValidationSerializer
-from .models import Registration
 from django.contrib.auth import get_user_model
 from rest_framework.permissions import AllowAny
 

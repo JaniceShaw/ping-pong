@@ -1,24 +1,29 @@
 import { Link } from 'react-router-dom';
-import Resume from '../../Assets/placeholder/resume.jpg';
+import JobPlaceholder from '../../Assets/placeholder/job_placeholder.png';
 
-export const JobCard = () => {
+export const JobCard = (props) => {
+  const job = props.job;
   return (
-    <Link to="/job" className="card_container border-2 flex">
-      <img src={Resume} alt="" className="h-24 object-cover" />
-      <div className="info-box">
-        <h1>Need Help with Resume</h1>{' '}
-        <label for="Salary" className="flex">
-          Salary :<p id="Salary">Salary</p>
-        </label>
-        <label for="Skills required" className="flex">
-          Skills required :<p id="Skills required">Writing Resumes</p>
-        </label>
-        <label for="location" className="flex">
-          Location :<p id="location">8050 Zurich</p>
-        </label>
-        <label for="language" className="flex">
-          Language :<p id="language">ENG, DE</p>
-        </label>
+    <Link
+      to={`/view-job/${job.id}`}
+      className='card_container border-2 grid grid-cols-2 gap-2'>
+      <div>
+        <img
+          src={job.img_one ? job.img_one : JobPlaceholder}
+          alt=''
+          className='object-cover h-full'
+        />
+      </div>
+      <div className='info-box'>
+        <h1 className='font-bold'>{job.title}</h1>
+        <ul className=''>
+          <li>Budget: {job.budget}</li>
+          <li>category: {job.category_name}</li>
+          <li>
+            Location: {job.zip} {job.city}
+          </li>
+          <li>Language: ENG, DE</li>
+        </ul>
       </div>
     </Link>
   );
