@@ -16,6 +16,9 @@ export const MenuBar = () => {
         <a className='menu-item' href='/login'>
           Login
         </a>
+        <a className='menu-item' href='/login-out'>
+          Log out
+        </a>
         <a className='menu-item' href='/create-user'>
           Create User
         </a>
