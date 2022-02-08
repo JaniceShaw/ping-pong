@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { JobCard } from '../../../Components/BigCards/JobCard';
 
 import {
@@ -11,14 +11,14 @@ import {
 
 export const JobListPage = () => {
   const [jobsList, setJobsList] = useState([]);
-  const [response, setResponse] = useState([]);
+  const [error, setError] = useState(null);
 
   const makePost = () => {
-    postData(
-      'job/request/',
-      { title: 'testpost', description: 'just testing a bit' },
-      setResponse
-    );
+    const sendingData = {
+      title: 'new post',
+      description: '',
+    };
+    postData('job/request/', sendingData, setError);
   };
 
   const deletePost = () => {
@@ -26,19 +26,19 @@ export const JobListPage = () => {
   };
 
   const patchPost = () => {
-    patchData('job/', 8, { title: 'changing title' }, setResponse);
+    patchData('job/', 8, { title: 'changing title' }, setError);
   };
 
-  console.log(response);
-  useState(() => {
-    getData('job/list/', setJobsList);
-  }, []);
+  useEffect(() => {
+    getData('job/list/', setJobsList, setError);
+  }, [jobsList]);
   return (
     <div id='results_list' className='grid gap-4'>
-      {/* <button className="btn btn-blue" onClick={makePost}>
+      {/* <button className='btn btn-blue' onClick={makePost}>
         make post
-      </button>{' '}
-      <button className="btn btn-blue" onClick={deletePost}>
+      </button>
+      <p>{error}</p> */}
+      {/* <button className="btn btn-blue" onClick={deletePost}>
         delete post
       </button>
       <button className="btn btn-blue" onClick={patchPost}>
