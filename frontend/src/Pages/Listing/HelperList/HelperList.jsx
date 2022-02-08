@@ -1,12 +1,13 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { HelperCard } from '../../../Components/BigCards/HelperCard';
 import { getData } from '../../../Hooks/DataFetching';
 
 export const HelperListPage = () => {
   const [helpersList, setHelpersList] = useState([]);
+  const [error, setError] = useState(null);
 
-  useState(() => {
+  useEffect(() => {
     getData('user/list/helpers/', setHelpersList);
   }, []);
   return (
