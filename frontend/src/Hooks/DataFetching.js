@@ -12,53 +12,38 @@ const config = {
   },
 };
 
-export const getData = (urlEnding, stateToUpdate, errorState) => {
+export const getData = (urlEnding, stateToUpdate) => {
   axios
     .get(`${apiBaseURL}${urlEnding}`, config)
     .then((response) => {
       stateToUpdate(response.data);
     })
-    .catch((err) => {
-      errorState(err.response.request.responseText);
-    });
+    .catch((error) => console.log('error'));
 };
 
-export const postData = (urlEnding, bodyObject, errorState) => {
-  const formData = new FormData();
-
-  for (let entry in bodyObject) {
-    formData.append(entry, bodyObject[entry]);
-  }
-
+export const postData = (urlEnding, body, stateToUpdate) => {
   axios
-    .post(`${apiBaseURL}${urlEnding}`, formData, config)
-    .then((response) => console.log(response))
-    .catch((err) => {
-      errorState(err.response.request.responseText);
-    });
+    .post(`${apiBaseURL}${urlEnding}`, body, config)
+    .then((response) => {
+      stateToUpdate(response);
+    })
+    .catch((error) => console.log('error'));
 };
 
-export const patchData = (urlEnding, id, bodyObject, errorState) => {
-  const formData = new FormData();
-
-  for (let entry in bodyObject) {
-    formData.append(entry, bodyObject[entry]);
-  }
+export const patchData = (urlEnding, id, body, stateToUpdate) => {
   axios
-    .patch(`${apiBaseURL}${urlEnding}${id}/`, formData, config)
-    .then(() => {})
-    .catch((err) => {
-      errorState(err.response.request.responseText);
-    });
+    .patch(`${apiBaseURL}${urlEnding}${id}/`, body, config)
+    .then((response) => {
+      stateToUpdate(response);
+    })
+    .catch((error) => console.log('error'));
 };
 
-export const deleteData = (urlEnding, id, errorState) => {
+export const deleteData = (urlEnding, id) => {
   axios
     .delete(`${apiBaseURL}${urlEnding}${id}/`, config)
     .then((response) => {
       console.log(response);
     })
-    .catch((err) => {
-      errorState(err.response.request.responseText);
-    });
+    .catch((error) => console.log('error'));
 };
