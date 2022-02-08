@@ -1,7 +1,7 @@
 export const InputFile = () => {
   return (
-    <label class='block'>
-      <span class='sr-only'>Choose profile photo</span>
+    <label className='block'>
+      <span className='sr-only'>Choose profile photo</span>
       <input
         type='file'
         className='block w-full text-sm text-slate-500

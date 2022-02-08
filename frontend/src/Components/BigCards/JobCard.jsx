@@ -5,9 +5,8 @@ export const JobCard = (props) => {
   const job = props.job;
   return (
     <Link
-      to={`/job-view/${job.id}`}
-      className='card_container border-2 grid grid-cols-2 gap-2'
-    >
+      to={`/view-job/${job.id}`}
+      className='card_container border-2 grid grid-cols-2 gap-2'>
       <div>
         <img
           src={job.img_one ? job.img_one : JobPlaceholder}
