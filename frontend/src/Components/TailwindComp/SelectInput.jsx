@@ -4,8 +4,8 @@ export const SelectInput = () => {
   const [option, setOption] = useState('');
   let options = [
     { label: 'Mechanic', value: 'Mechanic' },
-    { label: 'Electrician', value: 'Electrician'},
-    { label: 'Developer', value: 'Developer'},
+    { label: 'Electrician', value: 'Electrician' },
+    { label: 'Developer', value: 'Developer' },
     { label: 'Plumber', value: 'Plumber' },
   ];
   return (
@@ -27,13 +27,13 @@ export const SelectInput = () => {
       ease-in-out
       m-0
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
-      aria-label='Default select example'>
-      {options.map((option) => (
-        <option value={option.value}>{option.value}</option>
+      aria-label='Default select example'
+    >
+      {options.map((option, i) => (
+        <option key={i} value={option.value}>
+          {option.value}
+        </option>
       ))}
-      {/* <option value='mechanic'>Mechanic</option>
-      <option value='electrician'>Electrician</option>
-      <option value='developer'>Developer</option> */}
     </select>
   );
 };

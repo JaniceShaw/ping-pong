@@ -1,28 +1,32 @@
-import RobertoRodriguez from '../../Assets/placeholder/rodrigo-image.jpg';
+import ProfilePlaceholder from '../../Assets/placeholder/profile_placeholder.png';
 import { Link } from 'react-router-dom';
 
-export const HelperCard = () => {
+export const HelperCard = (props) => {
+  const helper = props.helper;
+
   return (
     <>
       <Link
-        to="/helper-profile"
-        className="card_container justify-aroundborder-2 flex"
+        to={`/helper-profile/${helper.id}`}
+        className='card_container justify-around border-2 grid grid-cols-2 gap-2'
       >
-        <img src={RobertoRodriguez} alt="" className="h-24 object-cover" />
-        <div className="info-box">
-          <h2>Rodrigo</h2>
-          <label htmlFor="rating" className="flex">
-            Rating :<p id="rating">Rating</p>
-          </label>
-          <label htmlFor="skills" className="flex">
-            Skills :<p id="skills">Writing Resumes</p>
-          </label>
-          <label htmlFor="location" className="flex">
-            Location :<p id="location">8050 Zurich</p>
-          </label>
-          <label htmlFor="language" className="flex">
-            Language :<p id="language">ENG, DE</p>
-          </label>
+        <div>
+          <img
+            src={helper.profile_pic ? helper.profile_pic : ProfilePlaceholder}
+            alt=''
+            className='object-cover h-full'
+          />
+        </div>
+        <div className='info-box'>
+          <h2 className='font-bold'>{helper.username}</h2>
+          <ul>
+            <li>Rating: Rating</li>
+            <li>Skills: Writing Resumes</li>
+            <li>
+              Location: {helper.zip} {helper.city}
+            </li>
+            {/* <li> Language: ENG, DE, IT</li> */}
+          </ul>
         </div>
       </Link>
     </>

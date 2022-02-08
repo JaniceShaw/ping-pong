@@ -24,6 +24,10 @@ class MemberRequestSerializer(serializers.ModelSerializer):
         member_request = MemberRequest.objects.create(member=member, **validated_data)
         return member_request
 
+    # def validate(self, data):
+    #     request_code = data.get('code')
+    #     request_email = data.get('email')
+
     class Meta:
         model = MemberRequest
         fields = '__all__'
@@ -39,10 +43,11 @@ class MemberReviewSerializer(serializers.ModelSerializer):
 
 class HelperReviewSerializer(serializers.ModelSerializer):
     helper_username = serializers.CharField(source='member_request.helper.username', read_only=True)
+    job_title = serializers.CharField(source='member_request.title', read_only=True)
 
     class Meta:
         model = HelperReview
-        fields = ['id', 'text_content', 'rating', 'member_request', 'helper_username', 'helper']
+        fields = ['id', 'text_content', 'rating', 'member_request', 'helper_username', 'helper', 'job_title']
 
 
 # not sure if need these check
