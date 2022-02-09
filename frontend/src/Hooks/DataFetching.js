@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-localStorage.setItem(
-  'token',
-  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ0Nzc2NTA4LCJqdGkiOiI1N2JkNjVjNzM5N2E0MGM5OGRmMjQ0NDY2MmJjYzdjYiIsInVzZXJfaWQiOjN9.59HE1i4xglWAOxh8jay7G_tBKyUpTv8BSZbDU0NO-9A'
-);
+// localStorage.setItem(
+//   'token',
+//   'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ0Njg5NTgyLCJqdGkiOiI0YjMzOWU2YWEzZTE0NDAzOGNlZWRlNDkzNjAwMzlkYSIsInVzZXJfaWQiOjR9.-XTRcalVZhHcupOq2nLojjWFfcXX7RpTqUhm3Gqbdac'
+// );
 const apiBaseURL = 'https://ping-pong.propulsion-learn.ch/backend/api/';
 const token = localStorage.getItem('token');
 const config = {
@@ -33,7 +33,7 @@ export const postData = (urlEnding, bodyObject, errorState) => {
 
   axios
     .post(`${apiBaseURL}${urlEnding}`, formData, config)
-    .then((response) => console.log(response))
+    .then((response) => console.log('hk',response))
     .catch((err) => {
       errorState(err.response.data);
     });
@@ -62,4 +62,20 @@ export const deleteData = (urlEnding, id, errorState) => {
     .catch((err) => {
       errorState(err.response.data);
     });
+};
+
+export const postLoginData = (urlEnding, bodyObject, errorState) => {
+  const formData = new FormData();
+
+  for (let entry in bodyObject) {
+    formData.append(entry, bodyObject[entry]);
+  }
+
+  axios
+      .post(`${apiBaseURL}${urlEnding}`, formData, config)
+      .then((response) => {
+        console.log('logged in!');
+        localStorage.setItem('token', response.data.access)
+      })
+      .catch((err) => {errorState(err.response.data)})
 };
