@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-localStorage.setItem(
-  'token',
-  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ0Njg5NTgyLCJqdGkiOiI0YjMzOWU2YWEzZTE0NDAzOGNlZWRlNDkzNjAwMzlkYSIsInVzZXJfaWQiOjR9.-XTRcalVZhHcupOq2nLojjWFfcXX7RpTqUhm3Gqbdac'
-);
+// localStorage.setItem(
+//   'token',
+//   'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ0Njg5NTgyLCJqdGkiOiI0YjMzOWU2YWEzZTE0NDAzOGNlZWRlNDkzNjAwMzlkYSIsInVzZXJfaWQiOjR9.-XTRcalVZhHcupOq2nLojjWFfcXX7RpTqUhm3Gqbdac'
+// );
 const apiBaseURL = 'https://ping-pong.propulsion-learn.ch/backend/api/';
 const token = localStorage.getItem('token');
 const config = {

@@ -1,6 +1,6 @@
 # from django.shortcuts import render
 from django.contrib.auth import get_user_model
-from rest_framework.generics import ListAPIView, get_object_or_404, RetrieveAPIView, RetrieveUpdateDestroyAPIView, get_object_or_404
+from rest_framework.generics import ListAPIView, get_object_or_404, RetrieveAPIView, RetrieveUpdateDestroyAPIView
 from user.serializers import MemberPublicProfileSerializer, HelperPublicProfileSerializer, MemberProfileSerializer, HelperProfileSerializer, UserSerializer
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from django.db.models import Avg

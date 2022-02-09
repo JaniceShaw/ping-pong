@@ -19,8 +19,6 @@ export const LoginPage = () => {
         navigate('/');
     }
 
-  // const dispatch = useDispatch();
-
   const handleSignIn = (event) => {
     event.preventDefault();
 
@@ -30,6 +28,8 @@ export const LoginPage = () => {
       setResponse
     );
      HomeLink();
+     setEmail('')
+      setPassword('')
   };
 
     // hook version - componentDidMount
