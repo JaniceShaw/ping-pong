@@ -27,9 +27,14 @@ export const LoginPage = () => {
       { email: email, password: password },
       setResponse
     );
+
+    // if (localStorage.getItem('token')) {
+    //         HomeLink();
+    //     }
+
      HomeLink();
-     setEmail('')
-      setPassword('')
+     // setEmail('')
+     //  setPassword('')
   };
 
     // hook version - componentDidMount
@@ -91,16 +96,15 @@ export const LoginPage = () => {
 
           <input
             type='submit'
-            className='field-submit'
+            className='btn'
             value='Login'
             onClick={handleSignIn}
           />
-<div className="text-sm text-red-500 h-8 mt-4" id="passwordHelp">{response['detail']}</div>
+        <div className="text-sm text-red-500 h-8 mt-4" id="passwordHelp">{response['detail']}</div>
         </form>
         <div className="mt-4">
 
-
-        <Link to='/about'>What is Ping-Pong?</Link>
+        <Link to='/about' className='underline underline-offset-2'>What is Ping-Pong?</Link>
           </div>
 
       </div>
