@@ -33,13 +33,13 @@ class HelperPublicProfileSerializer(serializers.ModelSerializer):
 class MemberProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'phone', 'street', 'city', 'zip',
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'phone', 'street', 'city', 'zip','lon','lat',
                   'profile_pic', 'description', 'last_login']
 
 
 class HelperProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'phone', 'street', 'city', 'zip',
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'phone', 'street', 'city', 'zip','lon','lat',
                   'profile_pic', 'description', 'last_login', 'helper_hourly_rate', 'helper_categories',
                   'helper_available', 'helper_verified']
