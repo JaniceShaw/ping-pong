@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 // import axios from 'axios';
 import { getData, } from '../../Hooks/DataFetching';
+import moment from 'moment'
 
 
 
@@ -46,11 +47,11 @@ export const ViewJob = () => {
   return (
     <div className='job  w-full max-w-sm  m-auto'>
       <h1 className='text-xl font-bold'>{jobData.title}</h1>
-      <h4>Created on: {jobData.created}</h4>
+      <h4>Created on: {moment(jobData.created).format('DD, MM, YYYY')}</h4>
 
       <div>
-        <div>{jobData.member_zip} ,{jobData.member_city}</div>
-        <div>Category: {jobData.category}</div>
+        <div>zip{jobData.member_zip} ,{jobData.member_city}</div>s
+        <div>Category: {jobData.category_name}</div>
         <div>Urgency level: {jobData.urgency}</div>
         <div>Budget: {jobData.budget}</div>
       </div>
