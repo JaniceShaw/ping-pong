@@ -13,28 +13,8 @@ export const ViewJob = () => {
 
   const [jobData, setJobData] = useState({});
   const { jobID } = useParams();
-  // const token = localStorage.getItem('token')
-
-  // const [error, setError] = useState('');
-
-  // const fetchJobData = () => {
-  //   axios
-  //     .get(`${APIurlPrefix}job/${jobID}/`, {
-  //       headers: {
-  //         'authorization': `Bearer ${token}`
-  //       },
-  //     })
-  //     .then((res) => {
-  //       if (res.status === 200) {
-  //         return setJobData(res.data);
-  //       } else {
-  //         setError(res.statusText);
-  //       }
-  //     });
-  // }
 
   useEffect(() => {
-    // fetchJobData();
 
     getData(
       `job/${jobID}/`, setJobData
@@ -50,23 +30,44 @@ export const ViewJob = () => {
       <h4>Created on: {moment(jobData.created).format('DD, MM, YYYY')}</h4>
 
       <div>
-        <div>zip{jobData.member_zip} ,{jobData.member_city}</div>s
+        <div>{jobData.member_zip}, {jobData.member_city}</div>
         <div>Category: {jobData.category_name}</div>
         <div>Urgency level: {jobData.urgency}</div>
         <div>Budget: {jobData.budget}</div>
       </div>
-      <br />
-      <div className="w-full carousel">
-        <div id="item1" className="w-full pt-20 carousel-item">
-          <img src={jobData.img_one} className="w-full" />
-        </div>
-        <div id="item2" className="w-full pt-20 carousel-item">
-          <img src={jobData.img_two} className="w-full" />
-        </div>
-        <div id="item3" className="w-full pt-20 carousel-item">
-          <img src={jobData.img_three} className="w-full" />
-        </div>
+
+
+      <div className='carousel h-80'>
+
+        {jobData.img_one ? (
+          <div id="item1" className="w-full pt-20 m-auto carousel-item">
+            <img src={jobData.img_one} className="w-auto" alt="#" />
+          </div>) : null
+        }
+
+        {jobData.img_two ? (
+          <div id="item2" className="w-full pt-20  m-auto carousel-item">
+            <img src={jobData.img_two} className="w-auto" alt="#" />
+          </div>) : null
+        }
+
+        {jobData.img_three ? (
+          <div id="item3" className="w-full pt-20  m-auto carousel-item">
+            <img src={jobData.img_three} className="w-full" alt="#" />
+          </div>) : null
+        }
+
+        {jobData.img_four ? (
+          <div id="item3" className="w-full pt-20  carousel-item">
+            <img src={jobData.img_four} className="w-full" alt="#" />
+          </div>) : null
+        }
+
       </div>
+
+
+
+
       <p>
         Description: {jobData.description}
       </p>
@@ -173,6 +174,6 @@ export const ViewJob = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
