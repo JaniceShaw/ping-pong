@@ -12,12 +12,23 @@ export const LoginPage = () => {
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('');
   const [response, setResponse] = useState({});
+  const [logedIn, setLogedIn] = useState(false)
+
+  if(response === '200'){
+    setLogedIn(true)
+  }
 
   // for react router to change page
   let navigate = useNavigate();
       const HomeLink = () => {
         navigate('/');
+      }
+
+              const loginLink = () => {
+        navigate('/login');
     }
+
+
 
 
   const handleSignIn = (event) => {
@@ -33,17 +44,22 @@ export const LoginPage = () => {
     //         HomeLink();
     //     }
 
-     HomeLink();
+     // HomeLink();
      // setEmail('')
      //  setPassword('')
   };
 
     // hook version - componentDidMount
     useEffect(() => {
+      if(response ===200){
+        HomeLink();
+      }
         if (localStorage.getItem('token')) {
-            HomeLink();
+          setLogedIn(true)
+            // loginLink();
+           HomeLink();
         }
-    });
+    },[response]);
 
 
 
@@ -66,33 +82,37 @@ export const LoginPage = () => {
   const handleEmailInput = (event) => {
     setEmail(event.target.value);
   };
-    console.log(response)
+    console.log('here',response)
   return (
     <>
 
       <div className='loginForm w-full max-w-sm  text-center m-auto'>
-        <h1 className="text-lg pb-6 font-bold">Login Page</h1>
-        <form action='' className='flex justify-center flex-col'>
+        <h1 className="text-xl mt-3 pb-6 font-bold">Login Page</h1>
+        <form action='' className='flex justify-center flex-col mt-5'>
 
-          <div className="pb-4">
+          <div className="pb-9 relative">
            <input
-              className='field-input'
+              className='field-input-login peer'
               type='email'
               required
               placeholder='e-Mail'
               onChange={handleEmailInput}
+              id='email'
             />
-            <div className="text-xs text-red-500 h-2" id="emailHelp">{response['email']}</div>
+              <label htmlFor="email" className='login-label'>Email address</label>
+              <div className="text-xs text-red-500 h-3 text-left" id="emailHelp">{response['email']}</div>
           </div>
 
-        <div className="pb-4">
+        <div className="pb-9 relative">
           <input
-            className='field-input'
+            className='field-input-login peer'
             type='password'
             placeholder='password'
             onChange={handlePasswordInput}
+            id='password'
           />
-          <div className="text-xs text-red-500 h-2" id="passwordHelp">{response['password']}</div>
+          <label htmlFor="password" className='login-label'>Password</label>
+          <div className="text-xs text-red-500 h-3 text-left" id="passwordHelp">{response['password']}</div>
         </div>
 
           <input
