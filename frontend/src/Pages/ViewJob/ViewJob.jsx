@@ -1,37 +1,43 @@
 import EmptyReviewBall from '../../Assets/icons/empty_review_ball.jpg';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
+import { getData, } from '../../Hooks/DataFetching';
 
 
 
 export const ViewJob = () => {
 
-  const APIurlPrefix = 'https://ping-pong.propulsion-learn.ch/backend/api/';
-  const [jobData, setJobData] = useState([]);
+  // const APIurlPrefix = 'https://ping-pong.propulsion-learn.ch/backend/api/';
+
+  const [jobData, setJobData] = useState({});
   const { jobID } = useParams();
-  const token = localStorage.getItem('token')
+  // const token = localStorage.getItem('token')
 
-  const [error, setError] = useState('');
+  // const [error, setError] = useState('');
 
-  const fetchJobData = () => {
-    axios
-      .get(`${APIurlPrefix}job/${jobID}/`, {
-        headers: {
-          'authorization': `Bearer ${token}`
-        },
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          return setJobData(res.data);
-        } else {
-          setError(res.statusText);
-        }
-      });
-  }
+  // const fetchJobData = () => {
+  //   axios
+  //     .get(`${APIurlPrefix}job/${jobID}/`, {
+  //       headers: {
+  //         'authorization': `Bearer ${token}`
+  //       },
+  //     })
+  //     .then((res) => {
+  //       if (res.status === 200) {
+  //         return setJobData(res.data);
+  //       } else {
+  //         setError(res.statusText);
+  //       }
+  //     });
+  // }
 
   useEffect(() => {
-    fetchJobData();
+    // fetchJobData();
+
+    getData(
+      `job/${jobID}/`, setJobData
+    );
   }, []);
 
   console.log(jobData)
@@ -70,12 +76,12 @@ export const ViewJob = () => {
         <p>Status</p>
         <div className="btn-group rounded overflow-hidden flex justify-center drop-shadow-2xl">
           <button className={`w-full font-semibold pt-1 pb-1
-            ${jobData.status == 1 ? 'bg-amber-400 text-indigo-900' : 'bg-white text-slate-400'}`
+            ${jobData.status === 1 ? 'bg-amber-400 text-indigo-900' : 'bg-white text-slate-400'}`
           }>
             Pending
           </button>
           <button className={`w-full font-semibold pt-1 pb-1
-            ${jobData.status == 2 ? 'bg-amber-400 text-indigo-900' : 'bg-white text-slate-400'}`
+            ${jobData.status === 2 ? 'bg-amber-400 text-indigo-900' : 'bg-white text-slate-400'}`
           }>
             Accepted
           </button>
