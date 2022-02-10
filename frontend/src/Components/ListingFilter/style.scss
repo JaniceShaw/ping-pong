@@ -1,0 +1,23 @@
+#distanceSelection {
+  @apply border-b border-primary;
+
+  .radio-option {
+    @apply relative w-full h-8 flex;
+    input {
+      @apply absolute w-full h-full opacity-0;
+
+      &:checked + label,
+      &:hover + label {
+        @apply bg-secondary border-primary;
+      }
+    }
+    label {
+      @apply text-center w-full h-full cursor-pointer border-r flex items-center justify-center
+        border-primary_light;
+    }
+
+    &:last-of-type label {
+      @apply border-none;
+    }
+  }
+}

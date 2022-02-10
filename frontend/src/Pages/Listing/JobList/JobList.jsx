@@ -9,9 +9,14 @@ export const JobListPage = () => {
   const [jobsList, setJobsList] = useState([]);
   const [filteredJobsList, setFilteredJobsList] = useState([]);
   const [error, setError] = useState(null);
+  const [showFilter, setShowFilter] = useState(false);
 
   const filterList = (array) => {
     setFilteredJobsList(array);
+  };
+
+  const toggleFilterVisibility = () => {
+    setShowFilter(!showFilter);
   };
 
   useEffect(() => {
@@ -20,7 +25,17 @@ export const JobListPage = () => {
 
   return (
     <>
-      <ListingFilter filteredList={filterList} unfilteredList={jobsList} />
+      <button
+        onClick={toggleFilterVisibility}
+        className='relative font-normal border-b border-primary -mx-4 px-4 h-8 w-screen relative z-10 bg-white'
+      >
+        Filter
+      </button>
+      <ListingFilter
+        filteredList={filterList}
+        unfilteredList={jobsList}
+        showFilter={showFilter}
+      />
       <div id='results_list' className='grid gap-4'>
         <p>{filteredJobsList.length} jobs listed</p>
 
