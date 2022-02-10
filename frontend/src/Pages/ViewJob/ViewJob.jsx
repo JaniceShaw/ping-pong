@@ -1,7 +1,10 @@
 import EmptyReviewBall from '../../Assets/icons/empty_review_ball.jpg';
+import DefaultProfile from '../../Assets/placeholder/profile_placeholder.png';
+import DefaultPost from '../../Assets/placeholder/job_placeholder.png';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getData, } from '../../Hooks/DataFetching';
+import { Link } from 'react-router-dom';
 import moment from 'moment'
 
 export const ViewJob = () => {
@@ -38,15 +41,16 @@ export const ViewJob = () => {
     <div className='job  w-full max-w-sm  m-auto'>
 
       <h1 className='text-3xl font-bold'>{jobData.title}</h1>
-      <h4 className='text-sm mb-4 mt-2'><strong>Created on:</strong> {moment(jobData.created).format('DD, MM, YYYY')}</h4>
 
-      <div class="space-x-4 avatar-group">
+      <div className="space-x-2 avatar-group mt-5 z-3">
         <div className="avatar">
           <div className="mb-4 rounded-full w-10 h-10">
-            <img src={jobData.member_profile_pic} />
+
+            {jobData.member_profile_pic ? <img src={jobData.member_profile_pic} alt="profile pic" /> : <img src={DefaultProfile} alt="profile pic" />}
+
           </div>
         </div>
-        <p className=''>{jobData.member_username}</p>
+        <p className='mt-2'><Link to={`/member-profile/${jobData.member}`} className='bg-0 underline underline-offset-2 hover:no-underline'> {jobData.member_username}</Link> <span className='text-xs'>({moment(jobData.created).format('DD/MM/YYYY')})</span></p>
       </div>
 
 
@@ -63,7 +67,7 @@ export const ViewJob = () => {
         {jobData.img_one ? (
           <div id="item1" className="w-full h-full m-auto carousel-item">
             <img src={jobData.img_one} className="w-full object-cover" alt="#" />
-          </div>) : null
+          </div>) : <img src={DefaultPost} className="w-full object-cover" alt="#" />
         }
 
         {jobData.img_two ? (
@@ -195,6 +199,7 @@ export const ViewJob = () => {
       ) : null
       }
       {/* end helper info */}
+      <Link to="/listing/jobs"><button className='btn mt-8'>Back to list</button></Link>
     </div>
 
   );
