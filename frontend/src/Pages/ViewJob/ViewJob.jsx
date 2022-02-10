@@ -37,6 +37,7 @@ export const ViewJob = () => {
     urgencyText = "Emergency!";
   }
 
+  // member and Helper rating //
   let helper_rating = 0;
   let member_rating = 0;
 
@@ -45,7 +46,6 @@ export const ViewJob = () => {
   }
 
   if (jobData.member_review) {
-    console.log('member review found');
     member_rating = jobData.member_review.rating
   }
 
@@ -54,27 +54,27 @@ export const ViewJob = () => {
 
       <h1 className='text-3xl font-bold'>{jobData.title}</h1>
 
+      {/* Member info and pic */}
       <div className="space-x-2 avatar-group mt-5 z-3">
         <div className="avatar">
           <div className="mb-4 rounded-full w-10 h-10">
-
             {jobData.member_profile_pic ? <img src={jobData.member_profile_pic} alt="profile pic" /> : <img src={DefaultProfile} alt="profile pic" />}
-
           </div>
         </div>
         <p className='mt-2'><Link to={`/member-profile/${jobData.member}`} className='bg-0 underline underline-offset-2 hover:no-underline'> {jobData.member_username}</Link> <span className='text-xs'>({moment(jobData.created).format('DD/MM/YYYY')})</span></p>
       </div>
 
-
-
+      {/* mixed info */}
       <div className='inline-block w-1/2 mb-2'><span className='mr-1'>&#128205;</span> {jobData.member_zip}, {jobData.member_city}</div>
       <div className='inline-block'><span className='mr-1'>&#x1F527;</span> {jobData.category_name}</div>
 
       <div className={`inline-block w-1/2  ${jobData.urgency === 3 ? 'text-red-600' : 'text-zinc-900'}`}>
-        <span className='mr-1'>{urgencyIcon}</span> {urgencyText}</div>
+        <span className='mr-1'>{urgencyIcon}</span> {urgencyText}
+      </div>
 
       <div className='inline-block'><span className='mr-1'>&#128178;</span> {jobData.budget}</div>
 
+      {/* image display */}
       <div className='carousel h-64 bg-zinc-100 rounded-md mt-3 mb-3'>
         {jobData.img_one ? (
           <div id="item1" className="w-full h-full m-auto carousel-item">
@@ -100,10 +100,11 @@ export const ViewJob = () => {
           </div>) : null
         }
       </div>
+      {/* end image display */}
 
       <p className='mb-4'>{jobData.description}</p>
 
-
+      {/* status buttons */}
       <p><strong>Status</strong></p>
       <div className="btn-group rounded overflow-hidden drop-shadow-2xl mb-6">
 
@@ -168,6 +169,8 @@ export const ViewJob = () => {
       ) : null
       }
       {/* end helper info */}
+      <div className='text-center'> <button className='btn'>Contact {jobData.member_username}</button></div>
+
       <Link to="/listing/jobs"><button className='btn mt-8'>Back to list</button></Link>
     </div>
 
