@@ -80,7 +80,3 @@ export const postLoginData = (urlEnding, bodyObject, errorState) => {
       })
       .catch((err) => {errorState(err.response.data)})
 };
-
-
-
-
