@@ -1,4 +1,3 @@
-import EmptyReviewBall from '../../Assets/icons/empty_review_ball.jpg';
 import DefaultProfile from '../../Assets/placeholder/profile_placeholder.png';
 import DefaultPost from '../../Assets/placeholder/job_placeholder.png';
 import React, { useEffect, useState } from 'react';
@@ -21,6 +20,7 @@ export const ViewJob = () => {
 
   console.log(jobData)
 
+  // urgency options //
   const urgency = jobData.urgency;
   let urgencyText = '';
   let urgencyIcon = '';
@@ -35,6 +35,18 @@ export const ViewJob = () => {
   } else {
     urgencyIcon = '\u26A1'
     urgencyText = "Emergency!";
+  }
+
+  let helper_rating = 0;
+  let member_rating = 0;
+
+  if (jobData.helper_review) {
+    helper_rating = jobData.helper_review.rating
+  }
+
+  if (jobData.member_review) {
+    console.log('member review found');
+    member_rating = jobData.member_review.rating
   }
 
   return (
@@ -124,77 +136,34 @@ export const ViewJob = () => {
             <p>{jobData.helper_username}</p>
           </div>
 
-          <div className="job-rating justify-between flex w-full flex-col">
-            <div className="top flex flex-grow justify-center">
-              <p className="w-full justify-center font-bold">Helper Rating</p>
-              <div className="flex h-3/6 w-3/6 justify-center ">
-                <img
-                  className="pr-1"
-                  src={EmptyReviewBall}
-                  alt="here should be the empty review ball"
-                />
-                <img
-                  className="pr-1"
-                  src={EmptyReviewBall}
-                  alt="here should be the empty review ball"
-                />
-                <img
-                  className="pr-1"
-                  src={EmptyReviewBall}
-                  alt="here should be the empty review ball"
-                />
-                <img
-                  className="pr-1"
-                  src={EmptyReviewBall}
-                  alt="here should be the empty review ball"
-                />
-                <img
-                  className="pr-1"
-                  src={EmptyReviewBall}
-                  alt="here should be the empty review ball"
-                />
-              </div>
+          <div className="helper-rating mb-6">
+            <p className="w-1/2 font-bold inline-block">Helper Rating</p>
+            <div className='w-1/2 inline-block text-right'>
+              <span className={helper_rating >= 1 ? 'rating-big-ball' : 'rating-big-gray-ball'}></span>
+              <span className={helper_rating >= 2 ? 'rating-big-ball' : 'rating-big-gray-ball'}></span>
+              <span className={helper_rating >= 3 ? 'rating-big-ball' : 'rating-big-gray-ball'}></span>
+              <span className={helper_rating >= 4 ? 'rating-big-ball' : 'rating-big-gray-ball'}></span>
+              <span className={helper_rating === 5 ? 'rating-big-ball' : 'rating-big-gray-ball'}></span>
             </div>
             <div className="bottom">
               <p>Available after completing</p>
             </div>
           </div>
-          <br />
-          <div className="user-rating justify-between flex w-full flex-col">
-            <div className="top flex flex-grow justify-center">
-              <p className="w-full justify-center font-bold">User Rating</p>
-              <div className="flex h-3/6 w-3/6 justify-center ">
-                <img
-                  className="pr-1"
-                  src={EmptyReviewBall}
-                  alt="here should be the empty review ball"
-                />
-                <img
-                  className="pr-1"
-                  src={EmptyReviewBall}
-                  alt="here should be the empty review ball"
-                />
-                <img
-                  className="pr-1"
-                  src={EmptyReviewBall}
-                  alt="here should be the empty review ball"
-                />
-                <img
-                  className="pr-1"
-                  src={EmptyReviewBall}
-                  alt="here should be the empty review ball"
-                />
-                <img
-                  className="pr-1"
-                  src={EmptyReviewBall}
-                  alt="here should be the empty review ball"
-                />
-              </div>
+
+          <div className="member-rating">
+            <p className="w-1/2 font-bold inline-block">Member Rating</p>
+            <div className='w-1/2 inline-block text-right'>
+              <span className={member_rating >= 1 ? 'rating-big-ball' : 'rating-big-gray-ball'}></span>
+              <span className={member_rating >= 2 ? 'rating-big-ball' : 'rating-big-gray-ball'}></span>
+              <span className={member_rating >= 3 ? 'rating-big-ball' : 'rating-big-gray-ball'}></span>
+              <span className={member_rating >= 4 ? 'rating-big-ball' : 'rating-big-gray-ball'}></span>
+              <span className={member_rating === 5 ? 'rating-big-ball' : 'rating-big-gray-ball'}></span>
             </div>
             <div className="bottom">
               <p>Available after completing</p>
             </div>
           </div>
+
         </div>
       ) : null
       }
