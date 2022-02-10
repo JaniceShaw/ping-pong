@@ -7,7 +7,7 @@ export const Header = () => {
     <>
       <div
         id='outer-container'
-        className='flex justify-between items-center p-4 h-24 shadow-md fixed bg-white w-full'
+        className='flex justify-between items-center p-4 h-24 shadow-md fixed bg-white w-full z-50'
       >
         <Link to='/'>
           <img src={Logo} alt='here should be the logo' />
