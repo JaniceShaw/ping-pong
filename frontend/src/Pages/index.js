@@ -18,7 +18,6 @@ import { MyProfilePage } from './Profile/MyProfile';
 import { NewJob } from './NewJob/NewJob';
 import { PrivateJob } from './PrivateJob/PrivateJob';
 import { Job } from './Job/Job';
-import { MapPage } from './Map/Map';
 
 import { ViewJob } from './ViewJob/ViewJob';
 import { RegisterHomepage } from './RegisterHomepage/RegisterHomepage';
@@ -51,7 +50,6 @@ export {
   NewJob,
   PrivateJob,
   Job,
-  MapPage,
   ViewJob,
   RegisterHomepage,
   RegisterHelper,

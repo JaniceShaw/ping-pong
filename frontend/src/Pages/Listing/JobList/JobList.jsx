@@ -2,41 +2,32 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { JobCard } from '../../../Components/BigCards/JobCard';
 
-import {
-  deleteData,
-  getData,
-  patchData,
-  postData,
-} from '../../../Hooks/DataFetching';
+import { getData } from '../../../Hooks/DataFetching';
+import { ListingFilter } from '../../../Components/ListingFilter/ListingFilter';
 
 export const JobListPage = () => {
   const [jobsList, setJobsList] = useState([]);
+  const [filteredJobsList, setFilteredJobsList] = useState([]);
   const [error, setError] = useState(null);
 
-  const makePost = () => {
-    const sendingData = {
-      title: 'new post',
-      description: '',
-    };
-    postData('job/request/', sendingData, setError);
-  };
-
-  const deletePost = () => {
-    deleteData('job/', 2);
-  };
-
-  const patchPost = () => {
-    patchData('job/', 8, { title: 'changing title' }, setError);
+  const filterList = (array) => {
+    setFilteredJobsList(array);
   };
 
   useEffect(() => {
     getData('job/list/', setJobsList, setError);
-  }, [jobsList]);
+  }, [ListingFilter]);
+
   return (
-    <div id='results_list' className='grid gap-4'>
-      {jobsList.map((job, i) => (
-        <JobCard key={i} job={job} />
-      ))}
-    </div>
+    <>
+      <ListingFilter filteredList={filterList} unfilteredList={jobsList} />
+      <div id='results_list' className='grid gap-4'>
+        <p>{filteredJobsList.length} jobs listed</p>
+
+        {filteredJobsList.map((job, i) => (
+          <JobCard key={i} job={job} />
+        ))}
+      </div>
+    </>
   );
 };
