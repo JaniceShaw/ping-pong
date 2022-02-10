@@ -28,7 +28,8 @@ import { MenuBar } from './Menu/Menu';
 import { MemberProfilePage } from './Profile/MemberProfile/MemberProfile';
 import { MemberInfo } from '../Components/ProfileComponents/MemberInfo';
 import { MemberJobs } from '../Components/ProfileComponents/MemberJobs';
-import { EditProfile } from '../Components/ProfileComponents/EditProfile';
+import { EditHelper } from '../Components/ProfileComponents/EditHelper';
+import { EditMember } from '../Components/ProfileComponents/EditMember';
 
 export {
   StartPage,
@@ -60,5 +61,6 @@ export {
   MemberProfilePage,
   MemberInfo,
   MemberJobs,
-  EditProfile,
+  EditHelper,
+  EditMember,
 };
