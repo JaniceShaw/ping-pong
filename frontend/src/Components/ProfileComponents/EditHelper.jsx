@@ -62,7 +62,7 @@ export const EditHelper = () => {
   const handleSubmitButton = (event) => {
     event.preventDefault();
     patchData('user/helper/me', form, setError);
-    navigate('/helper-profile');
+    navigate('/helper');
   };
 
   const handleImageUpload = (event) => {

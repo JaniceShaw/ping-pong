@@ -1,47 +1,33 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
+import { MemberInfo } from '../../../Components/ProfileComponents/MemberInfo';
+import { MemberJobs } from '../../../Components/ProfileComponents/MemberJobs';
 
 export const MemberProfilePage = () => {
-  const [btnColor, setBtnColor] = useState('white');
-  const [InfoBtn, setInfoBtn] = useState('white');
+  const [member_jobs, setMemberJobs] = useState(false);
+  const [member_info, setMemberInfo] = useState(true);
+
+  const handleComponentToggle = () => {
+    if (member_jobs === false) {
+      setMemberJobs(true) && setMemberInfo(false);
+    } else {
+      setMemberJobs(false) && setMemberInfo(true);
+    }
+  };
 
   return (
     <>
-      <div className='section flex justify-evenly '>
-        <Link to='jobs/' className='w-1/2'>
-          <button
-            value={InfoBtn}
-            onClick={() => {
-              InfoBtn === 'white'
-                ? setInfoBtn('orange') && setBtnColor('white')
-                : setInfoBtn('white');
-            }}
-            style={{ backgroundColor: btnColor }}
-            className='border-2 border-black w-full'>
-            Jobs
-          </button>
-        </Link>
-
-        <Link to='info/' className='w-1/2'>
-          {' '}
-          <button
-            value={btnColor}
-            onClick={() => {
-              btnColor === 'white'
-                ? setBtnColor('orange') && setInfoBtn('white')
-                : setBtnColor('white');
-            }}
-            style={{ backgroundColor: btnColor }}
-            className='border-2 border-black w-full'>
-            Profile
-          </button>
-        </Link>
+      <div className='section flex flex-col justify-evenly '>
+        <button
+          onClick={handleComponentToggle}
+          className='border-2 border-black w-full'>
+          Jobs
+        </button>
+        {member_jobs === false && member_info === true ? (
+          <MemberInfo />
+        ) : (
+          <MemberJobs />
+        )}
       </div>
-
-      <h1>anemarie</h1>
-
-      <Outlet />
     </>
   );
 };

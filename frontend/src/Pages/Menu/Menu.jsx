@@ -5,20 +5,17 @@ import './styles.scss';
 // import MenuOpen from '../../assets/icons/menu_open.svg';
 
 export const MenuBar = () => {
-
-        // for react router to change page
+  // for react router to change page
   let navigate = useNavigate();
-    const HomeLink = () => {
-        navigate('/');
-    }
-
-
-    const handleLogout = (event) => {
-       // event.preventDefault();
-      localStorage.clear()
-       HomeLink();
+  const HomeLink = () => {
+    navigate('/');
   };
 
+  const handleLogout = (event) => {
+    // event.preventDefault();
+    localStorage.clear();
+    HomeLink();
+  };
 
   return (
     <>
@@ -33,9 +30,10 @@ export const MenuBar = () => {
           Login
         </a>
         <span onClick={handleLogout}>
-        <a className='menu-item'  href='/'>
-        Log out
-        </a></span>
+          <a className='menu-item' href='/'>
+            Log out
+          </a>
+        </span>
         <a className='menu-item' href='/create-user'>
           Create User
         </a>
@@ -51,10 +49,10 @@ export const MenuBar = () => {
         <a className='menu-item' href='/private-job'>
           Private Job
         </a>
-        <a className='menu-item' href='/helper-profile'>
+        <a className='menu-item' href='/helper'>
           Helper-Profile
         </a>
-        <a className='menu-item' href='/member-profile'>
+        <a className='menu-item' href='/member'>
           Member-Profile
         </a>
       </Menu>

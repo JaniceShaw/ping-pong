@@ -12,8 +12,6 @@ import {
   HelperListPage,
   JobListPage,
   HelperProfilePage,
-  HelperInfo,
-  HelperJobs,
   SearchPage,
   AboutPage,
   FAQPage,
@@ -25,10 +23,6 @@ import {
   MapPage,
   ViewJob,
   MemberProfilePage,
-  MemberInfo,
-  MemberJobs,
-  EditHelper,
-  EditMember,
   RegisterHomepage,
   RegisterHelper,
   RegisterMember,
@@ -67,19 +61,9 @@ export const RoutesIndex = () => {
 
             <Route path='Job' element={<Job />} />
 
-            <Route path='member-profile' element={<MemberProfilePage />}>
-              <Route index element={<MemberInfo />} />
-              <Route path='edit' element={<EditMember />} />
-              <Route path='info' element={<MemberInfo />} />
-              <Route path='jobs' element={<MemberJobs />} />
-            </Route>
+            <Route path='member' element={<MemberProfilePage />} />
 
-            <Route path='helper-profile' element={<HelperProfilePage />}>
-              <Route index element={<HelperInfo />} />
-              <Route path='edit' element={<EditHelper />} />
-              <Route path='info' element={<HelperInfo />} />
-              <Route path='jobs' element={<HelperJobs />} />
-            </Route>
+            <Route path='helper' element={<HelperProfilePage />} />
 
             <Route path='private-job' element={<PrivateJob />} />
             <Route path='my-profile' element={<MyProfilePage />} />

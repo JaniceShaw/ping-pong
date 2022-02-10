@@ -19,11 +19,8 @@ export const EditMember = () => {
 
   let navigate = useNavigate();
 
-  if (!user) {
-    getData('user/member/me', setUser, setError);
-  }
-
   useEffect(() => {
+    getData('user/member/me/', setUser, setError);
     setUsername(user.username);
     setFirstName(user.first_name);
     setLastName(user.last_name);
@@ -34,7 +31,8 @@ export const EditMember = () => {
     setZip(user.zip);
     setDescription(user.description);
     setProfilePic(user.profile_pic);
-  }, [user]);
+    console.log(user.profile_pic);
+  }, []);
 
   const form = {
     username: username,
@@ -52,7 +50,7 @@ export const EditMember = () => {
   const handleSubmitButton = (event) => {
     event.preventDefault();
     patchData('user/member/me', form, setError);
-    navigate('/member-profile');
+    navigate('/member');
   };
 
   const handleImageUpload = (event) => {
@@ -65,11 +63,11 @@ export const EditMember = () => {
       <form
         onSubmit={handleSubmitButton}
         className='flex flex-col items-center bg-slate-300 shadow-sm'>
-        <img
+        {/* <img
           className='w-20'
           src={profile_pic}
           alt='here should be the profile pic'
-        />
+        /> */}
         <input
           className='w-1/2 border-2 border-black'
           type='file'

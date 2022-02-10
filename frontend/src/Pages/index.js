@@ -5,8 +5,6 @@ import { HelperListPage } from './Listing/HelperList/HelperList';
 import { JobListPage } from './Listing/JobList/JobList';
 import { LoginPage } from './Login/Login';
 import { HelperProfilePage } from './Profile/HelperProfile/HelperProfile';
-import { HelperInfo } from '../Components/ProfileComponents/HelperInfo';
-import { HelperJobs } from '../Components/ProfileComponents/HelperJobs';
 import { RegistrationPage } from './Registration/Registration';
 import { Validation } from './Validation/Validation';
 import { CreateUserPage } from './CreateUser/CreateUser';
@@ -26,10 +24,6 @@ import { RegisterHelper } from './RegisterHelper/RegisterHelper';
 import { RegisterMember } from './RegisterMember/RegisterMember';
 import { MenuBar } from './Menu/Menu';
 import { MemberProfilePage } from './Profile/MemberProfile/MemberProfile';
-import { MemberInfo } from '../Components/ProfileComponents/MemberInfo';
-import { MemberJobs } from '../Components/ProfileComponents/MemberJobs';
-import { EditHelper } from '../Components/ProfileComponents/EditHelper';
-import { EditMember } from '../Components/ProfileComponents/EditMember';
 
 export {
   StartPage,
@@ -39,8 +33,6 @@ export {
   JobListPage,
   LoginPage,
   HelperProfilePage,
-  HelperInfo,
-  HelperJobs,
   RegistrationPage,
   Validation,
   CreateUserPage,
@@ -59,8 +51,4 @@ export {
   RegisterMember,
   MenuBar,
   MemberProfilePage,
-  MemberInfo,
-  MemberJobs,
-  EditHelper,
-  EditMember,
 };

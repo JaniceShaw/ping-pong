@@ -8,9 +8,8 @@ export const HelperCard = (props) => {
   return (
     <>
       <Link
-        to={`/helper-profile/${helper.id}`}
-        className='card_container justify-around border-2 p-2'
-      >
+        to={`/helper/${helper.id}`}
+        className='card_container justify-around border-2 p-2'>
         <div className='card-header'>
           <h1 className='font-bold'>{helper.username}</h1>
           <p className='text-xs'>🟠 🟠 🟠 🟠</p>
