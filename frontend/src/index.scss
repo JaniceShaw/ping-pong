@@ -2,7 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "~@geoapify/geocoder-autocomplete/styles/minimal.css";
+@import '~@geoapify/geocoder-autocomplete/styles/minimal.css';
+
+* {
+  @apply text-primary;
+}
 
 body,
 html {
@@ -40,6 +44,9 @@ html {
   @apply w-3 h-3 bg-yellow-300 border border-yellow-500 block rounded-full;
 }
 
+.card_container {
+  @apply bg-white rounded-md border-primary_light shadow-md;
+}
 .rating-big-ball {
   @apply w-4 h-4 bg-yellow-300 border border-yellow-500 rounded-full inline-block mr-1;
 }

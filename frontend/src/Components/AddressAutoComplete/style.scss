@@ -1,3 +1,7 @@
-.geoapify-autocomplete-input {
-  width: 100%;
+.geocoder-container {
+  @apply col-span-3;
+
+  .geoapify-autocomplete-input {
+    @apply w-full border-none text-inherit text-base;
+  }
 }

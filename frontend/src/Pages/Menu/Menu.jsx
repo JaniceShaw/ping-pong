@@ -1,28 +1,109 @@
-import { slide as Menu } from 'react-burger-menu';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { useState } from 'react';
 import './styles.scss';
-// import MenuClosed from '../../assets/icons/menu.svg';
-// import MenuOpen from '../../assets/icons/menu_open.svg';
+import '../../Components/Hamburgers/hamburgers.scss';
 
 export const MenuBar = () => {
-  // for react router to change page
+  const [showMenu, setShowMenu] = useState(false);
   let navigate = useNavigate();
-  const HomeLink = () => {
-    navigate('/');
-  };
 
   const handleLogout = (event) => {
     // event.preventDefault();
     localStorage.clear();
-    HomeLink();
+    navigate('/');
   };
 
   return (
     <>
-      <Menu isOpen={false} right width={'100vw'}>
-        <a className='/' href='/'>
-          Home
-        </a>
+      <div
+        className='fixed z-50 right-4 top-4 uppercase'
+        onClick={() => setShowMenu(!showMenu)}
+      >
+        <button
+          class={`hamburger hamburger--spin ${showMenu ? 'is-active' : ''}`}
+          type='button'
+        >
+          <span class='hamburger-box'>
+            <span class='hamburger-inner'></span>
+          </span>
+        </button>
+      </div>
+
+      <div
+        className={`bg-bg_light fixed z-40 w-full h-screen pt-32 p-4 transition-transform duration-300  shadow-lg ${
+          !showMenu ? 'translate-x-full' : ''
+        }`}
+      >
+        <ul
+          className='text-4xl text-center flex flex-col h-4/5  justify-between'
+          onClick={() => setTimeout(() => setShowMenu(!showMenu), 200)}
+        >
+          <li>
+            <Link to='/'>Home</Link>
+          </li>
+
+          <li>
+            <Link className='menu-item' to='/registration'>
+              Registration
+            </Link>
+          </li>
+
+          <li>
+            <Link className='menu-item' to='/login'>
+              Login
+            </Link>
+          </li>
+
+          <li>
+            <Link className='menu-item' onClick={handleLogout} to='/'>
+              Log out
+            </Link>
+          </li>
+          <li>
+            <Link className='menu-item' to='/create-user'>
+              Create User
+            </Link>
+          </li>
+          <li>
+            <Link className='menu-item' to='/listing'>
+              Listing
+            </Link>
+          </li>
+          <li>
+            <Link className='menu-item' to='/view-job'>
+              Job
+            </Link>
+          </li>
+          <li>
+            <Link className='menu-item' to='/new-job'>
+              New Job
+            </Link>
+          </li>
+          <li>
+            <Link className='menu-item' to='/private-job'>
+              Private Job
+            </Link>
+          </li>
+          <li>
+            <Link className='menu-item' to='/helper-profile'>
+              Helper-Profile
+            </Link>
+          </li>
+          <li>
+            <Link className='menu-item' to='/member-profile'>
+              Member-Profile
+            </Link>
+          </li>
+        </ul>
+      </div>
+
+      {/* <Menu
+        isOpen={false}
+        right
+        width={'100vw'}
+        className='pt-20 bg-transparent menu'
+      >
+    
         <a className='menu-item' href='/registration'>
           Registration
         </a>
@@ -55,7 +136,7 @@ export const MenuBar = () => {
         <a className='menu-item' href='/member'>
           Member-Profile
         </a>
-      </Menu>
+      </Menu> */}
     </>
   );
 };
