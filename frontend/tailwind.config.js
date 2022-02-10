@@ -5,8 +5,8 @@ module.exports = {
       center:true
     },
     extend: {},
+    fontFamily: { sans: ['Helvetica', 'Arial', 'sans-serif'] },
   },
-  plugins: [
-    require('daisyui'),
-  ],
+  plugins: [require('daisyui')],
 };
+ 

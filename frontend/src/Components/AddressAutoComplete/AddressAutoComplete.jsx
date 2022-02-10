@@ -3,15 +3,21 @@ import {
   GeoapifyContext,
 } from '@geoapify/react-geocoder-autocomplete';
 import '@geoapify/geocoder-autocomplete/styles/minimal.css';
+import './style.scss';
+import { useEffect } from 'react';
+import { getData } from '../../Hooks/DataFetching';
+import { useState } from 'react';
 
 export const AddressAutoComplete = (props) => {
   const geocoderToken = '0dda38a2ffe34c53a35e8a91a1fd6b75';
+  const [user, setUser] = useState('');
+  const [error, setError] = useState('');
 
   function onPlaceSelect(location) {
     if (!location) {
       props.passAddress({
-        lat: 47.4007317,
-        lon: 8.537520210699132,
+        lat: user.member_lat,
+        lon: user.member_lon,
       });
     } else {
       props.passAddress(location.properties);
@@ -19,20 +25,25 @@ export const AddressAutoComplete = (props) => {
   }
 
   function onSuggectionChange(value) {
-    // console.log(value);
+    // console.log(user);
   }
+
+  useEffect(() => {
+    getData('user/helper/me/', setUser, setError);
+  }, [setUser]);
 
   return (
     <>
-      <div>
+      <div className='flex justify-between'>
+        <p>location</p>
         <GeoapifyContext apiKey={geocoderToken}>
           <GeoapifyGeocoderAutocomplete
-            placeholder="Enter address here"
+            placeholder='Enter address here'
             // type={['amenity']}
             skipIcons={true}
             // lang={language}
             // position={`${(coordUser.lat, coordUser.lon)}`}
-            // value="Heinrichstrasse 200, 8005 Zürich"
+            value={`${user.street}, ${user.zip} ${user.city}`}
             placeSelect={onPlaceSelect}
             suggestionsChange={onSuggectionChange}
             // position={position}
