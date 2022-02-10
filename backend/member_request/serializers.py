@@ -4,19 +4,35 @@ from member_request.models import MemberRequest, MemberReview, HelperReview
 # from user.serializers import UserSerializer
 # User = get_user_model()
 
+class HelperRatingSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = HelperReview
+        fields = ['rating']
+
+
+class MemberRatingSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MemberReview
+        fields = ['rating']
+
 
 # all fields for making a new job request ()
 class MemberRequestSerializer(serializers.ModelSerializer):
     # to get the logged-in user id
     member = serializers.PrimaryKeyRelatedField(read_only=True)
     member_username = serializers.CharField(source='member.username', read_only=True)
+    member_profile_pic = serializers.ImageField(source='member.profile_pic', read_only=True)
     helper_username = serializers.CharField(source='helper.username', read_only=True)
     member_zip = serializers.CharField(source='member.zip', read_only=True)
     member_city = serializers.CharField(source='member.city', read_only=True)
     member_lon = serializers.CharField(source='member.lon', read_only=True)
     member_lat = serializers.CharField(source='member.lat', read_only=True)
-    # category_name = serializers.CharField(source='category.name', read_only=True)
     category_name = serializers.CharField(source='category.name', read_only=True)
+    helper_review = HelperRatingSerializer(many=False)
+    member_review = MemberRatingSerializer(many=False)
+
 
     def create(self, validated_data):
         request = self.context.get('request', None)
@@ -90,15 +106,4 @@ class ListMemberRequestSerializer(serializers.ModelSerializer):
 
 
 # to get all the reviews of a given helper
-class HelperRatingSerializer(serializers.ModelSerializer):
 
-    class Meta:
-        model = HelperReview
-        fields = ['rating']
-
-
-class MemberRatingSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = MemberReview
-        fields = ['rating']
