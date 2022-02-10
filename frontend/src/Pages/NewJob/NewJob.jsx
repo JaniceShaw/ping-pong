@@ -40,9 +40,9 @@ export const NewJob = () => {
   const HandleSubmitButton = (event) => {
     event.preventDefault();
     postData('job/request/', form, setError);
-    // if (!error) {
-    //   // navigate('/listing/helpers');
-    // }
+    if (!error) {
+      navigate('/listing/helpers');
+    }
   };
   // console.log(error.title);
 
@@ -71,7 +71,7 @@ export const NewJob = () => {
           className='outline-none border-2 '
           onChange={(e) => setTitle(e.target.value)}
         />
-       
+
         <textarea
           value={description}
           placeholder={error ? error.description : 'describe your job'}
@@ -79,7 +79,6 @@ export const NewJob = () => {
           cols='20'
           onChange={(e) => setDescription(e.target.value)}
           rows='5'></textarea>
-        
 
         <Select
           className='urgency'
