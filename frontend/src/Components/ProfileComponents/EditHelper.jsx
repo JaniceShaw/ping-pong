@@ -61,7 +61,7 @@ export const EditHelper = () => {
 
   const handleSubmitButton = (event) => {
     event.preventDefault();
-    patchData('user/helper/me', form, setError);
+    patchData('user/helper/me', '', form, setError);
     navigate('/helper');
   };
 
