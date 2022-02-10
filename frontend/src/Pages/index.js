@@ -7,7 +7,6 @@ import { LoginPage } from './Login/Login';
 import { HelperProfilePage } from './Profile/HelperProfile/HelperProfile';
 import { RegistrationPage } from './Registration/Registration';
 import { Validation } from './Validation/Validation';
-import { CreateUserPage } from './CreateUser/CreateUser';
 import { SearchPage } from './Search/Search';
 import { AboutPage } from './About/About';
 import { FAQPage } from './FAQ/FAQ';
@@ -34,7 +33,6 @@ export {
   HelperProfilePage,
   RegistrationPage,
   Validation,
-  CreateUserPage,
   SearchPage,
   AboutPage,
   FAQPage,

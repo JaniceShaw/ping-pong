@@ -7,7 +7,6 @@ import {
   LoginPage,
   RegistrationPage,
   Validation,
-  CreateUserPage,
   ListingPage,
   HelperListPage,
   JobListPage,
@@ -37,14 +36,9 @@ export const RoutesIndex = () => {
             <Route path='/' element={<StartPage />} />
             <Route path='registration' element={<RegistrationPage />} />
             <Route path='validation' element={<Validation />} />
-            <Route path='create-user' element={<CreateUserPage />} />
             <Route path='login' element={<LoginPage />} />
             <Route path='search' element={<SearchPage />} />
-            <Route path='new-job' element={<NewJob />} />
-            <Route path='private-job' element={<PrivateJob />} />
-            <Route path='view-job' element={<ViewJob />}>
-              <Route path=':jobID' element={<ViewJob />} />
-            </Route>
+
             <Route path='faq' element={<FAQPage />} />
             <Route path='support' element={<SupportPage />} />
 
@@ -58,7 +52,11 @@ export const RoutesIndex = () => {
               <Route path='jobs' element={<JobListPage />} />
             </Route>
 
-            <Route path='Job' element={<Job />} />
+            <Route path='job' element={<Job />}>
+              <Route path=':jobID' element={<ViewJob />} />{' '}
+              <Route path='new' element={<NewJob />} />
+              <Route path='private' element={<PrivateJob />} />
+            </Route>
 
             <Route path='member' element={<MemberProfilePage />} />
 

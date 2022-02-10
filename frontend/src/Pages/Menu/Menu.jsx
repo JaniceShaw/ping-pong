@@ -34,19 +34,16 @@ export const MenuBar = () => {
             Log out
           </a>
         </span>
-        <a className='menu-item' href='/create-user'>
-          Create User
-        </a>
         <a className='menu-item' href='/listing'>
           Listing
         </a>
-        <a className='menu-item' href='/view-job'>
+        <a className='menu-item' href='/job'>
           Job
         </a>
-        <a className='menu-item' href='/new-job'>
+        <a className='menu-item' href='/job/new'>
           New Job
         </a>
-        <a className='menu-item' href='/private-job'>
+        <a className='menu-item' href='/job/private'>
           Private Job
         </a>
         <a className='menu-item' href='/helper'>
