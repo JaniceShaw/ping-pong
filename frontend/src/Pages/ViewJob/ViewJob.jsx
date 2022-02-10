@@ -40,6 +40,17 @@ export const ViewJob = () => {
       <h1 className='text-3xl font-bold'>{jobData.title}</h1>
       <h4 className='text-sm mb-4 mt-2'><strong>Created on:</strong> {moment(jobData.created).format('DD, MM, YYYY')}</h4>
 
+      <div class="space-x-4 avatar-group">
+        <div className="avatar">
+          <div className="mb-4 rounded-full w-10 h-10">
+            <img src={jobData.member_profile_pic} />
+          </div>
+        </div>
+        <p className=''>{jobData.member_username}</p>
+      </div>
+
+
+
       <div className='inline-block w-1/2 mb-2'><span className='mr-1'>&#128205;</span> {jobData.member_zip}, {jobData.member_city}</div>
       <div className='inline-block'><span className='mr-1'>&#x1F527;</span> {jobData.category_name}</div>
 
