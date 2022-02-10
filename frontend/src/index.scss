@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '~@geoapify/geocoder-autocomplete/styles/minimal.css';
+@import "~@geoapify/geocoder-autocomplete/styles/minimal.css";
 
 body,
 html {
@@ -21,7 +21,7 @@ html {
 }
 
 .field-input {
-  @apply w-full h-10 px-3 text-base placeholder-gray-600 border rounded-lg  ;
+  @apply w-full h-10 px-3 text-base placeholder-gray-600 border rounded-lg;
 }
 
 .field-input-login {
@@ -38,6 +38,14 @@ html {
 
 .rating-ball {
   @apply w-3 h-3 bg-yellow-300 border border-yellow-500 block rounded-full;
+}
+
+.rating-big-ball {
+  @apply w-4 h-4 bg-yellow-300 border border-yellow-500 rounded-full inline-block mr-1;
+}
+
+.rating-big-gray-ball {
+  @apply w-4 h-4 bg-zinc-300 border border-zinc-500 rounded-full inline-block mr-1;
 }
 
 // .radio {
