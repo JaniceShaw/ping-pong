@@ -1,8 +1,20 @@
 import Anemarie from '../../Assets/placeholder/anemarie.png';
 import RatingBalls from '../../Assets/icons/Rating balls.svg';
-import { Link, Outlet } from 'react-router-dom';
+import { useState } from 'react';
+import { EditMember } from './EditMember';
+// import { MemberJobs } from './MemberJobs';
 
 export const MemberInfo = () => {
+  const [edit_member, setEditMember] = useState(false);
+  const [member_info, setMemberInfo] = useState(true);
+
+  const handleEditToggle = () => {
+    if (edit_member === false) {
+      setEditMember(true) && setMemberInfo(false);
+    } else {
+      setEditMember(false) && setMemberInfo(true);
+    }
+  };
   return (
     <>
       <div className='upper_container'>
@@ -28,12 +40,13 @@ export const MemberInfo = () => {
           </div>
         </div>
 
-        <Link to='/member-profile/edit'>
-          <button className='border-2 rounded border-black bg-orange-500'>
-            Edit Profile
-          </button>
-        </Link>
-        <Outlet />
+        <button
+          onClick={handleEditToggle}
+          className='border-2 rounded border-black bg-orange-500'>
+          Edit Profile
+        </button>
+
+        {edit_member === false && member_info === true ? null : <EditMember />}
       </div>
     </>
   );

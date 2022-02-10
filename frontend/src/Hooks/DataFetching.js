@@ -32,7 +32,7 @@ export const postData = (urlEnding, bodyObject, errorState) => {
 
   axios
     .post(`${apiBaseURL}${urlEnding}`, formData, config)
-    .then((response) => console.log('hk',response))
+    .then((response) => console.log('hk', response))
     .catch((err) => {
       errorState(err.response.data);
     });
@@ -71,16 +71,13 @@ export const postLoginData = (urlEnding, bodyObject, errorState) => {
   }
 
   axios
-      .post(`${apiBaseURL}${urlEnding}`, formData, config)
-      .then((response) => {
-        console.log('logged in!');
-        errorState(response.status);
-        localStorage.setItem('token', response.data.access)
-
-      })
-      .catch((err) => {errorState(err.response.data)})
+    .post(`${apiBaseURL}${urlEnding}`, formData, config)
+    .then((response) => {
+      console.log('logged in!');
+      errorState(response.status);
+      localStorage.setItem('token', response.data.access);
+    })
+    .catch((err) => {
+      errorState(err.response.data);
+    });
 };
-
-
-
-

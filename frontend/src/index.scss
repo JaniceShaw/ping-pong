@@ -47,6 +47,13 @@ html {
 .card_container {
   @apply bg-white rounded-md border-primary_light shadow-md;
 }
+.rating-big-ball {
+  @apply w-4 h-4 bg-yellow-300 border border-yellow-500 rounded-full inline-block mr-1;
+}
+
+.rating-big-gray-ball {
+  @apply w-4 h-4 bg-zinc-300 border border-zinc-500 rounded-full inline-block mr-1;
+}
 
 // .radio {
 //   @apply form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-red-600 checked:border-red-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer

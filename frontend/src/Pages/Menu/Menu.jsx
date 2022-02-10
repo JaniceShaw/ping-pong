@@ -130,10 +130,10 @@ export const MenuBar = () => {
         <a className='menu-item' href='/private-job'>
           Private Job
         </a>
-        <a className='menu-item' href='/helper-profile'>
+        <a className='menu-item' href='/helper'>
           Helper-Profile
         </a>
-        <a className='menu-item' href='/member-profile'>
+        <a className='menu-item' href='/member'>
           Member-Profile
         </a>
       </Menu> */}
