@@ -1,9 +1,10 @@
 from django.urls import path
 
 from user.views import ListHelperInfo, ListMemberInfo, RetrieveMemberInfo, RetrieveHelperInfo, \
-    RetrieveUpdateMemberProfileView, RetrieveUpdateHelperProfileView
+    RetrieveUpdateMemberProfileView, RetrieveUpdateHelperProfileView, RetrieveMemberProfileView
 
 urlpatterns = [
+    path('me/', RetrieveMemberProfileView.as_view()),
     path('member/me/', RetrieveUpdateMemberProfileView.as_view()),
     path('helper/me/', RetrieveUpdateHelperProfileView.as_view()),
     # path('list/', ListProfilesView.as_view()),

@@ -19,7 +19,7 @@ class UserAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'username', 'password')}),
         ('Personal info', {'fields': ('first_name', 'last_name', 'phone', 'profile_pic', 'type', 'description', 'lon',
-                                      'lat')}),
+                                      'lat', 'zip', 'city')}),
         ('Helper info', {'fields': ('helper_verified', 'helper_verify_pic', 'helper_available', 'helper_available_text',
                                     'helper_hourly_rate', 'helper_categories', 'helper_sub_categories')}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'user_permissions')}),

@@ -1,7 +1,7 @@
 # from django.shortcuts import render
 from django.contrib.auth import get_user_model
 from rest_framework.generics import ListAPIView, get_object_or_404, RetrieveAPIView, RetrieveUpdateDestroyAPIView
-from user.serializers import MemberPublicProfileSerializer, HelperPublicProfileSerializer, MemberProfileSerializer, HelperProfileSerializer
+from user.serializers import MemberPublicProfileSerializer, HelperPublicProfileSerializer, MemberProfileSerializer, HelperProfileSerializer, UserSerializer
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from django.db.models import Avg
 # from rest_framework import filters
@@ -13,6 +13,18 @@ user = User.objects.annotate(avg_rating=Avg('helper_reviews__rating'))
 #     queryset = User.objects.all()
 #     serializer_class = UserProfileSerializer
 #     permission_classes = [IsAuthenticatedOrReadOnly]
+
+
+class RetrieveMemberProfileView(RetrieveAPIView):
+    # queryset = User.objects.all()
+
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        profile = User.objects.filter(id=self.request.user.id)
+        return get_object_or_404(profile, id=self.request.user.id)
 
 
 class RetrieveUpdateMemberProfileView(RetrieveUpdateDestroyAPIView):
