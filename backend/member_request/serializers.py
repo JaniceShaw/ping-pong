@@ -30,8 +30,8 @@ class MemberRequestSerializer(serializers.ModelSerializer):
     member_lon = serializers.CharField(source='member.lon', read_only=True)
     member_lat = serializers.CharField(source='member.lat', read_only=True)
     category_name = serializers.CharField(source='category.name', read_only=True)
-    helper_review = HelperRatingSerializer(many=False)
-    member_review = MemberRatingSerializer(many=False)
+    helper_review = HelperRatingSerializer(many=False, read_only=True)
+    member_review = MemberRatingSerializer(many=False, read_only=True)
 
 
     def create(self, validated_data):
