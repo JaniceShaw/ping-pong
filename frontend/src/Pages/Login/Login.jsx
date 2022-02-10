@@ -29,8 +29,6 @@ export const LoginPage = () => {
     }
 
 
-
-
   const handleSignIn = (event) => {
     event.preventDefault();
 
@@ -39,14 +37,6 @@ export const LoginPage = () => {
       { email: email, password: password },
       setResponse
     );
-
-    // if (localStorage.getItem('token')) {
-    //         HomeLink();
-    //     }
-
-     // HomeLink();
-     // setEmail('')
-     //  setPassword('')
   };
 
     // hook version - componentDidMount
