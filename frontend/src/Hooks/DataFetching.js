@@ -19,7 +19,7 @@ export const getData = (urlEnding, stateToUpdate, errorState) => {
       stateToUpdate(response.data);
     })
     .catch((err) => {
-      errorState(err.response.data);
+      errorState(err.response);
     });
 };
 

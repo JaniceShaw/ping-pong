@@ -1,48 +1,34 @@
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
+import { getData } from '../../Hooks/DataFetching';
 
 export const Category = (props) => {
-  const APIurlPrefix = 'https://ping-pong.propulsion-learn.ch/backend/api/';
   const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    const url = `${APIurlPrefix}category/list/`;
-    const method = 'GET';
-
-    const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ0NzA0OTczLCJqdGkiOiJhMzE2ZDJkMDQ2ZDU0MWMyYmFlYTAxMGFjNWU4MDAxMSIsInVzZXJfaWQiOjF9.LRpbBVpsj4tk1ApggAlOAWuWjX0Sf1coZhNxzt5e2ps"
-
-    const headers = new Headers({
-      authorization: `Bearer ${token}`,
-    });
-
-    const config = {
-      method: method,
-      headers: headers,
-    };
-
-    fetch(url, config)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        // console.log(data);
-
-        setCategories(data);
-      })
-
-      .catch((error) => {
-        console.log('in error', error);
-      });
-  }, []);
-
+  const [error, setError] = useState();
   const categoryOptions = [];
 
-  categories.map((category, i) => {
-    const catName = Object.values(category)[1];
-    const catID = Object.values(category)[0];
-    const catObject = { value: catID, label: catName };
-    return categoryOptions.push(catObject);
-  });
+  categories
+    .sort((a, b) => {
+      var nameA = a.name.toUpperCase();
+      var nameB = b.name.toUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    })
+    .map((category, i) => {
+      const catName = Object.values(category)[1];
+      const catID = Object.values(category)[0];
+      const catObject = { value: catID, label: catName };
+      return categoryOptions.push(catObject);
+    });
+
+  useEffect(() => {
+    getData('category/list/', setCategories, setError);
+  }, []);
 
   return (
     <>
@@ -51,6 +37,7 @@ export const Category = (props) => {
         options={categoryOptions}
         name='category-filter'
         onChange={props.onChange}
+        placeholder='Category...'
       />
     </>
   );
