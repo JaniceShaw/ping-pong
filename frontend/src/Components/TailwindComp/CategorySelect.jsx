@@ -60,7 +60,6 @@ export const Category = (props) => {
           placeholder='Category...'
           isSearchable={false}
           styles={customStyles}
-          value='General'
         />
       </div>
     </>
