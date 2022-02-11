@@ -64,3 +64,37 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
 }
+
+label.hamburg {
+  @apply flex w-14 h-12;
+}
+
+input#hamburg {
+  display: none;
+}
+
+.line {
+  @apply absolute bg-primary block w-full h-1 rounded-full duration-300 origin-center;
+}
+
+.line:nth-child(1) {
+  top: 12px;
+}
+.line:nth-child(2) {
+  top: 24px;
+}
+.line:nth-child(3) {
+  top: 36px;
+}
+
+#hamburg:checked + .hamburg .line:nth-child(1) {
+  transform: translateY(12px) rotate(-45deg);
+}
+
+#hamburg:checked + .hamburg .line:nth-child(2) {
+  opacity: 0;
+}
+
+#hamburg:checked + .hamburg .line:nth-child(3) {
+  transform: translateY(-12px) rotate(45deg);
+}

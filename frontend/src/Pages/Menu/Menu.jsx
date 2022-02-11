@@ -1,58 +1,92 @@
-import { slide as Menu } from 'react-burger-menu';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { useState } from 'react';
 import './styles.scss';
-// import MenuClosed from '../../assets/icons/menu.svg';
-// import MenuOpen from '../../assets/icons/menu_open.svg';
+import '../../Components/Hamburgers/hamburgers.scss';
 
 export const MenuBar = () => {
-  // for react router to change page
+  const [showMenu, setShowMenu] = useState(false);
   let navigate = useNavigate();
-  const HomeLink = () => {
-    navigate('/');
-  };
 
   const handleLogout = (event) => {
     // event.preventDefault();
     localStorage.clear();
-    HomeLink();
+    navigate('/');
   };
 
   return (
     <>
-      <Menu isOpen={false} right width={'100vw'}>
-        <a className='/' href='/'>
-          Home
-        </a>
-        <a className='menu-item' href='/register'>
-          Register
-        </a>
-        <a className='menu-item' href='/login'>
-          Login
-        </a>
-        <span onClick={handleLogout}>
-          <a className='menu-item' href='/'>
-            Log out
-          </a>
-        </span>
-        <a className='menu-item' href='/listing'>
-          Listing
-        </a>
-        <a className='menu-item' href='/job'>
-          Job
-        </a>
-        <a className='menu-item' href='/job/new'>
-          New Job
-        </a>
-        <a className='menu-item' href='/job/private'>
-          Private Job
-        </a>
-        <a className='menu-item' href='/helper'>
-          Helper-Profile
-        </a>
-        <a className='menu-item' href='/member'>
-          Member-Profile
-        </a>
-      </Menu>
+      <div
+        className='fixed z-50 right-4 top-4 uppercase'
+        onClick={() => setShowMenu(!showMenu)}>
+        <button
+          class={`hamburger hamburger--spin ${showMenu ? 'is-active' : ''}`}
+          type='button'>
+          <span class='hamburger-box'>
+            <span class='hamburger-inner'></span>
+          </span>
+        </button>
+      </div>
+
+      <div
+        className={`bg-bg_light fixed z-40 w-full h-screen pt-32 p-4 transition-transform duration-300  shadow-lg ${
+          !showMenu ? 'translate-x-full' : ''
+        }`}>
+        <ul
+          className='text-4xl text-center flex flex-col h-4/5  justify-between'
+          onClick={() => setTimeout(() => setShowMenu(!showMenu), 200)}>
+          <li>
+            <Link to='/'>Home</Link>
+          </li>
+
+          <li>
+            <Link className='menu-item' to='/registration'>
+              Registration
+            </Link>
+          </li>
+
+          <li>
+            <Link className='menu-item' to='/login'>
+              Login
+            </Link>
+          </li>
+
+          <li>
+            <Link className='menu-item' onClick={handleLogout} to='/'>
+              Log out
+            </Link>
+          </li>
+          <li>
+            <Link className='menu-item' to='/listing'>
+              Listing
+            </Link>
+          </li>
+          <li>
+            <Link className='menu-item' to='/job'>
+              Job
+            </Link>
+          </li>
+          <li>
+            <Link className='menu-item' to='/job/new'>
+              New Job
+            </Link>
+          </li>
+          <li>
+            <Link className='menu-item' to='/job/private'>
+              Private Job
+            </Link>
+          </li>
+          <li>
+            <Link className='menu-item' to='/helper'>
+              Helper-Profile
+            </Link>
+          </li>
+          <li>
+            <Link className='menu-item' to='/member'>
+              Member-Profile
+            </Link>
+          </li>
+        </ul>
+      </div>
     </>
   );
 };

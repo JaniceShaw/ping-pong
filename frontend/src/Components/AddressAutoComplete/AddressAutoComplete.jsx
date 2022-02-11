@@ -34,21 +34,23 @@ export const AddressAutoComplete = (props) => {
 
   return (
     <>
-      <div className='flex justify-between'>
-        <p>location</p>
+      <div className='grid grid-cols-4 border-b border-primary_light'>
+        <p className='border-r border-primary_light flex items-center pl-4'>
+          location
+        </p>
         <GeoapifyContext apiKey={geocoderToken}>
           <GeoapifyGeocoderAutocomplete
             placeholder='Enter address here'
-            // type={['amenity']}
             skipIcons={true}
-            // lang={language}
-            // position={`${(coordUser.lat, coordUser.lon)}`}
             value={`${user.street}, ${user.zip} ${user.city}`}
             placeSelect={onPlaceSelect}
             suggestionsChange={onSuggectionChange}
+            filterByCountryCode={['ch']}
+            // type={['amenity']}
+            // lang={language}
+            // position={`${(coordUser.lat, coordUser.lon)}`}
             // position={position}
             // countryCodes={countryCodes}
-            filterByCountryCode={['ch']}
             // filterByCircle={filterByCircle}
             // filterByRect={filterByRect}
             // biasByCountryCode={biasByCountryCode}

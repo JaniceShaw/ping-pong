@@ -28,7 +28,7 @@ export const RoutesIndex = () => {
     <>
       <BrowserRouter>
         <Header />
-        <main className='p-4 pt-28 container md:container md:mx-auto'>
+        <main className='p-4 pt-20 container md:container md:mx-auto bg-bg_light'>
           <Routes>
             <Route path='/' element={<StartPage />} />
 

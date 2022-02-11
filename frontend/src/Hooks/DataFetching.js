@@ -32,20 +32,20 @@ export const postData = (urlEnding, bodyObject, errorState) => {
 
   axios
     .post(`${apiBaseURL}${urlEnding}`, formData, config)
-    .then((response) => console.log('hk',response))
+    .then((response) => console.log('hk', response))
     .catch((err) => {
       errorState(err.response.data);
     });
 };
 
-export const patchData = (urlEnding, bodyObject, errorState) => {
+export const patchData = (urlEnding, id, bodyObject, errorState) => {
   const formData = new FormData();
 
   for (let entry in bodyObject) {
     formData.append(entry, bodyObject[entry]);
   }
   axios
-    .patch(`${apiBaseURL}${urlEnding}/`, formData, config)
+    .patch(`${apiBaseURL}${urlEnding}${id}/`, formData, config)
     .then(() => {})
     .catch((err) => {
       errorState(err.response.data);
@@ -71,12 +71,13 @@ export const postLoginData = (urlEnding, bodyObject, errorState) => {
   }
 
   axios
-      .post(`${apiBaseURL}${urlEnding}`, formData, config)
-      .then((response) => {
-        console.log('logged in!');
-        errorState(response.status);
-        localStorage.setItem('token', response.data.access)
-
-      })
-      .catch((err) => {errorState(err.response.data)})
+    .post(`${apiBaseURL}${urlEnding}`, formData, config)
+    .then((response) => {
+      console.log('logged in!');
+      errorState(response.status);
+      localStorage.setItem('token', response.data.access);
+    })
+    .catch((err) => {
+      errorState(err.response.data);
+    });
 };
