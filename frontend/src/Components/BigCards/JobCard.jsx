@@ -5,7 +5,7 @@ import moment from 'moment';
 export const JobCard = (props) => {
   const job = props.job;
   return (
-    <Link to={`/view-job/${job.id}`} className='card_container border-2 p-2'>
+    <Link to={`/job/${job.id}`} className='card_container border-2 p-2'>
       <div className='card-title'>
         <h1 className='font-bold'>{job.title}</h1>
         <p className='text-xs'>
