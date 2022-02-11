@@ -39,10 +39,10 @@ export const NewJob = () => {
 
   const HandleSubmitButton = (event) => {
     event.preventDefault();
-    postData("job/request/", form, setError);
-    // if (!error) {
-    //   // navigate('/listing/helpers');
-    // }
+    postData('job/request/', form, setError);
+    if (!error) {
+      navigate('/listing/helpers');
+    }
   };
   // console.log(error.title);
 

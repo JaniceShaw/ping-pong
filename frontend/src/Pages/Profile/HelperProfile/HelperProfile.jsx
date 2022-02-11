@@ -1,22 +1,25 @@
-import { Link } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
+import { useState } from 'react';
+import { HelperInfo } from '../../../Components/ProfileComponents/HelperInfo';
+import { HelperJobs } from '../../../Components/ProfileComponents/HelperJobs';
 
 export const HelperProfilePage = () => {
+  const [show_jobs, setShowJobs] = useState(false);
+
   return (
     <>
-      <div className='section flex justify-evenly '>
-        <Link to='jobs/' className='w-1/2'>
-          <button className='border-2 border-black w-full'>Jobs</button>
-        </Link>
-
-        <Link to='info/' className='w-1/2'>
-          {' '}
-          <button className='border-2 border-black w-full'>Profile</button>
-        </Link>
+      <div className='section flex  justify-evenly '>
+        <button
+          onClick={() => setShowJobs(false)}
+          className='border-2 border-black w-full'>
+          Profile
+        </button>
+        <button
+          onClick={() => setShowJobs(true)}
+          className='border-2 border-black w-full'>
+          Jobs
+        </button>
       </div>
-
-      <h1>roberto_rodriguez</h1>
-      <Outlet />
+      {!show_jobs ? <HelperInfo /> : <HelperJobs />}
     </>
   );
 };
