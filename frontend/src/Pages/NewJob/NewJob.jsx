@@ -13,18 +13,29 @@ import { useEffect } from "react";
 export const NewJob = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [urgency, setUrgency] = useState("");
+  const [urgency, setUrgency] = useState(1);
   const [budget, setBudget] = useState("");
-  const [category, setCategory] = useState("");
-  const [categoryName, setCategoryName] = useState("");
+  const [category, setCategory] = useState(1);
+  // const [categoryName, setCategoryName] = useState("");
   const [img_one, setImageOne] = useState("");
   const [img_two, setImageTwo] = useState("");
   const [img_three, setImageThree] = useState("");
   const [img_four, setImageFour] = useState("");
 
-  const [error, setError] = useState();
+  const [error, setError] = useState('');
+
+  console.log("error", error);
 
   const navigate = useNavigate();
+  const ListingLink = () => {
+    navigate('/listing/jobs/');
+  }
+
+  if (error === 201) {
+
+    ListingLink();
+
+  }
 
   const form = {
     title: title,
@@ -32,7 +43,7 @@ export const NewJob = () => {
     urgency: urgency,
     budget: budget,
     category: category,
-    categoryName: categoryName,
+    // categoryName: categoryName,
     img_one: img_one,
     img_two: img_two,
     img_three: img_three,
@@ -45,18 +56,24 @@ export const NewJob = () => {
   };
   // console.log(error.title);
 
-  const handleUrgencySelect = (event) => {
-    console.log(event);
-    const urgencyOptions = event.value;
-    setUrgency(urgencyOptions);
-  };
+  // const handleUrgencySelect = (event) => {
+  //   console.log(event.value);
+  //   const urgencyOptions = event.value;
+  //   setUrgency(urgencyOptions);
+  // };
 
   const handleCategorySelect = (event) => {
     console.log(event);
     const categoryOptions = event.value;
     setCategory(categoryOptions);
-    setCategoryName(event.value.label)
+    // setCategoryName(event.value.label)
   };
+
+  console.log('urg', urgency)
+  console.log('jan', error.status)
+  if (error.status === 201) {
+    console.log("it worked");
+  }
 
   useEffect(() => { }, []);
   return (
@@ -65,7 +82,7 @@ export const NewJob = () => {
         Create a New Job Request
       </h1>
       <form
-        className="lex justify-center flex-col mt-5 form-control"
+        className="lex justify-center flex-col mt-5 form-control mb-9"
         onSubmit={HandleSubmitButton}
       >
 
@@ -107,7 +124,7 @@ export const NewJob = () => {
           </div>
         </div>
 
-        <div className="pb-9 relative">
+        <div className="pb-3 relative">
           <input
             className="field-input-login peer"
             type="text"
@@ -130,8 +147,8 @@ export const NewJob = () => {
 
           <div className="form-control block">
 
-            <label className="cursor-pointer label justify-start">
-              <span className="label-text pr-1 w-1/2">
+            <label className="cursor-pointer label justify-start text-lg">
+              <span className="pr-1 w-1/2">
                 <span className="text-lg pr-3 ">🐌</span>I can wait
               </span>
               <input
@@ -139,7 +156,7 @@ export const NewJob = () => {
                 name="urgency"
                 className="radio radio-secondary"
                 value="1"
-                onChange={handleUrgencySelect}
+                onChange={(e) => setUrgency(e.target.value)}
                 default
               />
             </label>
@@ -147,7 +164,7 @@ export const NewJob = () => {
 
           <div className="form-control block">
             <label className="cursor-pointer label justify-start">
-              <span className="label-text pr-1 w-1/2">
+              <span className="pr-1 w-1/2">
                 <span className="text-lg pr-3">🙏</span>Soon please
               </span>
               <input
@@ -155,14 +172,14 @@ export const NewJob = () => {
                 name="urgency"
                 className="radio radio-primary"
                 value="2"
-                onChange={handleUrgencySelect}
+                onChange={(e) => setUrgency(e.target.value)}
               />
             </label>
           </div>
 
           <div className="form-control block">
             <label className="cursor-pointer label justify-start">
-              <span className="label-text pr-1 w-1/2">
+              <span className="pr-1 w-1/2">
                 <span className="text-lg pr-3">⚡️</span>Emergency
               </span>
               <input
@@ -170,7 +187,7 @@ export const NewJob = () => {
                 name="urgency"
                 className="radio radio-primary radio-accent"
                 value="3"
-                onChange={handleUrgencySelect}
+                onChange={(e) => setUrgency(e.target.value)}
               />
             </label>
           </div>
@@ -181,15 +198,15 @@ export const NewJob = () => {
         <div className="border-b-2 mb-7 pb-4">
           <p className="text-left text-gray-600 font-semibold mb-4">Upload Images:</p>
 
-          <input type='file' className="mb-2" name="img_one" onChange={(e) => setImageOne(e.target.files[0])} />
+          <input type='file' className="mb-4" name="img_one" onChange={(e) => setImageOne(e.target.files[0])} />
 
-          <input className="mb-2"
+          <input className="mb-4"
             type='file'
             name='img_two'
             onChange={(e) => setImageTwo(e.target.files[0])}
           />
 
-          <input className="mb-2"
+          <input className="mb-4"
             type='file'
             name='img_three'
             onChange={(e) => setImageThree(e.target.files[0])}
@@ -204,12 +221,12 @@ export const NewJob = () => {
         </div>
         <input
           type="submit"
-          value="submit changes"
-          className="border-2 border-black cursor-pointer"
+          value="submit Job Request"
+          className="btn"
         />
-
+        <div className="text-sm text-red-500 h-8 mt-4" id="passwordHelp">{error['detail']}</div>
       </form>
-      {/* <p>{error}</p> */}
+
     </div>
   );
 };
