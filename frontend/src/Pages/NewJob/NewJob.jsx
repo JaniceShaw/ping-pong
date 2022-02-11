@@ -52,7 +52,7 @@ export const NewJob = () => {
   };
 
   const handleCategorySelect = (event) => {
-    console.log(event);
+    console.log(event.label);
     const categoryOptions = event.value;
     setCategory(categoryOptions);
     setCategoryName(event.value.label);
