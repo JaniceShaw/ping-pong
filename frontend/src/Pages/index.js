@@ -21,7 +21,6 @@ import { ViewJob } from './ViewJob/ViewJob';
 import { RegisterHomepage } from './RegisterHomepage/RegisterHomepage';
 import { RegisterHelper } from './RegisterHelper/RegisterHelper';
 import { RegisterMember } from './RegisterMember/RegisterMember';
-import { MenuBar } from './Menu/Menu';
 import { MemberProfilePage } from './Profile/MemberProfile/MemberProfile';
 
 export {
@@ -47,6 +46,5 @@ export {
   RegisterHomepage,
   RegisterHelper,
   RegisterMember,
-  MenuBar,
   MemberProfilePage,
 };

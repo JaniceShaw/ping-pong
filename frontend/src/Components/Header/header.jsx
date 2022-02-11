@@ -1,5 +1,5 @@
 import Logo from '../../Assets/icons/Logo.png';
-import { MenuBar } from '../../Pages/Menu/Menu';
+import { MenuBar } from './Menu/Menu';
 import { Link } from 'react-router-dom';
 
 export const Header = () => {
