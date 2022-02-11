@@ -20,19 +20,18 @@ export const MenuBar = () => {
         onClick={() => setShowMenu(!showMenu)}
       >
         <button
-          class={`hamburger hamburger--spin ${showMenu ? 'is-active' : ''}`}
+          className={`hamburger hamburger--spin ${showMenu ? 'is-active' : ''}`}
           type='button'
         >
-          <span class='hamburger-box'>
-            <span class='hamburger-inner'></span>
+          <span className='hamburger-box'>
+            <span className='hamburger-inner'></span>
           </span>
         </button>
       </div>
 
       <div
-        className={`bg-bg_light fixed z-40 w-full h-screen pt-32 p-4 transition-transform duration-300  shadow-lg ${
-          !showMenu ? 'translate-x-full' : ''
-        }`}
+        className={`bg-bg_light fixed z-40 w-full h-screen pt-32 p-4 transition-transform duration-300  shadow-lg ${!showMenu ? 'translate-x-full' : ''
+          }`}
       >
         <ul
           className='text-4xl text-center flex flex-col h-4/5  justify-between'
