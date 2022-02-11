@@ -46,7 +46,7 @@ export const Job = () => {
 
   return (
     <div className='job  w-full max-w-sm  m-auto'>
-      <h1 className='text-3xl font-bold'>{jobData.title}</h1>
+      <h1 className='text-3xl font-bold mt-6'>{jobData.title}</h1>
 
       <div className='space-x-2 avatar-group mt-5 z-3'>
         <div className='avatar'>
@@ -80,9 +80,8 @@ export const Job = () => {
       </div>
 
       <div
-        className={`inline-block w-1/2  ${
-          jobData.urgency === 3 ? 'text-red-600' : 'text-zinc-900'
-        }`}>
+        className={`inline-block w-1/2  ${jobData.urgency === 3 ? 'text-red-600' : 'text-zinc-900'
+          }`}>
         <span className='mr-1'>{urgencyIcon}</span> {urgencyText}
       </div>
 
@@ -130,30 +129,27 @@ export const Job = () => {
       <div className='btn-group rounded overflow-hidden drop-shadow-2xl mb-6'>
         <button
           className={`w-1/3 font-semibold pt-1 pb-1 inline-block
-            ${
-              jobData.status === 1
-                ? 'bg-amber-400 text-indigo-900'
-                : 'bg-white text-slate-400'
+            ${jobData.status === 1
+              ? 'bg-amber-400 text-indigo-900'
+              : 'bg-white text-slate-400'
             }`}>
           Pending
         </button>
 
         <button
           className={`w-1/3 font-semibold pt-1 pb-1 inline-block
-            ${
-              jobData.status === 2
-                ? 'bg-amber-400 text-indigo-900'
-                : 'bg-white text-slate-400'
+            ${jobData.status === 2
+              ? 'bg-amber-400 text-indigo-900'
+              : 'bg-white text-slate-400'
             }`}>
           Accepted
         </button>
 
         <button
           className={`w-1/3 font-semibold pt-1 pb-1 inline-block
-            ${
-              jobData.status === 3
-                ? 'bg-amber-400 text-indigo-900'
-                : 'bg-white text-slate-400'
+            ${jobData.status === 3
+              ? 'bg-amber-400 text-indigo-900'
+              : 'bg-white text-slate-400'
             }`}>
           Completed
         </button>
@@ -167,7 +163,7 @@ export const Job = () => {
           </p>
 
           <div className='bg-indigo-900 text-amber-400 justify-center text-center rounded pt-1 pb-1 font-semibold mb-6'>
-            <p>{jobData.helper_username}</p>
+            <p className='text-amber-400'>{jobData.helper_username}</p>
           </div>
 
           <div className='helper-rating mb-6'>
