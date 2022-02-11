@@ -39,8 +39,8 @@ export const MenuBar = () => {
           </li>
 
           <li>
-            <Link className='menu-item' to='/registration'>
-              Registration
+            <Link className='menu-item' to='/register'>
+              Register
             </Link>
           </li>
 
