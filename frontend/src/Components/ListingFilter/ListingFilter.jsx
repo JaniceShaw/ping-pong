@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { AddressAutoComplete } from '../AddressAutoComplete/AddressAutoComplete';
 import { Category } from '../TailwindComp/CategorySelect';
+import './style.scss';
 
 export const ListingFilter = (props) => {
   const [filterDistance, setFilterDistance] = useState(null);
@@ -95,12 +96,15 @@ export const ListingFilter = (props) => {
 
   return (
     <>
-      <div>
-        <h1 className='font-bold text-2xl'>Filter</h1>
-        <div className='distance-filter mb-8'>
+      <div
+        className={`filter-container bg-white -mx-4 transition-transform ease-in duration-200 ${
+          !props.showFilter ? '-translate-y-full' : ''
+        }`}
+      >
+        <div className='distance-filter'>
           <AddressAutoComplete passAddress={getAddress} />
           <div id='distanceSelection' className='flex justify-between'>
-            <div>
+            <div className='radio-option'>
               <input
                 type='radio'
                 id='ch'
@@ -112,7 +116,7 @@ export const ListingFilter = (props) => {
               <label htmlFor='ch'>whole CH</label>
             </div>
 
-            <div>
+            <div className='radio-option'>
               <input
                 type='radio'
                 id='10km'
@@ -123,7 +127,7 @@ export const ListingFilter = (props) => {
               <label htmlFor='10km'>10 km</label>
             </div>
 
-            <div>
+            <div className='radio-option'>
               <input
                 type='radio'
                 id='30km'
@@ -133,7 +137,7 @@ export const ListingFilter = (props) => {
               />
               <label htmlFor='30km'>30 km</label>
             </div>
-            <div>
+            <div className='radio-option'>
               <input
                 type='radio'
                 id='50km'
@@ -146,7 +150,10 @@ export const ListingFilter = (props) => {
           </div>
         </div>
         <Category onChange={handleCategory} />
-        <button onClick={handleFilterReset} className='btn btn-blue'>
+        <button
+          onClick={handleFilterReset}
+          className='border-y border-primary w-full h-8'
+        >
           reset filter
         </button>
       </div>

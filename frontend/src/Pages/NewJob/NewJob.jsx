@@ -39,10 +39,12 @@ export const NewJob = () => {
 
   const HandleSubmitButton = (event) => {
     event.preventDefault();
-    postData("job/request/", form, setError);
-    // if (!error) {
-    //   // navigate('/listing/helpers');
-    // }
+
+    postData('job/request/', form, setError);
+    if (!error) {
+      navigate('/listing/helpers');
+    }
+
   };
   // console.log(error.title);
 
@@ -84,6 +86,7 @@ export const NewJob = () => {
             {error ? error.title : null}
           </div>
         </div>
+
 
         <div className="pb-7 relative">
           <textarea

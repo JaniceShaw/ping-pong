@@ -12,8 +12,6 @@ import {
   HelperListPage,
   JobListPage,
   HelperProfilePage,
-  HelperInfo,
-  HelperJobs,
   SearchPage,
   AboutPage,
   FAQPage,
@@ -24,9 +22,6 @@ import {
   Job,
   ViewJob,
   MemberProfilePage,
-  MemberInfo,
-  MemberJobs,
-  EditProfile,
   RegisterHomepage,
   RegisterHelper,
   RegisterMember,
@@ -37,7 +32,7 @@ export const RoutesIndex = () => {
     <>
       <BrowserRouter>
         <Header />
-        <main className='p-4 pt-28 container md:container md:mx-auto'>
+        <main className='p-4 pt-20 container md:container md:mx-auto bg-bg_light'>
           <Routes>
             <Route path='/' element={<StartPage />} />
             <Route path='registration' element={<RegistrationPage />} />
@@ -65,21 +60,9 @@ export const RoutesIndex = () => {
 
             <Route path='Job' element={<Job />} />
 
-            <Route path='member-profile' element={<MemberProfilePage />}>
-              <Route index element={<MemberInfo />} />
-              <Route path='edit' element={<EditProfile />} />
-              <Route path='info' element={<MemberInfo />} />
-              <Route path='jobs' element={<MemberJobs />} />
-            </Route>
+            <Route path='member' element={<MemberProfilePage />} />
 
-            <Route path='helper-profile' element={<HelperProfilePage />}>
-              <Route index element={<HelperInfo />} />
-              <Route path='edit' element={<EditProfile />} />
-              <Route path='info' element={<HelperInfo />}>
-                <Route path='edit' element={<EditProfile />} />
-              </Route>
-              <Route path='jobs' element={<HelperJobs />} />
-            </Route>
+            <Route path='helper' element={<HelperProfilePage />} />
 
             <Route path='private-job' element={<PrivateJob />} />
             <Route path='my-profile' element={<MyProfilePage />} />
