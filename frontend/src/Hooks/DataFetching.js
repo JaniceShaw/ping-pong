@@ -32,7 +32,12 @@ export const postData = (urlEnding, bodyObject, errorState) => {
 
   axios
     .post(`${apiBaseURL}${urlEnding}`, formData, config)
-    .then((response) => console.log('hk', response))
+    // .then((response) => console.log('hk', response))
+
+    .then((response) => {
+      console.log('posted!');
+      errorState(response.status);
+    })
     .catch((err) => {
       errorState(err.response.data);
     });
@@ -46,7 +51,7 @@ export const patchData = (urlEnding, id, bodyObject, errorState) => {
   }
   axios
     .patch(`${apiBaseURL}${urlEnding}${id}/`, formData, config)
-    .then(() => {})
+    .then(() => { })
     .catch((err) => {
       errorState(err.response.data);
     });

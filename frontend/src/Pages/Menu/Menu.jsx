@@ -17,14 +17,12 @@ export const MenuBar = () => {
     <>
       <div
         className='fixed z-50 right-4 top-4 uppercase'
-        onClick={() => setShowMenu(!showMenu)}
-      >
+        onClick={() => setShowMenu(!showMenu)}>
         <button
-          class={`hamburger hamburger--spin ${showMenu ? 'is-active' : ''}`}
-          type='button'
-        >
-          <span class='hamburger-box'>
-            <span class='hamburger-inner'></span>
+          className={`hamburger hamburger--spin ${showMenu ? 'is-active' : ''}`}
+          type='button'>
+          <span className='hamburger-box'>
+            <span className='hamburger-inner'></span>
           </span>
         </button>
       </div>
@@ -32,19 +30,17 @@ export const MenuBar = () => {
       <div
         className={`bg-bg_light fixed z-40 w-full h-screen pt-32 p-4 transition-transform duration-300  shadow-lg ${
           !showMenu ? 'translate-x-full' : ''
-        }`}
-      >
+        }`}>
         <ul
           className='text-4xl text-center flex flex-col h-4/5  justify-between'
-          onClick={() => setTimeout(() => setShowMenu(!showMenu), 200)}
-        >
+          onClick={() => setTimeout(() => setShowMenu(!showMenu), 200)}>
           <li>
             <Link to='/'>Home</Link>
           </li>
 
           <li>
-            <Link className='menu-item' to='/registration'>
-              Registration
+            <Link className='menu-item' to='/register'>
+              Register
             </Link>
           </li>
 
@@ -60,83 +56,37 @@ export const MenuBar = () => {
             </Link>
           </li>
           <li>
-            <Link className='menu-item' to='/create-user'>
-              Create User
-            </Link>
-          </li>
-          <li>
             <Link className='menu-item' to='/listing'>
               Listing
             </Link>
           </li>
           <li>
-            <Link className='menu-item' to='/view-job'>
+            <Link className='menu-item' to='/job'>
               Job
             </Link>
           </li>
           <li>
-            <Link className='menu-item' to='/new-job'>
+            <Link className='menu-item' to='/job/new'>
               New Job
             </Link>
           </li>
           <li>
-            <Link className='menu-item' to='/private-job'>
+            <Link className='menu-item' to='/job/private'>
               Private Job
             </Link>
           </li>
           <li>
-            <Link className='menu-item' to='/helper-profile'>
+            <Link className='menu-item' to='/helper'>
               Helper-Profile
             </Link>
           </li>
           <li>
-            <Link className='menu-item' to='/member-profile'>
+            <Link className='menu-item' to='/member'>
               Member-Profile
             </Link>
           </li>
         </ul>
       </div>
-
-      {/* <Menu
-        isOpen={false}
-        right
-        width={'100vw'}
-        className='pt-20 bg-transparent menu'
-      >
-    
-        <a className='menu-item' href='/registration'>
-          Registration
-        </a>
-        <a className='menu-item' href='/login'>
-          Login
-        </a>
-        <span onClick={handleLogout}>
-          <a className='menu-item' href='/'>
-            Log out
-          </a>
-        </span>
-        <a className='menu-item' href='/create-user'>
-          Create User
-        </a>
-        <a className='menu-item' href='/listing'>
-          Listing
-        </a>
-        <a className='menu-item' href='/view-job'>
-          Job
-        </a>
-        <a className='menu-item' href='/new-job'>
-          New Job
-        </a>
-        <a className='menu-item' href='/private-job'>
-          Private Job
-        </a>
-        <a className='menu-item' href='/helper'>
-          Helper-Profile
-        </a>
-        <a className='menu-item' href='/member'>
-          Member-Profile
-        </a>
-      </Menu> */}
     </>
   );
 };

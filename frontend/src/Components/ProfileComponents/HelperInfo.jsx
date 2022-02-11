@@ -80,9 +80,9 @@ export const HelperInfo = (props) => {
                 : 'Unverified'
             }</h1> 
 
-        <Link to='/private-job' className='flex justify-end'>
-          <button className='font-semibold bg-secondary rounded pl-4 pr-4 border-primary border'>
-            Direct Request
+        <Link to='/job/private' className='flex justify-end'>
+          <button className='border-2 border-black rounded-lg bg-orange-400'>
+            send direct job-request
           </button>
         </Link>
       </div>
