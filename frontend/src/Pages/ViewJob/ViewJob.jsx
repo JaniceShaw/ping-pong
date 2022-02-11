@@ -45,8 +45,8 @@ export const ViewJob = () => {
   }
 
   return (
-    <div className='job  w-full max-w-sm  m-auto'>
-      <h1 className='text-3xl font-bold'>{jobData.title}</h1>
+    <div className='job  w-full max-w-sm  m-auto bg-white p-2'>
+      <h1 className='text-3xl font-bold pt-4'>{jobData.title}</h1>
 
       {/* Member info and pic */}
       <div className="space-x-2 avatar-group mt-5 z-3">
@@ -85,23 +85,23 @@ export const ViewJob = () => {
           <div id='item1' className='w-full h-full m-auto carousel-item'>
             <img
               src={jobData.img_one}
-              className='w-full object-cover'
+              className='w-full object-cover h-64'
               alt='#'
             />
           </div>
         ) : (
-          <img src={DefaultPost} className='w-full object-cover' alt='#' />
+          <img src={DefaultPost} className='w-full object-cover h-64' alt='#' />
         )}
 
         {jobData.img_two ? (
           <div id='item2' className='w-full m-auto carousel-item'>
-            <img src={jobData.img_two} className='w-full' alt='#' />
+            <img src={jobData.img_two} className='w-full object-cover h-64' alt='#' />
           </div>
         ) : null}
 
         {jobData.img_three ? (
           <div id='item3' className='w-full m-auto carousel-item'>
-            <img src={jobData.img_three} className='w-full ' alt='#' />
+            <img src={jobData.img_three} className='w-full object-cover  h-64' alt='#' />
           </div>
         ) : null}
 
@@ -113,11 +113,11 @@ export const ViewJob = () => {
       </div>
       {/* end image display */}
 
-      <p className='mb-4'>{jobData.description}</p>
+      <p className='mb-6 pb-3 border-b-2'>{jobData.description}</p>
 
       {/* status buttons */}
       <p><strong>Status</strong></p>
-      <div className="btn-group rounded overflow-hidden drop-shadow-2xl mb-6">
+      <div className="btn-group rounded overflow-hidden drop-shadow-xl mb-6">
 
         <button className={`w-1/3 font-semibold pt-1 pb-1 inline-block
             ${jobData.status === 1 ? 'bg-amber-400 text-indigo-900' : 'bg-white text-slate-400'}`
@@ -153,11 +153,11 @@ export const ViewJob = () => {
             <strong>Assigned Helper</strong>
           </p>
 
-          <div className='bg-indigo-900 text-amber-400 justify-center text-center rounded pt-1 pb-1 font-semibold mb-6'>
-            <p>{jobData.helper_username}</p>
+          <div className='bg-indigo-900 text-amber-400 justify-center text-center rounded pt-1 pb-1 font-semibold mb-7'>
+            <p className='text-amber-400 '>{jobData.helper_username}</p>
           </div>
 
-          <div className='helper-rating mb-6'>
+          <div className='helper-rating mb-6 border-b-2 pb-3'>
             <p className='w-1/2 font-bold inline-block'>Helper Rating</p>
             <div className='w-1/2 inline-block text-right'>
               <span
@@ -201,7 +201,7 @@ export const ViewJob = () => {
             </div>
           </div>
 
-          <div className='member-rating'>
+          <div className='member-rating pb-3 border-b-2 mb-6'>
             <p className='w-1/2 font-bold inline-block'>Member Rating</p>
             <div className='w-1/2 inline-block text-right'>
               <span
@@ -251,7 +251,9 @@ export const ViewJob = () => {
         <button className='btn'>Contact {jobData.member_username}</button>
       </div>
 
-      <Link to="/listing/jobs"><button className='btn mt-8'>Back to list</button></Link>
+      <div className='text-center'>
+        <Link to="/listing/jobs"><button className='btn mt-8'>Back to list</button></Link>
+      </div>
     </div>
   );
 };
