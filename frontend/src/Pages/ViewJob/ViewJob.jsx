@@ -169,7 +169,9 @@ export const ViewJob = () => {
       ) : null
       }
       {/* end helper info */}
-      <div className='text-center'> <button className='btn'>Contact {jobData.member_username}</button></div>
+      <div className='text-center'> 
+        <button className='btn'>Contact {jobData.member_username}</button>
+      </div>
 
       <Link to="/listing/jobs"><button className='btn mt-8'>Back to list</button></Link>
     </div>
