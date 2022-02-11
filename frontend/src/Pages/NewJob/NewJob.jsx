@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Category } from "../../Components/TailwindComp/CategorySelect";
+import { Category } from "../../Components/TailwindComp/CategorySelectJob";
 import Select from "react-select";
 import { postData } from "../../Hooks/DataFetching";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +16,7 @@ export const NewJob = () => {
   const [urgency, setUrgency] = useState("");
   const [budget, setBudget] = useState("");
   const [category, setCategory] = useState("");
+  const [categoryName, setCategoryName] = useState("");
   const [img_one, setImageOne] = useState("");
   const [img_two, setImageTwo] = useState("");
   const [img_three, setImageThree] = useState("");
@@ -31,6 +32,7 @@ export const NewJob = () => {
     urgency: urgency,
     budget: budget,
     category: category,
+    categoryName: categoryName,
     img_one: img_one,
     img_two: img_two,
     img_three: img_three,
@@ -40,9 +42,6 @@ export const NewJob = () => {
   const HandleSubmitButton = (event) => {
     event.preventDefault();
     postData('job/request/', form, setError);
-    if (!error) {
-      navigate('/listing/helpers');
-    }
   };
   // console.log(error.title);
 
@@ -56,11 +55,12 @@ export const NewJob = () => {
     console.log(event);
     const categoryOptions = event.value;
     setCategory(categoryOptions);
+    setCategoryName(event.value.label)
   };
 
   useEffect(() => { }, []);
   return (
-    <div className="loginForm w-full max-w-sm  text-center m-auto">
+    <div className="loginForm w-full max-w-sm  text-center m-auto bg-white p-2">
       <h1 className="text-xl mt-3 pb-6 font-bold text-zinc-700">
         Create a New Job Request
       </h1>
@@ -68,6 +68,9 @@ export const NewJob = () => {
         className="lex justify-center flex-col mt-5 form-control"
         onSubmit={HandleSubmitButton}
       >
+
+        <Category name="categoryOptions" onChange={handleCategorySelect} />
+
         <div className="pb-9 relative">
           <input
             className="field-input-login peer"
@@ -122,12 +125,14 @@ export const NewJob = () => {
         </div>
 
         {/* Urgency radios */}
-        <div className="bordered mb-4">
+        <div className="bordered border-b-2 mb-7 pb-4">
           <p className="text-left text-gray-600 font-semibold">Urgency:</p>
-          <div className="form-control inline-block w-1/3">
+
+          <div className="form-control block">
+
             <label className="cursor-pointer label justify-start">
-              <span className="label-text pr-1 text-xs">
-                <span className="text-lg">🐌</span>I can wait
+              <span className="label-text pr-1 w-1/2">
+                <span className="text-lg pr-3 ">🐌</span>I can wait
               </span>
               <input
                 type="radio"
@@ -140,10 +145,10 @@ export const NewJob = () => {
             </label>
           </div>
 
-          <div className="form-control inline-block w-1/3">
+          <div className="form-control block">
             <label className="cursor-pointer label justify-start">
-              <span className="label-text pr-1 text-xs">
-                <span className="text-lg">🙏</span>Soon please
+              <span className="label-text pr-1 w-1/2">
+                <span className="text-lg pr-3">🙏</span>Soon please
               </span>
               <input
                 type="radio"
@@ -155,10 +160,10 @@ export const NewJob = () => {
             </label>
           </div>
 
-          <div className="form-control inline-block w-1/3">
+          <div className="form-control block">
             <label className="cursor-pointer label justify-start">
-              <span className="label-text pr-1 text-xs">
-                <span className="text-lg">⚡️</span>Emergency
+              <span className="label-text pr-1 w-1/2">
+                <span className="text-lg pr-3">⚡️</span>Emergency
               </span>
               <input
                 type="radio"
@@ -172,36 +177,37 @@ export const NewJob = () => {
         </div>
         {/* End Urgency radios */}
 
-        {/* <Category name="categoryOptions" onChange={handleCategorySelect} /> */}
+        {/* Image upload */}
+        <div className="border-b-2 mb-7 pb-4">
+          <p className="text-left text-gray-600 font-semibold mb-4">Upload Images:</p>
 
-        <input type='file' name="img_one" onChange={(e) => setImageOne(e.target.files[0])} />
+          <input type='file' className="mb-2" name="img_one" onChange={(e) => setImageOne(e.target.files[0])} />
 
-
-        {/* 
-          <input
-            type='image'
+          <input className="mb-2"
+            type='file'
             name='img_two'
             onChange={(e) => setImageTwo(e.target.files[0])}
           />
 
-          <input
-            type='image'
+          <input className="mb-2"
+            type='file'
             name='img_three'
             onChange={(e) => setImageThree(e.target.files[0])}
           />
 
           <input
-            type='image'
+            type='file'
             name='img_four'
             onChange={(e) => setImageFour(e.target.files[0])}
-          /> */}
+          />
 
-
+        </div>
         <input
           type="submit"
           value="submit changes"
           className="border-2 border-black cursor-pointer"
         />
+
       </form>
       {/* <p>{error}</p> */}
     </div>
