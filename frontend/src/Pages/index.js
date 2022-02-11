@@ -1,52 +1,41 @@
 import { StartPage } from './Start/Start';
-import { ErrorPage } from './Error/Error';
+import { RegisterHomepage } from './Register/RegisterHomepage';
+import { RegisterHelper } from './Register/RegisterHelper/RegisterHelper';
+import { RegisterMember } from './Register/RegisterMember/RegisterMember';
+import { Validation } from './Register/Validation/Validation';
+import { LoginPage } from './Login/Login';
 import { ListingPage } from './Listing/Listing.jsx';
 import { HelperListPage } from './Listing/HelperList/HelperList';
 import { JobListPage } from './Listing/JobList/JobList';
-import { LoginPage } from './Login/Login';
+import { Job } from './Job/Job';
+import { NewJob } from './NewJob/NewJob';
+import { PrivateJob } from './PrivateJob/PrivateJob';
 import { HelperProfilePage } from './Profile/HelperProfile/HelperProfile';
-import { RegistrationPage } from './Registration/Registration';
-import { Validation } from './Validation/Validation';
-import { CreateUserPage } from './CreateUser/CreateUser';
-import { SearchPage } from './Search/Search';
+import { MemberProfilePage } from './Profile/MemberProfile/MemberProfile';
 import { AboutPage } from './About/About';
 import { FAQPage } from './FAQ/FAQ';
 import { SupportPage } from './Support/Support';
-import { MyProfilePage } from './Profile/MyProfile';
-import { NewJob } from './NewJob/NewJob';
-import { PrivateJob } from './PrivateJob/PrivateJob';
-import { Job } from './Job/Job';
-
-import { ViewJob } from './ViewJob/ViewJob';
-import { RegisterHomepage } from './RegisterHomepage/RegisterHomepage';
-import { RegisterHelper } from './RegisterHelper/RegisterHelper';
-import { RegisterMember } from './RegisterMember/RegisterMember';
-import { MenuBar } from './Menu/Menu';
-import { MemberProfilePage } from './Profile/MemberProfile/MemberProfile';
+import { ErrorPage } from './Error/Error';
+// import { MyProfilePage } from './Profile/MyProfile';
 
 export {
   StartPage,
-  ErrorPage,
-  ListingPage,
-  HelperListPage,
-  JobListPage,
-  LoginPage,
-  HelperProfilePage,
-  RegistrationPage,
-  Validation,
-  CreateUserPage,
-  SearchPage,
-  AboutPage,
-  FAQPage,
-  SupportPage,
-  MyProfilePage,
-  NewJob,
-  PrivateJob,
-  Job,
-  ViewJob,
   RegisterHomepage,
   RegisterHelper,
   RegisterMember,
-  MenuBar,
+  Validation,
+  LoginPage,
+  ListingPage,
+  HelperListPage,
+  JobListPage,
+  Job,
+  NewJob,
+  PrivateJob,
+  HelperProfilePage,
   MemberProfilePage,
+  AboutPage,
+  FAQPage,
+  SupportPage,
+  ErrorPage,
+  // MyProfilePage,
 };
