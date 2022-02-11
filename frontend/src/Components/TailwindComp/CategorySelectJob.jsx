@@ -50,7 +50,7 @@ export const Category = (props) => {
 
   return (
     <>
-      <div className='category-selector-job border-2 rounded-md mb-7'>
+      <div className='category-selector border-2 rounded-md mb-7'>
 
         <Select
           className='category-filter col-span-3'
@@ -60,7 +60,6 @@ export const Category = (props) => {
           placeholder='Select Category'
           isSearchable={false}
           styles={customStyles}
-          value='General'
         />
       </div>
     </>
