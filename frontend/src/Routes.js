@@ -62,10 +62,11 @@ export const RoutesIndex = () => {
 
             <Route path='member' element={<MemberProfilePage />} />
 
-            <Route path='helper' element={<HelperProfilePage />} />
+            <Route path='helper' element={<HelperProfilePage />}>
+              <Route path=':profileID' element={<HelperProfilePage />} />
+            </Route>
 
             <Route path='private-job' element={<PrivateJob />} />
-            <Route path='my-profile' element={<MyProfilePage />} />
 
             <Route path='about' element={<AboutPage />} />
             <Route path='*' element={<ErrorPage />} />
