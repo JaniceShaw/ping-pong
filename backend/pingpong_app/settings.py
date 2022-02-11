@@ -194,3 +194,6 @@ SWAGGER_SETTINGS = {
         }
     }
 }
+
+CONTENT_TYPES = ['image', 'video']
+MAX_UPLOAD_SIZE = "5242880"
