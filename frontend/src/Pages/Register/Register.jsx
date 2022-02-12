@@ -1,29 +1,53 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { postData } from '../../../Hooks/DataFetching';
+import { postData } from '../../Hooks/DataFetching';
 
-export const RegisterHelper = () => {
+export const Register = () => {
+  const apiBaseURL = 'https://ping-pong.propulsion-learn.ch/backend/api/';
+
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
-  const form = {
-    email: email,
-  };
 
   let navigate = useNavigate();
 
-  const handleEmailInput = (event) => {
-    setEmail(event.target.value);
-  };
-
   const handleSignUp = (event) => {
     event.preventDefault();
-    postData('registration/', form, setError);
-    navigate('/register/validation');
+    const url = `${apiBaseURL}registration/`;
+    const method = 'POST';
+    const body = {
+      email: email,
+    };
+    const headers = new Headers({
+      'Content-type': 'application/json',
+    });
+    const config = {
+      method: method,
+      body: JSON.stringify(body),
+      headers: headers,
+    };
+
+    fetch(url, config)
+      .then((response) => {
+        if (response.status === 201) {
+          return response.status;
+        } else {
+          return response.json();
+        }
+      })
+      .then((data) => {
+        console.log('user data', data);
+        if (data === 201) {
+          navigate(`/register/validation`);
+        } else {
+          setError(data.email[0]);
+        }
+      });
   };
+
   return (
     <>
-      <h1 className='text-xl mt-3 pb-6 font-bold'>Register as Helper</h1>
+      <h1 className='text-xl mt-3 pb-6 font-bold'>Sign Up</h1>
       <br />
       <div className='loginForm w-full max-w-sm  text-center m-auto'>
         <form className='flex justify-center flex-col mt-5'>
@@ -33,7 +57,7 @@ export const RegisterHelper = () => {
               type='email'
               required
               placeholder='e-Mail'
-              onChange={handleEmailInput}
+              onChange={(e) => setEmail(e.target.value)}
               id='email'
             />
             <label htmlFor='email' className='login-label'>
@@ -53,7 +77,7 @@ export const RegisterHelper = () => {
         <p>{error}</p>
       </div>
 
-      <Link className='flex justify-center p-6' to='/about'>
+      <Link to='/about'>
         <p>What is ping-pong?</p>
       </Link>
     </>
