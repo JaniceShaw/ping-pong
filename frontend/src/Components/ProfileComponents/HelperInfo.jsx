@@ -55,7 +55,7 @@ export const HelperInfo = () => {
 
         <h1>Verified User</h1>
 
-        <Link to='/private-job' className='flex justify-end'>
+        <Link to='/job/private' className='flex justify-end'>
           <button className='border-2 border-black rounded-lg bg-orange-400'>
             send direct job-request
           </button>

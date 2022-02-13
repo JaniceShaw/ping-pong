@@ -42,8 +42,8 @@ export const MenuBar = () => {
           </li>
 
           <li>
-            <Link className='menu-item' to='/registration'>
-              Registration
+            <Link className='menu-item' to='/register'>
+              Register
             </Link>
           </li>
 
@@ -59,37 +59,32 @@ export const MenuBar = () => {
             </Link>
           </li>
           <li>
-            <Link className='menu-item' to='/create-user'>
-              Create User
-            </Link>
-          </li>
-          <li>
             <Link className='menu-item' to='/listing'>
               Listing
             </Link>
           </li>
           <li>
-            <Link className='menu-item' to='/view-job'>
+            <Link className='menu-item' to='/job'>
               Job
             </Link>
           </li>
           <li>
-            <Link className='menu-item' to='/new-job'>
+            <Link className='menu-item' to='/job/new'>
               New Job
             </Link>
           </li>
           <li>
-            <Link className='menu-item' to='/private-job'>
+            <Link className='menu-item' to='/job/private'>
               Private Job
             </Link>
           </li>
           <li>
-            <Link className='menu-item' to='/helper-profile'>
+            <Link className='menu-item' to='/helper'>
               Helper-Profile
             </Link>
           </li>
           <li>
-            <Link className='menu-item' to='/member-profile'>
+            <Link className='menu-item' to='/member'>
               Member-Profile
             </Link>
           </li>
