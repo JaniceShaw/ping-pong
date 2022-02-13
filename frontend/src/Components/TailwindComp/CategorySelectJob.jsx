@@ -30,7 +30,6 @@ export const Category = (props) => {
   const customStyles = {
     control: (provided) => ({
       ...provided,
-      borderRadius: '5px',
       border: 'none',
     }),
     placeholder: (provided) => ({
@@ -51,13 +50,12 @@ export const Category = (props) => {
   return (
     <>
       <div className='category-selector border-2 rounded-md mb-7'>
-
         <Select
-          className='category-filter col-span-3'
+          className='category-filter'
           options={categoryOptions}
           name='category-filter'
           onChange={props.onChange}
-          placeholder='Select Category'
+          placeholder={!error ? 'Select Category' : error}
           isSearchable={false}
           styles={customStyles}
         />
