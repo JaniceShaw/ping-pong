@@ -7,14 +7,24 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 export const Job = () => {
-  const [jobData, setJobData] = useState({});
+  const [jobData, setJobData] = useState("Loading");
+  const [errorState, setErrorState] = useState({});
   const { jobID } = useParams();
+  const [userData, setUserData] = useState (()=>{
+       // getting stored value
+    const saved = localStorage.getItem("userData");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  })
 
   useEffect(() => {
-    getData(`job/${jobID}/`, setJobData);
-  }, []);
+    getData(`job/${jobID}/`, setJobData, setErrorState);
 
-  console.log(jobData);
+  }, [setJobData, setErrorState]);
+
+  console.log('jobdata', jobData);
+  console.log('error', errorState);
+  console.log('user type', userData.type);
 
   // urgency options //
   const urgency = jobData.urgency;
@@ -50,9 +60,9 @@ export const Job = () => {
     <div className='job  w-full max-w-sm  m-auto'>
       <h1 className='text-3xl font-bold mt-6'>{jobData.title}</h1>
 
-      <div className='space-x-2 avatar-group mt-5 z-3'>
+      <div className='space-x-2 avatar-group mt-5 z-3 mb-4'>
         <div className='avatar'>
-          <div className='mb-4 rounded-full w-10 h-10'>
+          <div className='rounded-full w-10 h-10'>
             {jobData.member_profile_pic ? (
               <img src={jobData.member_profile_pic} alt='profile pic' />
             ) : (
@@ -138,7 +148,9 @@ export const Job = () => {
           Pending
         </button>
 
+
         <button
+
           className={`w-1/3 font-semibold pt-1 pb-1 inline-block
             ${jobData.status === 2
               ? 'bg-amber-400 text-indigo-900'
