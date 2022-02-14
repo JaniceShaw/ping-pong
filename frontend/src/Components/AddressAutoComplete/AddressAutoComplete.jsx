@@ -28,13 +28,14 @@ export const AddressAutoComplete = (props) => {
   }
 
   useEffect(() => {
-    getData('user/member/me/', setUser, setError);
+    getData('user/helper/me/', setUser, setError);
   }, [setUser]);
 
   return (
     <>
       <div className=''>
         <p>{error}</p>
+
         <GeoapifyContext apiKey={geocoderToken}>
           <GeoapifyGeocoderAutocomplete
             placeholder='Enter address here'
