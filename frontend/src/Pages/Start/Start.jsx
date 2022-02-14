@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import StudentsPicture from '../../Assets/UnDraw/students_undraw.png';
+import {getData} from "../../Hooks/DataFetching";
 
 export const StartPage = () => {
   const [logedIn, setLogedIn] = useState(false);
+  const [userData, setUserData] = useState({});
+  const[errorState, setErrorState] = useState()
 
   let navigate = useNavigate();
   const HomeLink = () => {
@@ -18,11 +21,18 @@ export const StartPage = () => {
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      setLogedIn(true);
+
+        getData(`user/me/`, setUserData, setErrorState);
+        localStorage.setItem("userData", JSON.stringify(userData))
+
+        setLogedIn(true);
     }
-  }, [setLogedIn]);
+  }, [setLogedIn, setUserData]);
 
   console.log(logedIn);
+  localStorage.setItem("userData", JSON.stringify(userData))
+  console.log(userData)
+
   return (
     <div className='Start w-full max-w-sm  text-center m-auto'>
       <h2 className='font-bold text-2xl mb-7 mt-3'>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { AddressAutoComplete } from '../AddressAutoComplete/AddressAutoComplete';
-import { Category } from '../TailwindComp/CategorySelect';
+import { Category } from '../TailwindComp/CategorySelectJob';
 import './style.scss';
 
 export const ListingFilter = (props) => {
@@ -11,6 +11,8 @@ export const ListingFilter = (props) => {
     lat: 47.4007317,
     lon: 8.537520210699132,
   });
+
+  const distanceOptions = [10, 30, 50];
 
   const getDistanceFromLatLonInKm = (lat1, lon1, lat2, lon2) => {
     const deg2rad = (deg) => deg * (Math.PI / 180);
@@ -97,13 +99,17 @@ export const ListingFilter = (props) => {
   return (
     <>
       <div
-        className={`filter-container bg-white -mx-4 transition-transform ease-in duration-200 ${
+        className={`filter-container top-8 w-full bg-white transition-all ease-in duration-200 shadow-md absolute  rounded-b-lg ${
           !props.showFilter ? '-translate-y-full' : ''
         }`}
       >
-        <div className='distance-filter'>
+        <div className='location-filter filter-block'>
+          <p className='filter_title'>Location</p>
           <AddressAutoComplete passAddress={getAddress} />
-          <div id='distanceSelection' className='flex justify-between'>
+        </div>
+        <div className='distance-filter filter-block'>
+          <p className='filter_title'>Radius</p>
+          <div id='distanceSelection'>
             <div className='radio-option'>
               <input
                 type='radio'
@@ -113,49 +119,39 @@ export const ListingFilter = (props) => {
                 onChange={handleDistanceInput}
                 checked={!filterDistance ? true : false}
               />
-              <label htmlFor='ch'>whole CH</label>
+              <label htmlFor='ch'>entire CH</label>
             </div>
 
-            <div className='radio-option'>
-              <input
-                type='radio'
-                id='10km'
-                name='distanceOptions'
-                value='10'
-                onChange={handleDistanceInput}
-              />
-              <label htmlFor='10km'>10 km</label>
-            </div>
-
-            <div className='radio-option'>
-              <input
-                type='radio'
-                id='30km'
-                name='distanceOptions'
-                value='30'
-                onChange={handleDistanceInput}
-              />
-              <label htmlFor='30km'>30 km</label>
-            </div>
-            <div className='radio-option'>
-              <input
-                type='radio'
-                id='50km'
-                name='distanceOptions'
-                value='50'
-                onChange={handleDistanceInput}
-              />
-              <label htmlFor='50km'>50 km</label>
-            </div>
+            {distanceOptions.map((distanceOption, i) => {
+              return (
+                <div className='radio-option' key={i}>
+                  <input
+                    type='radio'
+                    id={`${distanceOption} km`}
+                    name='distanceOptions'
+                    value={`${distanceOption}`}
+                    onChange={handleDistanceInput}
+                  />
+                  <label htmlFor={`${distanceOption}`}>
+                    {`${distanceOption}`} km
+                  </label>
+                </div>
+              );
+            })}
           </div>
         </div>
-        <Category onChange={handleCategory} />
-        <button
-          onClick={handleFilterReset}
-          className='border-y border-primary w-full h-8'
-        >
-          reset filter
-        </button>
+        <div className='filter-block'>
+          <p className='filter_title'>Category</p>
+          <Category
+            onChange={handleCategory}
+            selectedCategory={filterCategory}
+          />
+        </div>
+        <div className='filter-block flex justify-center'>
+          <button onClick={handleFilterReset} className='btn min-h-8 h-8'>
+            reset filter
+          </button>
+        </div>
       </div>
     </>
   );

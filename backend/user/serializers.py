@@ -9,7 +9,7 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'type']
+        fields = ['id', 'username', 'type', 'profile_pic', 'street', 'city', 'zip',  'lon', 'lat']
 
 
 # todo: add rating field for members and helpers
@@ -26,7 +26,7 @@ class HelperPublicProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'first_name', 'last_name', 'city', 'zip', 'profile_pic', 'helper_categories',
+        fields = ['id', 'username', 'first_name', 'last_name', 'city', 'zip', 'lon', 'lat', 'profile_pic', 'helper_categories',
                   'helper_available', 'helper_verified', 'helper_reviews', 'date_joined']
 
 
@@ -35,12 +35,12 @@ class MemberProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'username', 'first_name', 'last_name', 'email', 'phone', 'street', 'city', 'zip', 'lon', 'lat',
-                    'profile_pic', 'description', 'last_login']
+                  'profile_pic', 'description', 'last_login']
 
 
 class HelperProfileSerializer(serializers.ModelSerializer):
     helper_categories = ListCategoriesSerializer(many=True)
-    
+
     class Meta:
         model = User
         fields = ['id', 'username', 'first_name', 'last_name', 'email', 'phone', 'street', 'city', 'zip', 'lon', 'lat', 

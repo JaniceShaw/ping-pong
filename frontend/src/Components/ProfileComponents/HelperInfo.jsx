@@ -10,7 +10,7 @@ export const HelperInfo = (props) => {
   const [edit_helper, setEditHelper] = useState(false);
   const [helper_info, setHelperInfo] = useState(true);
 
-  // console.log(props);
+  console.log(props);
 
   const handleEditToggle = () => {
     if (edit_helper === false) {
@@ -22,7 +22,6 @@ export const HelperInfo = (props) => {
 
   const [user, setUser] = useState([]);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     getData(`user/helper/${props.profileID}/`, setUser, setError);
   }, []);

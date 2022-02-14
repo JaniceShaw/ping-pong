@@ -1,26 +1,30 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { HelperCard } from '../../../Components/BigCards/HelperCard';
-import { ListingFilter } from '../../../Components/ListingFilter/ListingFilter';
 import { getData } from '../../../Hooks/DataFetching';
+import { FilterHeader } from '../Filter_Header';
 
 export const HelperListPage = () => {
   const [helpersList, setHelpersList] = useState([]);
   const [filteredHelpersList, setFilteredHelpersList] = useState([]);
   const [error, setError] = useState(null);
 
-  const filterList = (array) => {
-    setFilteredHelpersList(array);
-  };
-
   useEffect(() => {
-    getData('user/list/helpers/', setHelpersList);
-  }, [ListingFilter]);
+    getData('user/list/helpers/', setHelpersList, setError);
+  }, [FilterHeader]);
   return (
     <>
-      <ListingFilter filteredList={filterList} unfilteredList={helpersList} />
-      <div id='results_list' className='grid gap-4'>
-        <p>{filteredHelpersList.length} helper listed</p>
+      <FilterHeader
+        unfilteredList={helpersList}
+        filteredList={filteredHelpersList}
+        ListItemName={'helpers'}
+        ReturningFunction={setFilteredHelpersList}
+      />
+      <div id='results_list' className='grid gap-4 pt-4 '>
+        <p>{error}</p>
+        <h1 className='text-lg font-bold'>
+          These helpers are ready to lend a helping hand
+        </h1>
         {filteredHelpersList.map((helper, i) => (
           <HelperCard key={i} helper={helper} />
         ))}
