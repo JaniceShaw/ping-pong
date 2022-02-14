@@ -1,10 +1,11 @@
-import Anemarie from '../../Assets/placeholder/anemarie.png';
 import RatingBalls from '../../Assets/icons/Rating balls.svg';
 import { useState } from 'react';
 import { EditMember } from './EditMember';
+import { useEffect } from 'react';
+import { getData } from '../../Hooks/DataFetching';
 // import { MemberJobs } from './MemberJobs';
 
-export const MemberInfo = () => {
+export const MemberInfo = (props) => {
   const [edit_member, setEditMember] = useState(false);
   const [member_info, setMemberInfo] = useState(true);
 
@@ -15,34 +16,42 @@ export const MemberInfo = () => {
       setEditMember(false) && setMemberInfo(true);
     }
   };
+
+  const [user, setUser] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    getData(`user/member/${props.profileID}/`, setUser, setError)
+  },
+  []
+  )
+  
   return (
     <>
       <div className='upper_container'>
-        <h2>Member since 02.1.2022</h2>
+        <h1 className='text-4xl font-bold font-primary'>{user.username}</h1>
+        <div>
+        <h2 className='text-xl text-primary'>Last seen: {user.last_login}</h2>
+        <img src={RatingBalls} alt='here should be the rating' />
+        </div>
+        
 
         <div className='quick_intro flex'>
-          <img
-            src={Anemarie}
-            alt='here should be the profile page'
-            className='h-24'
-          />
+          <img className='h-40' src={user.profile_pic}/>
           <div>
-            <p>4713 Matzendorf</p>
-            <p>Ich bi s Anemarie und mini hose sind zchli :)</p>
+            <p className='text-primary pb-2'>{user.zip}, {user.city}</p>
+            <p className='text-primary'>{user.description}</p>
           </div>
         </div>
 
         <div className='flex w-72 justify-evenly'>
-          <img src={RatingBalls} alt='here should be the rating' />
           <div className='languages w-1/2 flex justify-evenly'>
-            <p>💬</p>
-            <p>CH</p>
           </div>
         </div>
 
         <button
           onClick={handleEditToggle}
-          className='border-2 rounded border-black bg-orange-500'>
+          className='font-semibold rounded pl-4 pr-4 bg-secondary'>
           Edit Profile
         </button>
 

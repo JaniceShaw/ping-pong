@@ -1,12 +1,15 @@
-import RobertoRodriguez from '../../Assets/placeholder/rodrigo-image.jpg';
 import RatingBalls from '../../Assets/icons/Rating balls.svg';
 import { useState } from 'react';
 import { EditHelper } from './EditHelper';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { getData } from '../../Hooks/DataFetching';
 
-export const HelperInfo = () => {
+export const HelperInfo = (props) => {
   const [edit_helper, setEditHelper] = useState(false);
   const [helper_info, setHelperInfo] = useState(true);
+
+  console.log(props);
 
   const handleEditToggle = () => {
     if (edit_helper === false) {
@@ -15,45 +18,64 @@ export const HelperInfo = () => {
       setEditHelper(false) && setHelperInfo(true);
     }
   };
+
+  const [user, setUser] = useState([]);
+  const [error, setError] = useState(null);
+  
+  useEffect(() => {
+    getData(`user/helper/${props.profileID}/`, setUser, setError)
+  },
+  []
+  )
+  
   return (
     <>
       <div className='upper_container'>
-        <h2>Member since 02.1.2022</h2>
+        <h1 className='text-4xl font-bold font-primary'>{user.username}</h1>
+        <div className='flex space-x-24'>
+          <h2 className='text-xl text-primary'>Last seen: {user.last_login}</h2>
+          <img src={RatingBalls} alt='here should be the rating' />
+        </div>
+       
 
-        <div className='quick_intro flex'>
-          <img
-            src={RobertoRodriguez}
-            alt='here should be the profile page'
-            className='h-24'
-          />
+
+        <div className='quick_intro grid grid-cols-2 gap-3'>
+          <img className='rounded-lg' src={user.profile_pic}/>
           <div>
-            <p>8050 Zürich</p>
-            <p>
-              My name is Roberto Rodriguez and i’m an apprentice for the company
-              Sanitär AG in Sumiswald.
-            </p>
+            <p className='text-primary pb-2'>{user.zip}, {user.city}</p>
+            <p className='text-primary'>{user.description}</p>
           </div>
         </div>
 
-        <div className='flex w-72 justify-evenly'>
-          <img src={RatingBalls} alt='here should be the rating' />
+        {/* <div className='pt-3 pb-3 w-72'>
           <div className='languages w-1/2 flex justify-evenly'>
             <p>💬</p>
             <p>DE</p>
             <p>ENG</p>
             <p>IT</p>
           </div>
-        </div>
+        </div> */}
+      </div>
 
-        <button
+      <div className='middle_container pt-10 flex space-x-10 place-content-center justify-center'>
+        {/* <button
           onClick={handleEditToggle}
-          className='border-2 rounded border-black bg-orange-500'>
+          className='font-semibold rounded pl-4 pr-4 bg-secondary'>
           Edit Profile
-        </button>
+        </button> */}
 
         {edit_helper === false && helper_info === true ? null : <EditHelper />}
-
-        <h1>Verified User</h1>
+        
+        <h1 className={`pl-4 pr-4 rounded font-semibold border
+            ${
+              user.helper_verified
+                ? 'bg-primary text-secondary border border-secondary'
+                : 'bg-bg_light text-primary border-primary '
+            }`}>{
+              user.helper_verified
+                ? 'Verified'
+                : 'Unverified'
+            }</h1> 
 
         <Link to='/job/private' className='flex justify-end'>
           <button className='border-2 border-black rounded-lg bg-orange-400'>
@@ -62,26 +84,24 @@ export const HelperInfo = () => {
         </Link>
       </div>
 
-      <div className='lower_container'>
-        <div className='border-b-4 border-orange-400'>
+      <div className='lower_container pt-10'>
+        <div className='border-b-4 border-secondary'>
           <h1>
-            <b>Skills</b>
+            <b className='text-2xl'>Skills</b>
           </h1>
         </div>
 
-        <div className='skills-card'>
-          <b>Plumbing</b>
-          <p>subcategory1</p>
-        </div>
-
-        <div className='skills-card'>
-          <b>Painting</b>
-          <p>subcategory1</p>
-        </div>
-
-        <div className='skills-card'>
-          <b>Painting</b>
-          <p>subcategory1</p>
+        <div className='skills-card pt-5 pb-5'>
+            {user.helper_categories?.map((category, i) => {
+                return <div className='pb-3' key={i}>
+                    <h1 className='uppercase text-l font-semibold'>{category.name}</h1>
+                    {category.sub_categories.map((subcategory, i2) => {
+                        return <h2 className='text-sm pb-4' key={i2}>{subcategory.name}</h2>
+                      }
+                    )}
+                  </div>
+                }
+              )}
         </div>
       </div>
     </>
