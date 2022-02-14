@@ -9,7 +9,7 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'type']
+        fields = ['id', 'username', 'type', 'profile_pic', 'street', 'city', 'zip',  'lon', 'lat']
 
 
 # todo: add rating field for members and helpers
