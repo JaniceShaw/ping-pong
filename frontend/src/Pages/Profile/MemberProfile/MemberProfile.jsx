@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import { MemberInfo } from '../../../Components/ProfileComponents/MemberInfo';
 import { MemberJobs } from '../../../Components/ProfileComponents/MemberJobs';
+import { useParams } from 'react-router-dom';
 
 export const MemberProfilePage = () => {
   const [show_jobs, setShowJobs] = useState(false);
+  const { profileID } = useParams();
+
+  console.log(useParams());
 
   return (
     <>
@@ -19,7 +23,7 @@ export const MemberProfilePage = () => {
           Jobs
         </button>
       </div>
-      {!show_jobs ? <MemberInfo /> : <MemberJobs />}
+      {!show_jobs ? <MemberInfo profileID={profileID} /> : <MemberJobs profileID={profileID} />}
     </>
   );
 };

@@ -1,10 +1,6 @@
 import { useNavigate, Link } from 'react-router-dom';
-import { useState } from 'react';
-import './styles.scss';
-import '../../Components/Hamburgers/hamburgers.scss';
 
-export const MenuBar = () => {
-  const [showMenu, setShowMenu] = useState(false);
+export const MenuBar = (props) => {
   let navigate = useNavigate();
 
   const handleLogout = (event) => {
@@ -15,25 +11,17 @@ export const MenuBar = () => {
 
   return (
     <>
-      <div
-        className='fixed z-50 right-4 top-4 uppercase'
-        onClick={() => setShowMenu(!showMenu)}>
-        <button
-          className={`hamburger hamburger--spin ${showMenu ? 'is-active' : ''}`}
-          type='button'>
-          <span className='hamburger-box'>
-            <span className='hamburger-inner'></span>
-          </span>
-        </button>
-      </div>
-
-      <div
+      <nav
         className={`bg-bg_light fixed z-40 w-full h-screen pt-32 p-4 transition-transform duration-300  shadow-lg ${
-          !showMenu ? 'translate-x-full' : ''
-        }`}>
+          !props.menuIsOpen ? 'translate-x-full' : ''
+        }`}
+      >
         <ul
           className='text-4xl text-center flex flex-col h-4/5  justify-between'
-          onClick={() => setTimeout(() => setShowMenu(!showMenu), 200)}>
+          onClick={() =>
+            setTimeout(() => props.showMenuHandler(!props.menuIsOpen), 200)
+          }
+        >
           <li>
             <Link to='/'>Home</Link>
           </li>
@@ -86,7 +74,7 @@ export const MenuBar = () => {
             </Link>
           </li>
         </ul>
-      </div>
+      </nav>
     </>
   );
 };

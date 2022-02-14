@@ -28,7 +28,7 @@ export const RoutesIndex = () => {
     <>
       <BrowserRouter>
         <Header />
-        <main className='p-4 pt-20 container md:container md:mx-auto bg-bg_light'>
+        <main>
           <Routes>
             <Route path='/' element={<StartPage />} />
 
@@ -52,9 +52,13 @@ export const RoutesIndex = () => {
             <Route path='job/new' element={<NewJob />} />
             <Route path='job/private' element={<PrivateJob />} />
 
-            <Route path='member' element={<MemberProfilePage />} />
+            <Route path='member' element={<MemberProfilePage />}>
+              <Route path=':profileID' element={<MemberProfilePage/>} />
+            </Route>
 
-            <Route path='helper' element={<HelperProfilePage />} />
+            <Route path='helper' element={<HelperProfilePage />}>
+              <Route path=':profileID' element={<HelperProfilePage />} />
+            </Route>
 
             <Route path='support' element={<SupportPage />} />
             <Route path='faq' element={<FAQPage />} />
