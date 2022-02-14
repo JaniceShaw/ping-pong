@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from member_request.serializers import HelperRatingSerializer
 from category.serializers import ListCategoriesSerializer
-from member_request.serializers import HelperReviewRateSerializer
+from member_request.serializers import HelperReviewRateSerializer, MemberReviewRateSerializer
 
 User = get_user_model()
 
@@ -32,11 +32,12 @@ class HelperPublicProfileSerializer(serializers.ModelSerializer):
 
 
 class MemberProfileSerializer(serializers.ModelSerializer):
+    member_reviews = MemberReviewRateSerializer(many=True)
 
     class Meta:
         model = User
         fields = ['id', 'username', 'first_name', 'last_name', 'email', 'phone', 'street', 'city', 'zip', 'lon', 'lat',
-                  'profile_pic', 'description', 'last_login']
+                  'profile_pic', 'description', 'last_login', 'member_reviews']
 
 
 class HelperProfileSerializer(serializers.ModelSerializer):
