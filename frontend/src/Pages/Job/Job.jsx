@@ -37,11 +37,13 @@ export const Job = () => {
 
   if (jobData.helper_review) {
     helper_rating = jobData.helper_review.rating;
+      console.log(jobData.helper_review.text_content)
   }
-
+    console.log(jobData.helper_reveiw)
   if (jobData.member_review) {
     console.log('member review found');
     member_rating = jobData.member_review.rating;
+
   }
 
   return (
@@ -94,29 +96,29 @@ export const Job = () => {
           <div id='item1' className='w-full h-full m-auto carousel-item'>
             <img
               src={jobData.img_one}
-              className='w-full object-cover'
+              className='w-full object-cover h-64'
               alt='#'
             />
           </div>
         ) : (
-          <img src={DefaultPost} className='w-full object-cover' alt='#' />
+          <img src={DefaultPost} className='w-full object-cover h-64' alt='#' />
         )}
 
         {jobData.img_two ? (
           <div id='item2' className='w-full m-auto carousel-item'>
-            <img src={jobData.img_two} className='w-full' alt='#' />
+            <img src={jobData.img_two} className='w-full object-cover h-64' alt='#' />
           </div>
         ) : null}
 
         {jobData.img_three ? (
           <div id='item3' className='w-full m-auto carousel-item'>
-            <img src={jobData.img_three} className='w-full ' alt='#' />
+            <img src={jobData.img_three} className='w-full object-cover h-64' alt='#' />
           </div>
         ) : null}
 
         {jobData.img_four ? (
           <div id='item3' className='w-full m-auto  carousel-item'>
-            <img src={jobData.img_four} className='w-full' alt='#' />
+            <img src={jobData.img_four} className='w-full object-cover h-64' alt='#' />
           </div>
         ) : null}
       </div>
@@ -169,39 +171,24 @@ export const Job = () => {
           <div className='helper-rating mb-6'>
             <p className='w-1/2 font-bold inline-block'>Helper Rating</p>
             <div className='w-1/2 inline-block text-right'>
-              <span
-                className={
-                  helper_rating >= 1
-                    ? 'rating-big-ball'
-                    : 'rating-big-gray-ball'
-                }></span>
-              <span
-                className={
-                  helper_rating >= 2
-                    ? 'rating-big-ball'
-                    : 'rating-big-gray-ball'
-                }></span>
-              <span
-                className={
-                  helper_rating >= 3
-                    ? 'rating-big-ball'
-                    : 'rating-big-gray-ball'
-                }></span>
+                <span className={helper_rating >= 1 ? 'rating-big-ball' : 'rating-big-gray-ball'} />
+                <span className={helper_rating >= 2 ? 'rating-big-ball' : 'rating-big-gray-ball' } />
+                <span className={helper_rating >= 3 ? 'rating-big-ball' : 'rating-big-gray-ball'} />
               <span
                 className={
                   helper_rating >= 4
                     ? 'rating-big-ball'
                     : 'rating-big-gray-ball'
-                }></span>
+                } />
               <span
                 className={
                   helper_rating === 5
                     ? 'rating-big-ball'
                     : 'rating-big-gray-ball'
-                }></span>
+                } />
             </div>
             <div className='bottom'>
-              <p>Available after completing</p>
+              <p>{jobData.helper_review ? jobData.helper_review.text_content: 'Available after completing'}</p>
             </div>
           </div>
 
@@ -213,34 +200,34 @@ export const Job = () => {
                   member_rating >= 1
                     ? 'rating-big-ball'
                     : 'rating-big-gray-ball'
-                }></span>
+                } />
               <span
                 className={
                   member_rating >= 2
                     ? 'rating-big-ball'
                     : 'rating-big-gray-ball'
-                }></span>
+                } />
               <span
                 className={
                   member_rating >= 3
                     ? 'rating-big-ball'
                     : 'rating-big-gray-ball'
-                }></span>
+                } />
               <span
                 className={
                   member_rating >= 4
                     ? 'rating-big-ball'
                     : 'rating-big-gray-ball'
-                }></span>
+                } />
               <span
                 className={
                   member_rating === 5
                     ? 'rating-big-ball'
                     : 'rating-big-gray-ball'
-                }></span>
+                } />
             </div>
             <div className='bottom'>
-              <p>Available after completing</p>
+              <p>{jobData.member_review ? jobData.member_review.text_content: 'Available after completing'}</p>
             </div>
           </div>
         </div>
