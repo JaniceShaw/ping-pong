@@ -61,7 +61,7 @@ main {
 }
 
 .card_container {
-  @apply bg-white rounded-md border-primary_light shadow-md;
+  @apply bg-white rounded-2xl border-2 border-gray-200;
 }
 .rating-big-ball {
   @apply w-4 h-4 bg-yellow-300 border border-yellow-500 rounded-full inline-block mr-1;
@@ -69,6 +69,43 @@ main {
 
 .rating-big-gray-ball {
   @apply w-4 h-4 bg-zinc-300 border border-zinc-500 rounded-full inline-block mr-1;
+}
+
+.plus-icon {
+  $icon-width: 0.14em;
+  $icon-length: 0.9em;
+  height: $icon-length;
+  width: $icon-length;
+  position: relative;
+  margin-right: 0.6em;
+
+  &::after {
+    content: '';
+    height: $icon-length;
+    width: $icon-width;
+    background-color: inherit;
+    position: absolute;
+    transform: translateY(0%) translateX(-50%);
+    background: black;
+    transition: transform 200ms ease;
+  }
+
+  &::before {
+    content: '';
+    height: $icon-width;
+    width: $icon-length;
+    background-color: inherit;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    background: black;
+  }
+
+  &-closed {
+    &::after {
+      transform: translateY(0%) translateX(-50%) scale(0);
+    }
+  }
 }
 
 // .radio {

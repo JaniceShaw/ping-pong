@@ -1,0 +1,12 @@
+.info-box > ul > li {
+  grid-template-columns: 1.6em auto;
+  @apply grid gap-1;
+
+  > ul {
+    @apply flex flex-wrap;
+
+    li {
+      @apply mr-2;
+    }
+  }
+}

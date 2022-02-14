@@ -12,6 +12,7 @@ const config = {
   },
 };
 
+
 export const getData = (urlEnding, stateToUpdate, errorState) => {
   axios
     .get(`${apiBaseURL}${urlEnding}`, config)
@@ -51,7 +52,7 @@ export const patchData = (urlEnding, id, bodyObject, errorState) => {
   }
   axios
     .patch(`${apiBaseURL}${urlEnding}${id}/`, formData, config)
-    .then(() => { })
+    .then(() => {})
     .catch((err) => {
       errorState(err.response.data);
     });
@@ -86,3 +87,30 @@ export const postLoginData = (urlEnding, bodyObject, errorState) => {
       errorState(err.response.data);
     });
 };
+
+// export const getUserData = (errorState) => {
+//   axios
+//     .get(`${apiBaseURL}/user/me/`, config)
+//     .then((response) => {
+//       // stateToUpdate(response.data);
+//
+//       console.log('janice here', response.data)
+//        localStorage.setItem('user', response.data);
+//     })
+//     .catch((err) => {
+//       errorState(err.response);
+//     });
+// };
+
+
+// export const getUserData = (urlEnding, stateToUpdate, errorState) => {
+//   axios
+//     .get(`${apiBaseURL}${urlEnding}`, config)
+//     .then((response) => {
+//       stateToUpdate(response.data);
+//     })
+//     .catch((err) => {
+//       errorState(err.response);
+//     });
+// };
+

@@ -2,13 +2,11 @@ import ProfilePlaceholder from '../../Assets/placeholder/profile_placeholder.png
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { RatingCalculator } from '../../Helpers/RatingCalculator';
-import { useEffect } from 'react';
+import './style.scss';
 
 export const HelperCard = (props) => {
   const helper = props.helper;
   const UserRating = RatingCalculator(helper.helper_reviews);
-
-  useEffect(() => {}, [UserRating]);
 
   return (
     <>
@@ -40,20 +38,31 @@ export const HelperCard = (props) => {
           <div className='info-box'>
             <ul>
               <li>
-                📍 {helper.zip} {helper.city}
+                <span>📍</span>
+                {helper.zip} {helper.city}
               </li>
               <li>
-                💪{' '}
-                {helper.helper_categories.map(
-                  (category) => `${category.name}, `
-                )}
+                <span>💪</span>{' '}
+                <ul>
+                  {helper.helper_categories.map((category, i) => {
+                    return <li key={i}>{category.name}</li>;
+                  })}
+                </ul>
               </li>
+              {/* <li>
+                <span>🎉</span>
+                helper since {moment(helper.date_joined).format('D MMM Y')}
+              </li> */}
               <li>
-                🎉 Helper since {moment(helper.date_joined).format('D MMM Y')}
+                <span>♥️</span>
+                {helper.helper_reviews.length} jobs completed
               </li>
             </ul>
           </div>
         </div>
+        <p className='text-xs'>
+          helper since {moment(helper.date_joined).format('D MMM Y')}
+        </p>
       </Link>
     </>
   );

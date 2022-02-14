@@ -11,15 +11,16 @@ export const MemberProfilePage = () => {
 
   return (
     <>
-      <div className='section flex  justify-evenly '>
+      <div className='list-container flex w-screen border-b -mx-4 border-primary bg-white z-40 relative'>
         <button
           onClick={() => setShowJobs(false)}
-          className='border-2 border-black w-full'>
+          
+          className={`w-full p-1 ${!show_jobs ? 'bg-secondary' : ''}`}>
           Profile
         </button>
         <button
           onClick={() => setShowJobs(true)}
-          className='border-2 border-black w-full'>
+          className={`w-full p-1 ${show_jobs ? 'bg-secondary' : ''}`}>
           Jobs
         </button>
       </div>
