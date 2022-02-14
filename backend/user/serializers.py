@@ -26,7 +26,7 @@ class HelperPublicProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'first_name', 'last_name', 'city', 'zip', 'profile_pic', 'helper_categories',
+        fields = ['id', 'username', 'first_name', 'last_name', 'city', 'zip', 'lon', 'lat', 'profile_pic', 'helper_categories',
                   'helper_available', 'helper_verified', 'helper_reviews', 'date_joined']
 
 
