@@ -76,12 +76,12 @@ export const MenuBar = () => {
             </Link>
           </li>
           <li>
-            <Link className='menu-item' to='/helper'>
+            <Link className='menu-item' to='/helper/me'>
               Helper-Profile
             </Link>
           </li>
           <li>
-            <Link className='menu-item' to='/member'>
+            <Link className='menu-item' to='/member/me'>
               Member-Profile
             </Link>
           </li>

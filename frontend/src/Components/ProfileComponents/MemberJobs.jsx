@@ -3,21 +3,22 @@ import { useEffect } from 'react';
 import { getData } from '../../Hooks/DataFetching';
 import { Smallcard } from '../SmallCards/SmallCard';
 
-export const MemberJobs = () => {
-  const [member_jobs, setMemberJobs] = useState('');
-  const [error, setError] = useState('');
-
+export const MemberJobs = (props) => {
+  const [allJobs, setAllJobs] = useState([]);
   useEffect(() => {
-    getData('/job/list/review/member', setMemberJobs, setError);
+    getData('job/list/', setAllJobs);
   }, []);
-
   return (
     <>
-      <div className='jobs-container flex flex-col justify-around items-center'>
-        {/* {member_jobs.map((job, i) => (
-          <Smallcard key={i} job={job} />
-        ))} */}
-      </div>
+      {allJobs && (
+        <div className='jobs-container flex flex-col border justify-around items-center'>
+          {allJobs
+            .filter(({ member_username }) => member_username.includes('costas'))
+            .map((job, i) => (
+              <Smallcard key={i} job={job} />
+            ))}
+        </div>
+      )}
     </>
   );
 };

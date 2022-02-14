@@ -3,11 +3,10 @@ import { HelperInfo } from '../../../Components/ProfileComponents/HelperInfo';
 import { HelperJobs } from '../../../Components/ProfileComponents/HelperJobs';
 import { useParams } from 'react-router-dom';
 
-
 export const HelperProfilePage = () => {
   const [show_jobs, setShowJobs] = useState(false);
   const { profileID } = useParams();
-  
+
   return (
     <>
       <div className='pt-3 section flex w-screen -mx-4 border-b border-b-1 border-primary grow-1 justify-center'>
@@ -22,7 +21,11 @@ export const HelperProfilePage = () => {
           Jobs
         </button>
       </div>
-      {!show_jobs ? <HelperInfo profileID={profileID} /> : <HelperJobs profileID={profileID} />}
+      {!show_jobs ? (
+        <HelperInfo profileID={profileID} />
+      ) : (
+        <HelperJobs profileID={profileID} />
+      )}
     </>
   );
 };

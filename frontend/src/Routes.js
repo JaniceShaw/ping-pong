@@ -18,6 +18,7 @@ import {
   FAQPage,
   SupportPage,
   ErrorPage,
+
   // MyProfilePage,
 } from './Pages';
 
@@ -48,7 +49,9 @@ export const RoutesIndex = () => {
             <Route path='job/new' element={<NewJob />} />
             <Route path='job/private' element={<PrivateJob />} />
 
-            <Route path='member' element={<MemberProfilePage />} />
+            <Route path='member' element={<MemberProfilePage />}>
+              <Route path=':profileID' element={<HelperProfilePage />} />
+            </Route>
 
             <Route path='helper' element={<HelperProfilePage />}>
               <Route path=':profileID' element={<HelperProfilePage />} />

@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import Select from 'react-select';
 
 export const Register = () => {
+  const options = [
+    { value: '1', label: 'member' },
+    { value: '2', label: 'helper' },
+  ];
   const apiBaseURL = 'https://ping-pong.propulsion-learn.ch/backend/api/';
 
   const [email, setEmail] = useState('');
+  const [type, setType] = useState('');
   const [error, setError] = useState('');
 
   let navigate = useNavigate();
@@ -16,6 +22,7 @@ export const Register = () => {
     const method = 'POST';
     const body = {
       email: email,
+      type: type,
     };
     const headers = new Headers({
       'Content-type': 'application/json',
@@ -66,6 +73,13 @@ export const Register = () => {
               {email['email']}
             </div>
           </div>
+
+          <Select
+            className='pb-9'
+            options={options}
+            onChange={(e) => setType(e.value)}
+          />
+
           <input
             type='submit'
             className='btn'
