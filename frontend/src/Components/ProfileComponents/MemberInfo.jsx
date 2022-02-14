@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import RatingBalls from '../../Assets/icons/Rating balls.svg';
@@ -29,7 +30,11 @@ export const MemberInfo = (props) => {
         </div>
 
         <div className='quick_intro grid grid-cols-2 gap-3 pb-10'>
-          <img className='rounded-lg' src={user.profile_pic} />
+          <img
+            className='rounded-lg'
+            src={user.profile_pic}
+            alt='smilying into the camera'
+          />
           <div className=''>
             <p className='text-primary pb-2'>
               {user.zip}, {user.city}
@@ -41,16 +46,6 @@ export const MemberInfo = (props) => {
         <div className='flex w-72 justify-evenly'>
           <div className='languages w-1/2 flex justify-evenly'></div>
         </div>
-
-        <div className='flex justify-center'>
-          <button
-            onClick={handleEditToggle}
-            className='flex font-semibold rounded pl-4 pr-4 bg-secondary'>
-            Edit Profile
-          </button>
-        </div>
-
-        {edit_member === false && member_info === true ? null : <EditMember />}
       </div>
     </>
   );
