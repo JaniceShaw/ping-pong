@@ -1,7 +1,7 @@
 import DefaultProfile from '../../Assets/placeholder/profile_placeholder.png';
 import DefaultPost from '../../Assets/placeholder/job_placeholder.png';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import { getData, patchData } from '../../Hooks/DataFetching';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
@@ -9,27 +9,37 @@ import moment from 'moment';
 export const Job = () => {
   const [jobData, setJobData] = useState(false);
   const [errorState, setErrorState] = useState({});
-  const { jobID } = useParams();
+  const [stateChange, setStateChange] = useState(false);
   const [userData, setUserData] = useState (()=>{
        // getting stored value
     const saved = localStorage.getItem("userData");
     const initialValue = JSON.parse(saved);
     return initialValue || "";
   })
+    const { jobID } = useParams();
 
   useEffect(() => {
     getData(`job/${jobID}/`, setJobData, setErrorState);
 
-  }, [setJobData, setErrorState]);
+  }, [setJobData, setErrorState, setStateChange]);
+
+    // for react router to change page
+  let navigate = useNavigate();
+      const JobLink = () => {
+        navigate(`/job/${jobID}/`);
+      }
+            const HomeLink = () => {
+        navigate(`/`);
+      }
 
 
   const handelStatusChange = (e)=>{
-      console.log('status change', e);
-      const statusUpdate = {status: 2}
-      let error = "";
-      patchData(`job/`, jobID, statusUpdate, setErrorState);
+      const statusUpdate = {status: 2, helper_status: 2}
 
-      console.log('after status change', statusUpdate)
+      patchData(`job/`, jobID, statusUpdate, setErrorState);
+      setTimeout(() => {
+           getData(`job/${jobID}/`, setJobData, setErrorState);
+      }, 200);
   }
 
   console.log('jobdata', jobData);
