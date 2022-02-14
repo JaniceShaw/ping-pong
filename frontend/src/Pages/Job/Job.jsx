@@ -9,7 +9,7 @@ import moment from 'moment';
 export const Job = () => {
   const [jobData, setJobData] = useState(false);
   const [errorState, setErrorState] = useState({});
-  const [stateChange, setStateChange] = useState(false);
+  // const [stateChange, setStateChange] = useState(false);
   const [userData, setUserData] = useState (()=>{
        // getting stored value
     const saved = localStorage.getItem("userData");
@@ -21,25 +21,49 @@ export const Job = () => {
   useEffect(() => {
     getData(`job/${jobID}/`, setJobData, setErrorState);
 
-  }, [setJobData, setErrorState, setStateChange]);
+  }, [setJobData, setErrorState]);
 
     // for react router to change page
-  let navigate = useNavigate();
-      const JobLink = () => {
-        navigate(`/job/${jobID}/`);
-      }
-            const HomeLink = () => {
-        navigate(`/`);
-      }
+  // let navigate = useNavigate();
+  //     const JobLink = () => {
+  //       navigate(`/job/${jobID}/`);
+  //     }
+  //           const HomeLink = () => {
+  //       navigate(`/`);
+  //     }
 
 
-  const handelStatusChange = (e)=>{
-      const statusUpdate = {status: 2, helper_status: 2, helper: userData.id}
+  const handelStatusChange = ()=>{
+          if (jobData.status !== 3 && userData.type === 2) {
+              const statusUpdate = {status: 2, helper_status: 2, helper: userData.id}
+              patchData(`job/`, jobID, statusUpdate, setErrorState);
+              setTimeout(() => {
+                  getData(`job/${jobID}/`, setJobData, setErrorState);
+              }, 200);
+          }
+  }
 
-      patchData(`job/`, jobID, statusUpdate, setErrorState);
-      setTimeout(() => {
-           getData(`job/${jobID}/`, setJobData, setErrorState);
-      }, 200);
+    const handelStatusCompleteChange = (e)=>{
+        // change type to 2 after testing so only member can mark as complete
+        if(jobData.status !==1 && userData.type === 1) {
+            const statusUpdate = {status: 3, helper_status: 3}
+            patchData(`job/`, jobID, statusUpdate, setErrorState);
+            setTimeout(() => {
+                getData(`job/${jobID}/`, setJobData, setErrorState);
+            }, 200);
+        }
+  }
+
+  const handelMemberReview = (e)=>{
+      console.log('need get form data',e);
+    // working on this need make for to post review should make component
+    if(jobData.status === 3 && userData.id === jobData.member) {
+        const statusUpdate = {text_content:'from form'}
+        patchData(`job/`, jobID, statusUpdate, setErrorState);
+        setTimeout(() => {
+            getData(`job/${jobID}/`, setJobData, setErrorState);
+        }, 200);
+    }
   }
 
   console.log('jobdata', jobData);
@@ -181,6 +205,7 @@ export const Job = () => {
         </button>
 
         <button
+            onClick={handelStatusCompleteChange}
           className={`w-1/3 font-semibold pt-1 pb-1 inline-block
             ${jobData.status === 3
               ? 'bg-amber-400 text-indigo-900'
