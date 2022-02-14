@@ -1,23 +1,31 @@
 import ProfilePlaceholder from '../../Assets/placeholder/profile_placeholder.png';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import { RatingCalculator } from '../../Helpers/RatingCalculator';
+import './style.scss';
 
 export const HelperCard = (props) => {
   const helper = props.helper;
+  const UserRating = RatingCalculator(helper.helper_reviews);
 
   return (
     <>
       <Link
         to={`/helper/${helper.id}`}
-        className='card_container justify-around border border-blue-800 p-2 rounded-md'>
+        className='card_container justify-around border border-blue-800 p-2 rounded-md'
+      >
         <div className='card-header mb-4'>
           <h1 className='font-bold'>{helper.username}</h1>
-          <p className='flex justify-between w-16'>
-            <span className='rating-ball'></span>
-            <span className='rating-ball'></span>
-            <span className='rating-ball'></span>
-            <span className='rating-ball'></span>
-          </p>
+
+          {UserRating ? (
+            <div className='flex'>
+              {[...Array(UserRating)].map((x, i) => (
+                <span key={i} className='rating-ball mr-1'></span>
+              ))}
+            </div>
+          ) : (
+            <p>not rated yet</p>
+          )}
         </div>
         <div className='card-body grid grid-cols-2 gap-2 p-0'>
           <div className=''>
@@ -30,20 +38,31 @@ export const HelperCard = (props) => {
           <div className='info-box'>
             <ul>
               <li>
-                📍 {helper.zip} {helper.city}
+                <span>📍</span>
+                {helper.zip} {helper.city}
               </li>
               <li>
-                💪{' '}
-                {helper.helper_categories.map(
-                  (category) => `${category.name}, `
-                )}
+                <span>💪</span>{' '}
+                <ul>
+                  {helper.helper_categories.map((category, i) => {
+                    return <li key={i}>{category.name}</li>;
+                  })}
+                </ul>
               </li>
+              {/* <li>
+                <span>🎉</span>
+                helper since {moment(helper.date_joined).format('D MMM Y')}
+              </li> */}
               <li>
-                🎉 helper since {moment(helper.date_joined).format('D MMM Y')}
+                <span>♥️</span>
+                {helper.helper_reviews.length} jobs completed
               </li>
             </ul>
           </div>
         </div>
+        <p className='text-xs'>
+          helper since {moment(helper.date_joined).format('D MMM Y')}
+        </p>
       </Link>
     </>
   );

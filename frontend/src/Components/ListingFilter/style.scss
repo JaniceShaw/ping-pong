@@ -1,5 +1,5 @@
 #distanceSelection {
-  @apply border-b border-primary;
+  @apply border-2 border-gray-200 flex rounded-md overflow-hidden;
 
   .radio-option {
     @apply relative w-full h-8 flex;
@@ -8,16 +8,23 @@
 
       &:checked + label,
       &:hover + label {
-        @apply bg-secondary border-primary;
+        @apply bg-secondary  text-primary;
       }
     }
     label {
       @apply text-center w-full h-full cursor-pointer border-r flex items-center justify-center
-        border-primary_light;
+        border-primary_light text-primary_light;
     }
 
     &:last-of-type label {
       @apply border-none;
     }
+  }
+}
+.filter-block {
+  @apply mb-8 px-4;
+
+  .filter_title {
+    @apply pt-2 font-bold mb-2;
   }
 }

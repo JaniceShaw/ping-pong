@@ -1,23 +1,14 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { JobCard } from '../../../Components/BigCards/JobCard';
-
 import { getData } from '../../../Hooks/DataFetching';
 import { ListingFilter } from '../../../Components/ListingFilter/ListingFilter';
+import { FilterHeader } from '../Filter_Header';
 
 export const JobListPage = () => {
   const [jobsList, setJobsList] = useState([]);
   const [filteredJobsList, setFilteredJobsList] = useState([]);
   const [error, setError] = useState(null);
-  const [showFilter, setShowFilter] = useState(false);
-
-  const filterList = (array) => {
-    setFilteredJobsList(array);
-  };
-
-  const toggleFilterVisibility = () => {
-    setShowFilter(!showFilter);
-  };
 
   useEffect(() => {
     getData('job/list/', setJobsList, setError);
@@ -25,19 +16,15 @@ export const JobListPage = () => {
 
   return (
     <>
-      <button
-        onClick={toggleFilterVisibility}
-        className='relative font-normal border-b border-primary -mx-4 px-4 h-8 w-screen relative z-10 bg-white'
-      >
-        Filter
-      </button>
-      <ListingFilter
-        filteredList={filterList}
+      <FilterHeader
         unfilteredList={jobsList}
-        showFilter={showFilter}
+        filteredList={filteredJobsList}
+        ListItemName={'jobs'}
+        ReturningFunction={setFilteredJobsList}
       />
-      <div id='results_list' className='grid gap-4'>
-        <p>{filteredJobsList.length} jobs listed</p>
+
+      <div id='results_list' className='grid gap-4 pt-4'>
+        <p>{error}</p>
 
         {filteredJobsList.map((job, i) => (
           <JobCard key={i} job={job} />

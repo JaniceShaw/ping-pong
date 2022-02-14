@@ -4,18 +4,19 @@ from member_request.models import MemberRequest, MemberReview, HelperReview
 # from user.serializers import UserSerializer
 # User = get_user_model()
 
+
 class HelperRatingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HelperReview
-        fields = ['rating']
+        fields = ['rating', 'text_content', 'created']
 
 
 class MemberRatingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MemberReview
-        fields = ['rating']
+        fields = ['rating', 'text_content', 'created']
 
 
 # all fields for making a new job request ()
@@ -32,7 +33,6 @@ class MemberRequestSerializer(serializers.ModelSerializer):
     category_name = serializers.CharField(source='category.name', read_only=True)
     helper_review = HelperRatingSerializer(many=False, read_only=True)
     member_review = MemberRatingSerializer(many=False, read_only=True)
-
 
     def create(self, validated_data):
         request = self.context.get('request', None)
@@ -72,7 +72,7 @@ class MemberReviewRateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MemberReview
-        fields = ['rating']
+        fields = ['rating', 'text_content']
 
 
 # not sure if need these check
@@ -81,7 +81,7 @@ class HelperReviewRateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HelperReview
-        fields = ['rating']
+        fields = ['rating', 'text_content']
 
 
 # list view of open and busy jobs
@@ -106,4 +106,3 @@ class ListMemberRequestSerializer(serializers.ModelSerializer):
 
 
 # to get all the reviews of a given helper
-

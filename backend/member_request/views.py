@@ -2,6 +2,7 @@
 from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView, CreateAPIView
 from member_request.serializers import ListMemberRequestSerializer, MemberRequestSerializer, MemberReviewSerializer, HelperReviewSerializer
 from django.db.models import Q
+
 from rest_framework.permissions import IsAuthenticated
 from pingpong_app.permissions import IsOwnerOrReadOnly
 # from category.models import Category, SubCategory
@@ -40,7 +41,7 @@ class RetrieveUpdateDeleteJobView(RetrieveUpdateDestroyAPIView):
     queryset = MemberRequest.objects.all()
     serializer_class = MemberRequestSerializer
     lookup_field = 'id'
-    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+    permission_classes = [IsAuthenticated]
 
 
 # probably don't need this -- DELETE --
