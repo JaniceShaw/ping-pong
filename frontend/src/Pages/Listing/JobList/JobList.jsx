@@ -25,6 +25,7 @@ export const JobListPage = () => {
 
       <div id='results_list' className='grid gap-4 pt-4'>
         <p>{error}</p>
+
         {filteredJobsList.map((job, i) => (
           <JobCard key={i} job={job} />
         ))}
