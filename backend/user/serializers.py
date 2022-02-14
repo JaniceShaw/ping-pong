@@ -34,11 +34,13 @@ class MemberProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'phone', 'street', 'city', 'zip', 'lon', 'lat', 
-        'profile_pic', 'description', 'last_login']
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'phone', 'street', 'city', 'zip', 'lon', 'lat',
+                    'profile_pic', 'description', 'last_login']
+
 
 class HelperProfileSerializer(serializers.ModelSerializer):
     helper_categories = ListCategoriesSerializer(many=True)
+    
     class Meta:
         model = User
         fields = ['id', 'username', 'first_name', 'last_name', 'email', 'phone', 'street', 'city', 'zip', 'lon', 'lat', 
