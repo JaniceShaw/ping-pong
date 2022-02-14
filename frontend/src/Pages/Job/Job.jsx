@@ -2,12 +2,12 @@ import DefaultProfile from '../../Assets/placeholder/profile_placeholder.png';
 import DefaultPost from '../../Assets/placeholder/job_placeholder.png';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getData } from '../../Hooks/DataFetching';
+import { getData, patchData } from '../../Hooks/DataFetching';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 export const Job = () => {
-  const [jobData, setJobData] = useState("Loading");
+  const [jobData, setJobData] = useState(false);
   const [errorState, setErrorState] = useState({});
   const { jobID } = useParams();
   const [userData, setUserData] = useState (()=>{
@@ -21,6 +21,16 @@ export const Job = () => {
     getData(`job/${jobID}/`, setJobData, setErrorState);
 
   }, [setJobData, setErrorState]);
+
+
+  const handelStatusChange = (e)=>{
+      console.log('status change', e);
+      const statusUpdate = {status: 2}
+      let error = "";
+      patchData(`job/`, jobID, statusUpdate, setErrorState);
+
+      console.log('after status change', statusUpdate)
+  }
 
   console.log('jobdata', jobData);
   console.log('error', errorState);
@@ -56,8 +66,9 @@ export const Job = () => {
 
   }
 
-  return (
+   return (
     <div className='job  w-full max-w-sm  m-auto'>
+        {/*{!jobData ? <div>loading</div>: null}*/}
       <h1 className='text-3xl font-bold mt-6'>{jobData.title}</h1>
 
       <div className='space-x-2 avatar-group mt-5 z-3 mb-4'>
@@ -150,7 +161,7 @@ export const Job = () => {
 
 
         <button
-
+            onClick = {handelStatusChange}
           className={`w-1/3 font-semibold pt-1 pb-1 inline-block
             ${jobData.status === 2
               ? 'bg-amber-400 text-indigo-900'
@@ -249,5 +260,6 @@ export const Job = () => {
         <button className='btn mt-8'>Back to list</button>
       </Link>
     </div>
-  );
+
+  )
 };

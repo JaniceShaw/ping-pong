@@ -41,7 +41,7 @@ class RetrieveUpdateDeleteJobView(RetrieveUpdateDestroyAPIView):
     queryset = MemberRequest.objects.all()
     serializer_class = MemberRequestSerializer
     lookup_field = 'id'
-    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+    permission_classes = [IsAuthenticated]
 
 
 # probably don't need this -- DELETE --
