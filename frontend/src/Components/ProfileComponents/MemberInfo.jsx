@@ -11,32 +11,46 @@ export const MemberInfo = (props) => {
 
   return (
     <>
-      <div className='upper_container'>
-        <h1 className='text-4xl font-bold font-primary'>{user?.username}</h1>
-        <div>
-          <h2 className='text-xl text-primary'>
-            Last seen: {user?.last_login}
+      <div className='upper_container pt-5'>
+        <h1 className='text-4xl font-bold font-primary'>{user.username}</h1>
+        <div className='flex space-x-8 pb-5'>
+          <h2 className='text-base text-primary'>
+            Last seen: {moment(user.last_login).format('DD/MM/YYYY')}
           </h2>
-          <img src={RatingBalls} alt='here should be the rating' />
+          {user.member_reviews?.map((review, i) => {
+            return (
+              <div className='pb-3' key={i}>
+                <h1 className='uppercase text-lg font-semibold'>
+                  {review.rating}
+                </h1>
+              </div>
+            );
+          })}
         </div>
 
-        <div className='quick_intro flex'>
-          <img
-            className='rounded-lg h-40'
-            src={user?.profile_pic}
-            alt='me smilying'
-          />
-          <div>
+        <div className='quick_intro grid grid-cols-2 gap-3 pb-10'>
+          <img className='rounded-lg' src={user.profile_pic} />
+          <div className=''>
             <p className='text-primary pb-2'>
-              {user?.zip}, {user?.city}
+              {user.zip}, {user.city}
             </p>
-            <p className='text-primary'>{user?.description}</p>
+            <p className='text-primary '>{user.description}</p>
           </div>
         </div>
 
         <div className='flex w-72 justify-evenly'>
           <div className='languages w-1/2 flex justify-evenly'></div>
         </div>
+
+        <div className='flex justify-center'>
+          <button
+            onClick={handleEditToggle}
+            className='flex font-semibold rounded pl-4 pr-4 bg-secondary'>
+            Edit Profile
+          </button>
+        </div>
+
+        {edit_member === false && member_info === true ? null : <EditMember />}
       </div>
     </>
   );
