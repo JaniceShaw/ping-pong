@@ -34,7 +34,7 @@ export const Job = () => {
 
 
   const handelStatusChange = (e)=>{
-      const statusUpdate = {status: 2, helper_status: 2}
+      const statusUpdate = {status: 2, helper_status: 2, helper: userData.id}
 
       patchData(`job/`, jobID, statusUpdate, setErrorState);
       setTimeout(() => {
