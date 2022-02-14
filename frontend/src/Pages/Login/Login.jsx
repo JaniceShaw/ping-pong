@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import { signInAction } from '../../store/actions/login';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
 
-import {postLoginData,} from '../../Hooks/DataFetching';
+import {getData, postLoginData} from '../../Hooks/DataFetching';
 
 export const LoginPage = () => {
 
@@ -12,10 +12,13 @@ export const LoginPage = () => {
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('');
   const [response, setResponse] = useState({});
-  const [logedIn, setLogedIn] = useState(false)
+  const [logedIn, setLogedIn] = useState(false);
+  const [userData, setUserData] = useState({});
 
   if(response === '200'){
     setLogedIn(true)
+    console.log('check to see if ever is true')
+    //this is never used -- delete
   }
 
   // for react router to change page
@@ -24,7 +27,7 @@ export const LoginPage = () => {
         navigate('/');
       }
 
-              const loginLink = () => {
+      const loginLink = () => {
         navigate('/login');
     }
 
@@ -42,28 +45,14 @@ export const LoginPage = () => {
     // hook version - componentDidMount
     useEffect(() => {
       if(response ===200){
+
         HomeLink();
       }
         if (localStorage.getItem('token')) {
-          setLogedIn(true)
-            // loginLink();
-           HomeLink();
+          setLogedIn(true);
         }
     },[response]);
 
-
-
-  // useEffect(() => {
-  //   dispatch(
-  //     signInAction({
-  //       user: user.first_name,
-  //       user_id: user.id,
-  //     })
-  //   );
-  //   if (user.id) {
-  //     navigate('/profile');
-  //   }
-  // }, []);
 
   const handlePasswordInput = (event) => {
     setPassword(event.target.value);
