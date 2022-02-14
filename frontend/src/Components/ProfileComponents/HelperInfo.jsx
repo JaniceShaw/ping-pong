@@ -1,30 +1,16 @@
 // import RobertoRodriguez from '../../Assets/placeholder/rodrigo-image.jpg';
 import RatingBalls from '../../Assets/icons/Rating balls.svg';
 import { useState } from 'react';
-import { EditHelper } from './EditHelper';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getData } from '../../Hooks/DataFetching';
 
 export const HelperInfo = (props) => {
-  const [edit_helper, setEditHelper] = useState(false);
-  const [helper_info, setHelperInfo] = useState(true);
+  const [user, setUserData] = useState([]);
 
-  console.log(props);
-
-  const handleEditToggle = () => {
-    if (edit_helper === false) {
-      setEditHelper(true) && setHelperInfo(false);
-    } else {
-      setEditHelper(false) && setHelperInfo(true);
-    }
-  };
-
-  const [user, setUser] = useState([]);
-  const [error, setError] = useState(null);
   useEffect(() => {
-    getData(`user/helper/${props.profileID}/`, setUser, setError);
-  }, []);
+    setUserData(props.profileData);
+  }, [props.profileData]);
 
   return (
     <>
@@ -60,16 +46,6 @@ export const HelperInfo = (props) => {
       </div>
 
       <div className='middle_container pt-10 flex space-x-10 place-content-center justify-center'>
-        {props.profileID === 'me' ? (
-          <button
-            onClick={handleEditToggle}
-            className='font-semibold rounded pl-4 pr-4 bg-secondary'>
-            Edit Profile
-          </button>
-        ) : null}
-
-        {edit_helper === false && helper_info === true ? null : <EditHelper />}
-
         <h1
           className={`pl-4 pr-4 rounded font-semibold border
             ${
