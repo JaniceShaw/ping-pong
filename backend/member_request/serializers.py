@@ -72,7 +72,7 @@ class MemberReviewRateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MemberReview
-        fields = ['rating']
+        fields = ['rating', 'text_content']
 
 
 # not sure if need these check
@@ -81,7 +81,7 @@ class HelperReviewRateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HelperReview
-        fields = ['rating']
+        fields = ['rating', 'text_content']
 
 
 # list view of open and busy jobs

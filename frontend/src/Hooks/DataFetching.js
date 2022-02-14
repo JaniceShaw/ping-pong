@@ -52,7 +52,7 @@ export const patchData = (urlEnding, id, bodyObject, errorState) => {
   }
   axios
     .patch(`${apiBaseURL}${urlEnding}${id}/`, formData, config)
-    .then(() => { })
+    .then(() => {})
     .catch((err) => {
       errorState(err.response.data);
     });
