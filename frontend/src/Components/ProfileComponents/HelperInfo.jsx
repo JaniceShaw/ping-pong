@@ -1,15 +1,16 @@
-import RatingBalls from '../../Assets/icons/Rating balls.svg';
 import { useState } from 'react';
 import { EditHelper } from './EditHelper';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getData } from '../../Hooks/DataFetching';
+import moment from 'moment';
+import { RatingCalculator } from '../../Helpers/RatingCalculator';
 
 export const HelperInfo = (props) => {
+  const [user, setUser] = useState([]);
+  const [error, setError] = useState(null);
   const [edit_helper, setEditHelper] = useState(false);
   const [helper_info, setHelperInfo] = useState(true);
-
-  console.log(props);
 
   const handleEditToggle = () => {
     if (edit_helper === false) {
@@ -19,22 +20,36 @@ export const HelperInfo = (props) => {
     }
   };
 
-  const [user, setUser] = useState([]);
-  const [error, setError] = useState(null);
-  
   useEffect(() => {
     getData(`user/helper/${props.profileID}/`, setUser, setError)
+   
   },
-  []
-  )
-  
+  [])
+
+
   return (
     <>
-      <div className='upper_container'>
+      <div className='upper_container pt-5'>
         <h1 className='text-4xl font-bold font-primary'>{user.username}</h1>
-        <div className='flex space-x-24'>
-          <h2 className='text-xl text-primary'>Last seen: {user.last_login}</h2>
-          <img src={RatingBalls} alt='here should be the rating' />
+        <div className='flex space-x-8 pb-5'>
+          <h2 className='text-base text-primary'>Last seen: {moment(user.last_login).format('DD/MM/YYYY')}</h2>
+
+          {user.helper_reviews?.map((review, i) => {
+                return <div className='pb-3' key={i}>
+                    <h1 className='uppercase text-lg text-primary_light font-semibold'>{review.rating}</h1>
+                  </div>
+                }
+              )}
+
+          {user ? (
+            <div className='flex'>
+              {[...Array (user.userRating)].map((x, i2) => (
+                <span key={i2} className='rating-ball mr-1'></span>
+              ))}
+            </div>
+          ) : (
+            <p>not rated yet</p>
+          )}
         </div>
        
 
@@ -43,7 +58,7 @@ export const HelperInfo = (props) => {
           <img className='rounded-lg' src={user.profile_pic}/>
           <div>
             <p className='text-primary pb-2'>{user.zip}, {user.city}</p>
-            <p className='text-primary'>{user.description}</p>
+            <p className='text-primary hover:truncate max-h-80 overflow-hidden text-ellipsis'>{user.description}</p>
           </div>
         </div>
 
@@ -78,8 +93,8 @@ export const HelperInfo = (props) => {
             }</h1> 
 
         <Link to='/job/private' className='flex justify-end'>
-          <button className='border-2 border-black rounded-lg bg-orange-400'>
-            send direct job-request
+          <button className='border border-black rounded bg-orange-400 pr-4 pl-4 font-semibold'>
+            Direct Request
           </button>
         </Link>
       </div>
