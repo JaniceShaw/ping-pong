@@ -49,7 +49,7 @@ export const HelperCard = (props) => {
                 )}
               </li>
               <li>
-                🎉 helper since {moment(helper.date_joined).format('D MMM Y')}
+                🎉 Helper since {moment(helper.date_joined).format('D MMM Y')}
               </li>
             </ul>
           </div>
