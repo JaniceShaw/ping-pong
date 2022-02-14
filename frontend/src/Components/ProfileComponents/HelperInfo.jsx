@@ -7,6 +7,7 @@ import { getData } from '../../Hooks/DataFetching';
 
 export const HelperInfo = (props) => {
   const [user, setUserData] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setUserData(props.profileData);
