@@ -1,17 +1,12 @@
 import axios from 'axios';
 
-// localStorage.setItem(
-//   'token',
-//   'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ0Njg5NTgyLCJqdGkiOiI0YjMzOWU2YWEzZTE0NDAzOGNlZWRlNDkzNjAwMzlkYSIsInVzZXJfaWQiOjR9.-XTRcalVZhHcupOq2nLojjWFfcXX7RpTqUhm3Gqbdac'
-// );
 const apiBaseURL = 'https://ping-pong.propulsion-learn.ch/backend/api/';
-const token = localStorage.getItem('token');
+let token = localStorage.getItem('token');
 const config = {
   headers: {
     Authorization: 'Bearer ' + token,
   },
 };
-
 
 export const getData = (urlEnding, stateToUpdate, errorState) => {
   axios
@@ -79,38 +74,29 @@ export const postLoginData = (urlEnding, bodyObject, errorState) => {
   axios
     .post(`${apiBaseURL}${urlEnding}`, formData, config)
     .then((response) => {
-      console.log('logged in!');
       errorState(response.status);
       localStorage.setItem('token', response.data.access);
+      UserToLocalStorage(response.data.access);
     })
     .catch((err) => {
       errorState(err.response.data);
     });
 };
 
-// export const getUserData = (errorState) => {
-//   axios
-//     .get(`${apiBaseURL}/user/me/`, config)
-//     .then((response) => {
-//       // stateToUpdate(response.data);
-//
-//       console.log('janice here', response.data)
-//        localStorage.setItem('user', response.data);
-//     })
-//     .catch((err) => {
-//       errorState(err.response);
-//     });
-// };
+function UserToLocalStorage(passedToken) {
+  axios
+    .get(`${apiBaseURL}user/me/`, {
+      headers: {
+        Authorization: 'Bearer ' + passedToken,
+      },
+    })
+    .then((response) => {
+      localStorage.setItem('userData', JSON.stringify(response.data));
+    })
+    .catch((err) => {});
+}
 
-
-// export const getUserData = (urlEnding, stateToUpdate, errorState) => {
-//   axios
-//     .get(`${apiBaseURL}${urlEnding}`, config)
-//     .then((response) => {
-//       stateToUpdate(response.data);
-//     })
-//     .catch((err) => {
-//       errorState(err.response);
-//     });
-// };
-
+export const logoutUser = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('userData');
+};
