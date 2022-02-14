@@ -1,37 +1,29 @@
 import DefaultProfile from '../../Assets/placeholder/profile_placeholder.png';
 import DefaultPost from '../../Assets/placeholder/job_placeholder.png';
 import React, { useEffect, useState } from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import { getData, patchData } from '../../Hooks/DataFetching';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import {Review} from "./Review";
+import {Rating} from "./Rating";
+import {RatingActive} from "./RatingActive"
 
 export const Job = () => {
-  const [jobData, setJobData] = useState(false);
-  const [errorState, setErrorState] = useState({});
-  // const [stateChange, setStateChange] = useState(false);
-  const [userData, setUserData] = useState (()=>{
-       // getting stored value
-    const saved = localStorage.getItem("userData");
-    const initialValue = JSON.parse(saved);
-    return initialValue || "";
-  })
+    const [jobData, setJobData] = useState(false);
+    const [errorState, setErrorState] = useState({});
+    const [rate, setRate] = useState(0);
+    const [userData, setUserData] = useState (()=>{
+    // getting stored value
+        const saved = localStorage.getItem("userData");
+        const initialValue = JSON.parse(saved);
+        return initialValue || "";
+    })
     const { jobID } = useParams();
 
   useEffect(() => {
     getData(`job/${jobID}/`, setJobData, setErrorState);
-
   }, [setJobData, setErrorState]);
-
-    // for react router to change page
-  // let navigate = useNavigate();
-  //     const JobLink = () => {
-  //       navigate(`/job/${jobID}/`);
-  //     }
-  //           const HomeLink = () => {
-  //       navigate(`/`);
-  //     }
-
 
   const handelStatusChange = ()=>{
           if (jobData.status !== 3 && userData.type === 2) {
@@ -43,15 +35,15 @@ export const Job = () => {
           }
   }
 
-    const handelStatusCompleteChange = (e)=>{
-        // change type to 2 after testing so only member can mark as complete
-        if(jobData.status !==1 && userData.type === 1) {
-            const statusUpdate = {status: 3, helper_status: 3}
-            patchData(`job/`, jobID, statusUpdate, setErrorState);
-            setTimeout(() => {
-                getData(`job/${jobID}/`, setJobData, setErrorState);
-            }, 200);
-        }
+  const handelStatusCompleteChange = (e)=>{
+    // change type to 1 after testing so only member can mark as complete
+    if(jobData.status !==1 && userData.type === 2) {
+        const statusUpdate = {status: 3, helper_status: 3}
+        patchData(`job/`, jobID, statusUpdate, setErrorState);
+        setTimeout(() => {
+            getData(`job/${jobID}/`, setJobData, setErrorState);
+        }, 200);
+    }
   }
 
   const handelMemberReview = (e)=>{
@@ -65,6 +57,11 @@ export const Job = () => {
         }, 200);
     }
   }
+
+  const HandelBalls = (e) =>{
+    console.log('balls', e.target.dataset.rate);
+    setRate(parseInt(e.target.dataset.rate));
+}
 
   console.log('jobdata', jobData);
   console.log('error', errorState);
@@ -226,69 +223,34 @@ export const Job = () => {
             <p className='text-amber-400'>{jobData.helper_username}</p>
           </div>
 
+            <Review
+                type={1}
+                userId = {userData.id}
+                handelSubmit = {handelMemberReview}
+                />
+            <RatingActive rate={rate} HandelBalls={HandelBalls} />
+
           <div className='helper-rating mb-6'>
-            <p className='w-1/2 font-bold inline-block'>Helper Rating</p>
-            <div className='w-1/2 inline-block text-right'>
-                <span className={helper_rating >= 1 ? 'rating-big-ball' : 'rating-big-gray-ball'} />
-                <span className={helper_rating >= 2 ? 'rating-big-ball' : 'rating-big-gray-ball' } />
-                <span className={helper_rating >= 3 ? 'rating-big-ball' : 'rating-big-gray-ball'} />
-              <span
-                className={
-                  helper_rating >= 4
-                    ? 'rating-big-ball'
-                    : 'rating-big-gray-ball'
-                } />
-              <span
-                className={
-                  helper_rating === 5
-                    ? 'rating-big-ball'
-                    : 'rating-big-gray-ball'
-                } />
-            </div>
-            <div className='bottom'>
-              <p>{jobData.helper_review ? jobData.helper_review.text_content: 'Available after completing'}</p>
-            </div>
+              <p className='w-1/2 font-bold inline-block'>Helper Rating</p>
+
+              <Rating rating={helper_rating} />
+
+              <div className='bottom'>
+                <p>{jobData.helper_review ? jobData.helper_review.text_content: 'Available after completing'}</p>
+              </div>
           </div>
 
           <div className='member-rating'>
-            <p className='w-1/2 font-bold inline-block'>Member Rating</p>
-            <div className='w-1/2 inline-block text-right'>
-              <span
-                className={
-                  member_rating >= 1
-                    ? 'rating-big-ball'
-                    : 'rating-big-gray-ball'
-                } />
-              <span
-                className={
-                  member_rating >= 2
-                    ? 'rating-big-ball'
-                    : 'rating-big-gray-ball'
-                } />
-              <span
-                className={
-                  member_rating >= 3
-                    ? 'rating-big-ball'
-                    : 'rating-big-gray-ball'
-                } />
-              <span
-                className={
-                  member_rating >= 4
-                    ? 'rating-big-ball'
-                    : 'rating-big-gray-ball'
-                } />
-              <span
-                className={
-                  member_rating === 5
-                    ? 'rating-big-ball'
-                    : 'rating-big-gray-ball'
-                } />
-            </div>
-            <div className='bottom'>
-              <p>{jobData.member_review ? jobData.member_review.text_content: 'Available after completing'}</p>
-            </div>
+              <p className='w-1/2 font-bold inline-block'>Member Rating</p>
+
+              <Rating rating={member_rating} />
+
+              <div className='bottom'>
+                <p>{jobData.member_review ? jobData.member_review.text_content: 'Available after completing'}</p>
+              </div>
           </div>
         </div>
+
       ) : null}
       {/* end helper info */}
       <Link to='/listing/jobs'>
