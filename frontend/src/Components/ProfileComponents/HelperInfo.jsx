@@ -1,4 +1,3 @@
-import RobertoRodriguez from '../../Assets/placeholder/rodrigo-image.jpg';
 import RatingBalls from '../../Assets/icons/Rating balls.svg';
 import { useState } from 'react';
 import { EditHelper } from './EditHelper';
@@ -10,7 +9,7 @@ export const HelperInfo = (props) => {
   const [edit_helper, setEditHelper] = useState(false);
   const [helper_info, setHelperInfo] = useState(true);
 
-  // console.log(props);
+  console.log(props);
 
   const handleEditToggle = () => {
     if (edit_helper === false) {
@@ -22,8 +21,6 @@ export const HelperInfo = (props) => {
 
   const [user, setUser] = useState([]);
   const [error, setError] = useState(null);
-
-  
   
   useEffect(() => {
     getData(`user/helper/${props.profileID}/`, setUser, setError)
@@ -80,9 +77,9 @@ export const HelperInfo = (props) => {
                 : 'Unverified'
             }</h1> 
 
-        <Link to='/private-job' className='flex justify-end'>
-          <button className='font-semibold bg-secondary rounded pl-4 pr-4 border-primary border'>
-            Direct Request
+        <Link to='/job/private' className='flex justify-end'>
+          <button className='border-2 border-black rounded-lg bg-orange-400'>
+            send direct job-request
           </button>
         </Link>
       </div>

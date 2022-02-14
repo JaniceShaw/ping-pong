@@ -2,29 +2,25 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Header } from './Components/Header/header';
 import { Footer } from './Components/Footer/footer';
 import {
-  ErrorPage,
   StartPage,
-  LoginPage,
-  RegistrationPage,
-  Validation,
-  CreateUserPage,
-  ListingPage,
-  HelperListPage,
-  JobListPage,
-  HelperProfilePage,
-  SearchPage,
-  AboutPage,
-  FAQPage,
-  SupportPage,
-  MyProfilePage,
-  NewJob,
-  PrivateJob,
-  Job,
-  ViewJob,
-  MemberProfilePage,
   RegisterHomepage,
   RegisterHelper,
   RegisterMember,
+  Validation,
+  LoginPage,
+  ListingPage,
+  HelperListPage,
+  JobListPage,
+  Job,
+  NewJob,
+  PrivateJob,
+  HelperProfilePage,
+  MemberProfilePage,
+  AboutPage,
+  FAQPage,
+  SupportPage,
+  ErrorPage,
+  // MyProfilePage,
 } from './Pages';
 
 export const RoutesIndex = () => {
@@ -35,22 +31,13 @@ export const RoutesIndex = () => {
         <main className='p-4 pt-20 container md:container md:mx-auto bg-bg_light'>
           <Routes>
             <Route path='/' element={<StartPage />} />
-            <Route path='registration' element={<RegistrationPage />} />
-            <Route path='validation' element={<Validation />} />
-            <Route path='create-user' element={<CreateUserPage />} />
-            <Route path='login' element={<LoginPage />} />
-            <Route path='search' element={<SearchPage />} />
-            <Route path='new-job' element={<NewJob />} />
-            <Route path='private-job' element={<PrivateJob />} />
-            <Route path='view-job' element={<ViewJob />}>
-              <Route path=':jobID' element={<ViewJob />} />
-            </Route>
-            <Route path='faq' element={<FAQPage />} />
-            <Route path='support' element={<SupportPage />} />
 
             <Route path='register' element={<RegisterHomepage />} />
-            <Route path='member-register' element={<RegisterMember />} />
-            <Route path='helper-register' element={<RegisterHelper />} />
+            <Route path='register/member' element={<RegisterMember />} />
+            <Route path='register/helper' element={<RegisterHelper />} />
+            <Route path='register/validation' element={<Validation />} />
+
+            <Route path='login' element={<LoginPage />} />
 
             <Route path='listing' element={<ListingPage />}>
               <Route index element={<HelperListPage />} />
@@ -58,16 +45,23 @@ export const RoutesIndex = () => {
               <Route path='jobs' element={<JobListPage />} />
             </Route>
 
-            <Route path='Job' element={<Job />} />
+            <Route path='job' element={<Job />}>
+              <Route path=':jobID' element={<Job />} />{' '}
+            </Route>
 
-            <Route path='member' element={<MemberProfilePage />} />
+            <Route path='job/new' element={<NewJob />} />
+            <Route path='job/private' element={<PrivateJob />} />
+
+            <Route path='member' element={<MemberProfilePage />}>
+              <Route path=':profileID' element={<MemberProfilePage/>} />
+            </Route>
 
             <Route path='helper' element={<HelperProfilePage />}>
               <Route path=':profileID' element={<HelperProfilePage />} />
             </Route>
 
-            <Route path='private-job' element={<PrivateJob />} />
-
+            <Route path='support' element={<SupportPage />} />
+            <Route path='faq' element={<FAQPage />} />
             <Route path='about' element={<AboutPage />} />
             <Route path='*' element={<ErrorPage />} />
           </Routes>

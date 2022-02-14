@@ -1,4 +1,3 @@
-import Anemarie from '../../Assets/placeholder/anemarie.png';
 import RatingBalls from '../../Assets/icons/Rating balls.svg';
 import { useState } from 'react';
 import { EditMember } from './EditMember';
@@ -38,7 +37,7 @@ export const MemberInfo = (props) => {
         
 
         <div className='quick_intro flex'>
-          <img src={user.profile_pic}/>
+          <img className='h-40' src={user.profile_pic}/>
           <div>
             <p className='text-primary pb-2'>{user.zip}, {user.city}</p>
             <p className='text-primary'>{user.description}</p>
