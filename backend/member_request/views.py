@@ -4,7 +4,7 @@ from member_request.serializers import ListMemberRequestSerializer, MemberReques
 from django.db.models import Q
 
 from rest_framework.permissions import IsAuthenticated
-from pingpong_app.permissions import IsOwnerOrReadOnly
+# from pingpong_app.permissions import IsOwnerOrReadOnly
 # from category.models import Category, SubCategory
 from member_request.models import MemberRequest, MemberReview, HelperReview
 
@@ -19,14 +19,12 @@ class CreateMemberRequest(CreateAPIView):
 class ListMemberRequestView(ListAPIView):
 
     serializer_class = ListMemberRequestSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         return MemberRequest.objects.filter(~Q(status=3))  # not equal to 3
 
 
-# todo: add security so that only the member that created the request can edit or delete it,
-#  also only a helper can except the job, change status
 class RetrieveUpdateDeleteJobView(RetrieveUpdateDestroyAPIView):
     """
     get:
@@ -41,7 +39,7 @@ class RetrieveUpdateDeleteJobView(RetrieveUpdateDestroyAPIView):
     queryset = MemberRequest.objects.all()
     serializer_class = MemberRequestSerializer
     lookup_field = 'id'
-    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+    permission_classes = [IsAuthenticated]
 
 
 # probably don't need this -- DELETE --
@@ -56,6 +54,13 @@ class CreateHelperReviewView(CreateAPIView):
 
     queryset = HelperReview.objects.all()
     serializer_class = HelperReviewSerializer
+    permission_classes = [IsAuthenticated]
+
+
+class CreateMemberReviewView(CreateAPIView):
+
+    queryset = MemberReview.objects.all()
+    serializer_class = MemberReviewSerializer
     permission_classes = [IsAuthenticated]
 
 

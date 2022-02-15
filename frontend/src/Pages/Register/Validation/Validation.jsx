@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 export const Validation = () => {
-
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
@@ -45,44 +44,46 @@ export const Validation = () => {
   const handleCodeInput = (event) => {
     setCode(event.target.value);
   };
-    return (
-      <>
-        <h1>Thanks for registering!</h1>
-        <br/>
-        <p>Please check your email for your verification code and login with it below.</p>
-        <br/>
-        <div className="registerForm">
-          <form action="">
-            <input
-              className="field-input"
-              type="email"
-              placeholder="Your E-Mail"
-              value={ email }
-              onChange={handleEmailInput}
-            />
-            <input
-              className="field-input"
-              type="password"
-              placeholder="Your Password"
-              value={ password }
-              onChange={handlePasswordInput}
-            />
-            <input
-              className="field-input"
-              type="text"
-              placeholder="E-Mail code"
-              value={ code }
-              onChange={handleCodeInput}
-            />
-            <input
-              type="submit"
-              className="field-submit"
-              value="Submit"
-              onClick={handleSignIn}
-            />
-          </form>
-        </div>
-      </>
-    );
-  };
-  
+  return (
+    <>
+      <h1>Thanks for registering!</h1>
+      <br />
+      <p>
+        Please check your email for your verification code and login with it
+        below.
+      </p>
+      <br />
+      <div className='registerForm'>
+        <form action=''>
+          <input
+            className='field-input'
+            type='email'
+            placeholder='Your E-Mail'
+            value={email}
+            onChange={handleEmailInput}
+          />
+          <input
+            className='field-input'
+            type='password'
+            placeholder='Your Password'
+            value={password}
+            onChange={handlePasswordInput}
+          />
+          <input
+            className='field-input'
+            type='text'
+            placeholder='E-Mail code'
+            value={code}
+            onChange={handleCodeInput}
+          />
+          <input
+            type='submit'
+            className='field-submit'
+            value='Submit'
+            onClick={handleSignIn}
+          />
+        </form>
+      </div>
+    </>
+  );
+};
