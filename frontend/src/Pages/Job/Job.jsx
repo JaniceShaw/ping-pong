@@ -239,9 +239,10 @@ export const Job = () => {
           Completed
         </button>
       </div>
-        <div className='member-contact'>
-            <a href="mailto:"
-        </div>
+        {jobData.helper_status === 1 ?
+        <p className='member-contact text-sm'>
+            <strong>Contact: </strong><a href={`mailto:${jobData.member_email}?subject=${jobData.title}`} className='underline underline-offset-2  hover:decoration-amber-400'>  {jobData.member_username}</a> if you would like more information on this job.
+        </p>:null}
 
       {/* Only show assigned helper if state is not pending */}
       {jobData.helper_status !== 1 ? (
@@ -257,6 +258,7 @@ export const Job = () => {
                         )}
                     </div>
                 </div>
+
                     <p className='bg-indigo-900 h-8 leading-6 text-amber-400 text-center rounded pt-1 pb-1 font-semibold w-full text-amber-400 mt-2'>{jobData.helper_username}</p>
             </div>
         </div>
