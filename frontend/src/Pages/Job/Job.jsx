@@ -280,7 +280,7 @@ export const Job = () => {
             : null
         }
 
-        {/* move this to the right place member */}
+        {/* member review shown if job not pending */}
         {jobData.helper_status !==1 ?(
             <div>
         <div className='member-rating mb-6 mt-5'>
@@ -291,7 +291,7 @@ export const Job = () => {
                 <p>{jobData.member_review ? jobData.member_review.text_content: 'Available after completing'}</p>
             </div>
         </div>
-        {/* move this to the right place Helper */}
+        {/* Helper review shown if job not pending */}
         <div className='helper-rating mb-6 mt-5'>
             <p className='w-1/2 font-bold inline-block'>Helper Rating</p>
             <Rating rating={helper_rating} />
@@ -303,40 +303,6 @@ export const Job = () => {
             </div>
             ):null}
 
-
-
-
-          {/*<div className='helper-rating mb-6'>*/}
-          {/*    <p className='w-1/2 font-bold inline-block'>Helper Rating</p>*/}
-
-          {/*    {jobData.helper_status === 3*/}
-          {/*        ? <RatingActive rate={rate} HandelBalls={HandelBalls} />*/}
-          {/*        : (*/}
-          {/*            <Rating rating={helper_rating} />*/}
-
-          {/*        )*/}
-
-          {/*    }*/}
-
-
-          {/*    <div className='bottom'>*/}
-          {/*      <p>{jobData.helper_review ? jobData.helper_review.text_content: 'Available after completing'}</p>*/}
-          {/*    </div>*/}
-          {/*</div>*/}
-
-         {/* <div className='member-rating'>*/}
-         {/*     <p className='w-1/2 font-bold inline-block'>Member Rating</p>*/}
-
-         {/*     <Rating rating={member_rating} />*/}
-
-         {/*     <div className='bottom'>*/}
-         {/*       <p>{jobData.member_review ? jobData.member_review.text_content: 'Available after completing'}</p>*/}
-         {/*     </div>*/}
-         {/* </div>*/}
-         {/*</div>*/}
-
-      {/*) : null}*/}
-      {/* end helper info */}
       <Link to='/listing/jobs'>
         <button className='btn mt-8'>Back to list</button>
       </Link>
