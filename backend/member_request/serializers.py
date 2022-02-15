@@ -24,6 +24,7 @@ class MemberRequestSerializer(serializers.ModelSerializer):
     # to get the logged-in user id
     member = serializers.PrimaryKeyRelatedField(read_only=True)
     member_username = serializers.CharField(source='member.username', read_only=True)
+    member_email = serializers.CharField(source='member.email', read_only=True)
     member_profile_pic = serializers.ImageField(source='member.profile_pic', read_only=True)
     helper_username = serializers.CharField(source='helper.username', read_only=True)
     helper_profile_pic = serializers.ImageField(source='helper.profile_pic', read_only=True)
