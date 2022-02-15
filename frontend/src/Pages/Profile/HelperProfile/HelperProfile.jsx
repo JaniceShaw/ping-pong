@@ -11,17 +11,17 @@ const userData = JSON.parse(localStorage.getItem('userData'));
 export const HelperProfilePage = () => {
   const [show_jobs, setShowJobs] = useState(false);
   const { profileID } = useParams();
-  const [user, setUser] = useState([]);
+  const [profile, setProfile] = useState([]);
   const [error, setError] = useState(null);
   const [edit_helper, setEditHelper] = useState(false);
   const [helper_info, setHelperInfo] = useState(true);
 
   useEffect(() => {
-    console.log('Hello from helper profile');
-    getData(`user/helper/${profileID}/`, setUser, setError);
+    console.log('Hello from useEffect');
+    getData(`user/helper/${profileID}/`, setProfile, setError);
   }, []);
 
-  // console.log(show_jobs);
+  console.log(profile);
 
   const handleEditToggle = () => {
     if (edit_helper === false) {
@@ -48,9 +48,9 @@ export const HelperProfilePage = () => {
             </button>
           </div>
           {!show_jobs ? (
-            <HelperInfo profileID={profileID} profileData={user} />
+            <HelperInfo profileID={profileID} profileData={profile} />
           ) : (
-            <HelperJobs profileID={profileID} profileData={user} />
+            <HelperJobs profileID={profileID} profileData={profile} />
           )}
 
           {profileID === 'me' && show_jobs === false ? (
