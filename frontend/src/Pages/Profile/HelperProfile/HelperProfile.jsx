@@ -17,8 +17,11 @@ export const HelperProfilePage = () => {
   const [helper_info, setHelperInfo] = useState(true);
 
   useEffect(() => {
+    console.log('Hello from helper profile');
     getData(`user/helper/${profileID}/`, setUser, setError);
   }, []);
+
+  // console.log(show_jobs);
 
   const handleEditToggle = () => {
     if (edit_helper === false) {
@@ -35,12 +38,12 @@ export const HelperProfilePage = () => {
           <div className='section flex  justify-evenly '>
             <button
               onClick={() => setShowJobs(false)}
-              className='border-2 border-black w-full'>
+              className={`w-full p-1 ${!show_jobs ? 'bg-secondary' : ''}`}>
               Profile
             </button>
             <button
               onClick={() => setShowJobs(true)}
-              className='border-2 border-black w-full'>
+              className={`w-full p-1 ${show_jobs ? 'bg-secondary' : ''}`}>
               Jobs
             </button>
           </div>
@@ -63,7 +66,7 @@ export const HelperProfilePage = () => {
           )}
         </div>
       ) : (
-        <h1>wrong page</h1>
+        <h1 className='text-2xl font-extrabold'>Wrong Page Buddy</h1>
       )}
     </>
   );

@@ -12,11 +12,11 @@ const config = {
   },
 };
 
-
 export const getData = (urlEnding, stateToUpdate, errorState) => {
   axios
     .get(`${apiBaseURL}${urlEnding}`, config)
     .then((response) => {
+      console.log(response.data);
       stateToUpdate(response.data);
     })
     .catch((err) => {
@@ -102,7 +102,6 @@ export const postLoginData = (urlEnding, bodyObject, errorState) => {
 //     });
 // };
 
-
 // export const getUserData = (urlEnding, stateToUpdate, errorState) => {
 //   axios
 //     .get(`${apiBaseURL}${urlEnding}`, config)
@@ -113,4 +112,3 @@ export const postLoginData = (urlEnding, bodyObject, errorState) => {
 //       errorState(err.response);
 //     });
 // };
-

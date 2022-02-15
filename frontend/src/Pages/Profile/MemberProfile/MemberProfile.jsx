@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import { MemberInfo } from '../../../Components/ProfileComponents/MemberInfo';
 import { MemberJobs } from '../../../Components/ProfileComponents/MemberJobs';
 import { EditMember } from '../../../Components/ProfileComponents/EditMember';
-import { useEffect } from 'react';
 import { getData } from '../../../Hooks/DataFetching';
+import { useEffect } from 'react';
 
 const userData = JSON.parse(localStorage.getItem('userData'));
 
@@ -13,57 +13,58 @@ export const MemberProfilePage = () => {
   const { profileID } = useParams();
   const [user, setUser] = useState([]);
   const [error, setError] = useState(null);
-  const [edit_member, setEditMember] = useState(false);
-  const [member_info, setMemberInfo] = useState(true);
+  const [editMember, setEditMember] = useState(false);
+  const [memberInfo, setMemberInfo] = useState(true);
 
   useEffect(() => {
-    getData(`user/member/${profileID}/`, setUser, setError);
+    console.log('Test from UseEffect');
+    getData('user/member/me/', setUser, setError);
   }, []);
 
+  console.log('Test');
+
   const handleEditToggle = () => {
-    if (edit_member === false) {
+    if (editMember === false) {
       setEditMember(true) && setMemberInfo(false);
     } else {
       setEditMember(false) && setMemberInfo(true);
     }
   };
+
   return (
     <>
-      {userData.type === 1 || profileID !== 'me' ? (
-        <div className='memberProfile'>
-          <div className='section flex  justify-evenly '>
-            <button
-              onClick={() => setShowJobs(false)}
-              className={`w-full p-1 ${!show_jobs ? 'bg-secondary' : ''}`}>
-              Profile
-            </button>
-            <button
-              onClick={() => setShowJobs(true)}
-              className={`w-full p-1 ${show_jobs ? 'bg-secondary' : ''}`}>
-              Jobs
-            </button>
-          </div>
-          {!show_jobs ? (
-            <MemberInfo profileID={profileID} profileData={user} />
-          ) : (
-            <MemberJobs profileID={profileID} profileData={user} />
-          )}
-
-          {profileID === 'me' && show_jobs === false ? (
-            <button
-              onClick={handleEditToggle}
-              className='font-semibold rounded pl-4 pr-4 bg-secondary'>
-              Edit Profile
-            </button>
-          ) : null}
-
-          {edit_member === false && member_info === true ? null : (
-            <EditMember />
-          )}
+      {/* {userData.type === 1 || profileID !== 'me' ? ( */}
+      <div className='member_profile'>
+        <div className='section flex  justify-evenly '>
+          <button
+            onClick={() => setShowJobs(false)}
+            className={`w-full p-1 ${!show_jobs ? 'bg-secondary' : ''}`}>
+            Profile
+          </button>
+          <button
+            onClick={() => setShowJobs(true)}
+            className={`w-full p-1 ${show_jobs ? 'bg-secondary' : ''}`}>
+            Jobs
+          </button>
         </div>
-      ) : (
-        <h1 className='text-2xl font-extrabold'>Wrong Page Buddy</h1>
-      )}
+        {!show_jobs ? (
+          <MemberInfo profileID={profileID} profileData={user} />
+        ) : (
+          <MemberJobs profileID={profileID} profileData={user} />
+        )}
+
+        {profileID === 'me' && show_jobs === false ? (
+          <button
+            onClick={handleEditToggle}
+            className='font-semibold rounded pl-4 pr-4 bg-secondary'>
+            Edit Profile
+          </button>
+        ) : null}
+
+        {editMember === false && memberInfo === true ? null : <EditMember />}
+      </div>
+      ) : (<h1 className='text-2xl font-extrabold'>Wrong Page Buddy</h1>)
+      <p>{error}</p>
     </>
   );
 };
