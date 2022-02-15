@@ -1,15 +1,17 @@
-import RatingBalls from '../../Assets/icons/Rating balls.svg';
 import { useState } from 'react';
 import { EditHelper } from './EditHelper';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getData } from '../../Hooks/DataFetching';
+import moment from 'moment';
+import { RatingCalculator } from '../../Helpers/RatingCalculator';
 
 export const HelperInfo = (props) => {
+  const [user, setUser] = useState('');
+  const [error, setError] = useState(null);
   const [edit_helper, setEditHelper] = useState(false);
   const [helper_info, setHelperInfo] = useState(true);
-
-  console.log(props);
+  let userRating = 0;
 
   const handleEditToggle = () => {
     if (edit_helper === false) {
@@ -19,31 +21,43 @@ export const HelperInfo = (props) => {
     }
   };
 
-  const [user, setUser] = useState([]);
-  const [error, setError] = useState(null);
-  
   useEffect(() => {
-    getData(`user/helper/${props.profileID}/`, setUser, setError)
-  },
-  []
-  )
-  
+    getData(`user/helper/${props.profileID}/`, setUser, setError);
+  }, []);
+
+  if (user) {
+    userRating = RatingCalculator(user.helper_reviews);
+  }
+
   return (
     <>
-      <div className='upper_container'>
+      <div className='upper_container pt-5'>
         <h1 className='text-4xl font-bold font-primary'>{user.username}</h1>
-        <div className='flex space-x-24'>
-          <h2 className='text-xl text-primary'>Last seen: {user.last_login}</h2>
-          <img src={RatingBalls} alt='here should be the rating' />
-        </div>
-       
+        <div className='flex space-x-8 pb-5'>
+          <h2 className='text-base text-primary'>
+            Last seen: {moment(user.last_login).fromNow()}
+          </h2>
 
+          {user ? (
+            <div className='flex'>
+              {[...Array(userRating)].map((x, i) => (
+                <span key={i} className='rating-ball mr-1'></span>
+              ))}
+            </div>
+          ) : (
+            <p>not rated yet</p>
+          )}
+        </div>
 
         <div className='quick_intro grid grid-cols-2 gap-3'>
-          <img className='rounded-lg' src={user.profile_pic}/>
+          <img className='rounded-lg' src={user.profile_pic} />
           <div>
-            <p className='text-primary pb-2'>{user.zip}, {user.city}</p>
-            <p className='text-primary'>{user.description}</p>
+            <p className='text-primary pb-2'>
+              {user.zip}, {user.city}
+            </p>
+            <p className='text-primary hover:truncate max-h-80 overflow-hidden text-ellipsis'>
+              {user.description}
+            </p>
           </div>
         </div>
 
@@ -65,21 +79,21 @@ export const HelperInfo = (props) => {
         </button> */}
 
         {edit_helper === false && helper_info === true ? null : <EditHelper />}
-        
-        <h1 className={`pl-4 pr-4 rounded font-semibold border
+
+        <h1
+          className={`pl-4 pr-4 rounded font-semibold border
             ${
               user.helper_verified
                 ? 'bg-primary text-secondary border border-secondary'
                 : 'bg-bg_light text-primary border-primary '
-            }`}>{
-              user.helper_verified
-                ? 'Verified'
-                : 'Unverified'
-            }</h1> 
+            }`}
+        >
+          {user.helper_verified ? 'Verified' : 'Unverified'}
+        </h1>
 
         <Link to='/job/private' className='flex justify-end'>
-          <button className='border-2 border-black rounded-lg bg-orange-400'>
-            send direct job-request
+          <button className='border border-black rounded bg-orange-400 pr-4 pl-4 font-semibold'>
+            Direct Request
           </button>
         </Link>
       </div>
@@ -92,16 +106,22 @@ export const HelperInfo = (props) => {
         </div>
 
         <div className='skills-card pt-5 pb-5'>
-            {user.helper_categories?.map((category, i) => {
-                return <div className='pb-3' key={i}>
-                    <h1 className='uppercase text-l font-semibold'>{category.name}</h1>
-                    {category.sub_categories.map((subcategory, i2) => {
-                        return <h2 className='text-sm pb-4' key={i2}>{subcategory.name}</h2>
-                      }
-                    )}
-                  </div>
-                }
-              )}
+          {user.helper_categories?.map((category, i) => {
+            return (
+              <div className='pb-3' key={i}>
+                <h1 className='uppercase text-l font-semibold'>
+                  {category.name}
+                </h1>
+                {category.sub_categories.map((subcategory, i2) => {
+                  return (
+                    <h2 className='text-sm pb-4' key={i2}>
+                      {subcategory.name}
+                    </h2>
+                  );
+                })}
+              </div>
+            );
+          })}
         </div>
       </div>
     </>

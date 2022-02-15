@@ -1,20 +1,30 @@
 import { Link } from 'react-router-dom';
 import RatingBalls from '../../Assets/icons/Rating balls.svg';
 
-export const Smallcard = () => {
+export const Smallcard = (props) => {
+  const job = props.job;
+  console.log(job);
   return (
     <>
-      <Link
-        to="/job"
-        className=" flex flex-col
-         border-2 border-black justify-center items-center"
-      >
-        <h2>
-          <b> Resume</b>
-        </h2>
-        <div className="lower-box flex">
-          <p>finished: 21.1.2022</p>
-          <img src={RatingBalls} alt="here should be the rating balls" />
+      <Link to={`/job/${job.id}`} className='pt-5'>
+        <div className='jobs-container flex flex-col justify-around items-center border border-blue-800 p-2 rounded-md'>
+          <div className='card-header mb-4 text-left flex'>
+            <h1 className='font-bold justify-items-start'>{job.job_title}</h1>
+          </div>
+          <div className='card-body grid grid-cols-2 gap-2 p-0'>
+            <div className='card-content'>
+              <h2>Finished: 21/2/2022</h2>
+              <div className='flex'>
+                {[...Array(5)].map((rate, i) =>
+                  i >= job.rating ? (
+                    <span className='rating-big-gray-ball' />
+                  ) : (
+                    <span key={i} className='rating-big-ball'></span>
+                  )
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       </Link>
     </>

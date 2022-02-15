@@ -10,15 +10,16 @@ export const HelperProfilePage = () => {
   
   return (
     <>
-      <div className='pt-3 section flex w-screen -mx-4 border-b border-b-1 border-primary grow-1 justify-center'>
+      <div className='list-container flex w-screen border-b -mx-4 border-primary bg-white z-40 relative'>
         <button
           onClick={() => setShowJobs(false)}
-          className='border-primary border-r-1 border-r text-2xl content-center'>
+          
+          className={`w-full p-1 ${!show_jobs ? 'bg-secondary' : ''}`}>
           Profile
         </button>
         <button
           onClick={() => setShowJobs(true)}
-          className='border-primary border-l-1 border-l text-2xl content-center'>
+          className={`w-full p-1 ${show_jobs ? 'bg-secondary' : ''}`}>
           Jobs
         </button>
       </div>

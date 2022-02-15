@@ -1,37 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import StudentsPicture from '../../Assets/UnDraw/students_undraw.png';
-import {getData} from "../../Hooks/DataFetching";
+import { logoutUser } from '../../Hooks/DataFetching';
 
 export const StartPage = () => {
   const [logedIn, setLogedIn] = useState(false);
-  const [userData, setUserData] = useState({});
-  const[errorState, setErrorState] = useState()
+  const [errorState, setErrorState] = useState();
 
   let navigate = useNavigate();
   const HomeLink = () => {
     navigate('/');
   };
 
-  const handleLogout = (event) => {
-    localStorage.clear();
-    setLogedIn(false);
+  const handleLogout = () => {
+    logoutUser();
     HomeLink();
   };
-
-  useEffect(() => {
-    if (localStorage.getItem('token')) {
-
-        getData(`user/me/`, setUserData, setErrorState);
-        localStorage.setItem("userData", JSON.stringify(userData))
-
-        setLogedIn(true);
-    }
-  }, [setLogedIn, setUserData]);
-
-  console.log(logedIn);
-  localStorage.setItem("userData", JSON.stringify(userData))
-  console.log(userData)
 
   return (
     <div className='Start w-full max-w-sm  text-center m-auto'>
@@ -57,11 +41,12 @@ export const StartPage = () => {
       </Link>
 
       <div className='loginButton mb-6'>
-        {logedIn ? (
+        {localStorage.getItem('token') ? (
           <Link
             to='/'
             className='underline underline-offset-2'
-            onClick={handleLogout}>
+            onClick={handleLogout}
+          >
             Logout
           </Link>
         ) : (
