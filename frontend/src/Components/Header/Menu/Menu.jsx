@@ -1,11 +1,11 @@
 import { useNavigate, Link } from 'react-router-dom';
+import { logoutUser } from '../../../Hooks/DataFetching';
 
 export const MenuBar = (props) => {
   let navigate = useNavigate();
 
-  const handleLogout = (event) => {
-    // event.preventDefault();
-    localStorage.clear();
+  const handleLogout = () => {
+    logoutUser();
     navigate('/');
   };
 
