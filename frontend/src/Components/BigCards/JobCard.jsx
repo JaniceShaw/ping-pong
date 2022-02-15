@@ -12,7 +12,7 @@ export const JobCard = (props) => {
   ];
 
   return (
-    <Link to={`/job/${job.id}`} className='card_container border-2 p-2'>
+    <Link to={`/job/${job.id}`} className='card_container'>
       <div className='card-title'>
         <h1 className='font-bold'>{job.title}</h1>
         <p className='text-xs font-normal'>
@@ -29,7 +29,7 @@ export const JobCard = (props) => {
           <p>{job.description}</p>
           <ul className='grid grid-cols-2 gap-2'>
             <li>
-              <span>💲</span>
+              <span>💸</span>
               {job.budget ? job.budget : 'not defined'}
             </li>
             <li>

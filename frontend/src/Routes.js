@@ -18,8 +18,7 @@ import {
   FAQPage,
   SupportPage,
   ErrorPage,
-
-  // MyProfilePage,
+  MyProfilePage,
 } from './Pages';
 
 export const RoutesIndex = () => {
@@ -52,6 +51,8 @@ export const RoutesIndex = () => {
             <Route path='member' element={<MemberProfilePage />}>
               <Route path=':profileID' element={<MemberProfilePage />} />
             </Route>
+
+            <Route path='profile' element={<MyProfilePage />} />
 
             <Route path='helper' element={<HelperProfilePage />}>
               <Route path=':profileID' element={<HelperProfilePage />} />

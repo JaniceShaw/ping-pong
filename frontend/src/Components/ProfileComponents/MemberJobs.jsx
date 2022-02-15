@@ -6,12 +6,10 @@ import { Smallcard } from '../SmallCards/SmallCard';
 export const MemberJobs = (props) => {
   const [allJobs, setAllJobs] = useState([]);
   const currentProfile = JSON.parse(localStorage.getItem('userData'));
-  console.log(currentProfile.username);
   useEffect(() => {
     getData('job/list/', setAllJobs);
   }, []);
 
-  console.log('hello form jobs');
   return (
     <>
       {allJobs && (

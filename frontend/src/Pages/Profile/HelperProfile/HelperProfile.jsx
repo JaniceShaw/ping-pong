@@ -17,11 +17,8 @@ export const HelperProfilePage = () => {
   const [helperInfo, setHelperInfo] = useState(true);
 
   useEffect(() => {
-    console.log('Hello from useEffect');
-    getData(`user/helper/${profileID}/`, setProfile, setError);
+    getData(`user/helper/${profileID || userData.id}/`, setProfile, setError);
   }, []);
-
-  console.log(profile);
 
   const handleEditToggle = () => {
     if (editHelper === false) {
@@ -35,7 +32,7 @@ export const HelperProfilePage = () => {
     <>
       {userData.type === 2 || profileID !== 'me' ? (
         <div className='helper_profile'>
-          <div className='section flex  justify-evenly '>
+          <div className='section flex  justify-evenly -mx-4 border-b border-primary bg-white'>
             <button
               onClick={() => setShowJobs(false)}
               className={`w-full p-1 ${!showJobs ? 'bg-secondary' : ''}`}
