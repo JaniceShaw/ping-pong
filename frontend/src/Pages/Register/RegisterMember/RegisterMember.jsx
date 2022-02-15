@@ -1,10 +1,8 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-
 export const RegisterMember = () => {
-
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   // const [user, setUser] = useState('');
@@ -42,42 +40,39 @@ export const RegisterMember = () => {
     setEmail(event.target.value);
   };
 
+  return (
+    <>
+      <h1>Register as Member</h1>
+      <br />
 
-    return (
-      <>
-        <h1>Register as Member</h1>
-        <br/>
-
-        <div className="registerForm">
-        <form action="">
+      <div className='registerForm'>
+        <form action=''>
           <input
-            className="field-input"
-            type="email"
-            placeholder="email"
-            value={ email }
+            className='field-input'
+            type='email'
+            placeholder='email'
+            value={email}
             onChange={handleEmailInput}
           />
           <input
-            className="field-input"
-            type="password"
-            placeholder="password"
-            value={ password }
+            className='field-input'
+            type='password'
+            placeholder='password'
+            value={password}
             onChange={handlePasswordInput}
           />
           <input
-            type="submit"
-            className="field-submit"
-            value="Register"
+            type='submit'
+            className='field-submit'
+            value='Register'
             onClick={handleSignIn}
           />
         </form>
       </div>
 
       <Link to='/about'>
-          <p>What is ping-pong?</p>
-        </Link>
-
-      </>
-    );
-  };
-  
+        <p>What is ping-pong?</p>
+      </Link>
+    </>
+  );
+};
