@@ -1,20 +1,79 @@
 import DefaultProfile from '../../Assets/placeholder/profile_placeholder.png';
 import DefaultPost from '../../Assets/placeholder/job_placeholder.png';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getData } from '../../Hooks/DataFetching';
+import {useParams} from 'react-router-dom';
+import { getData, patchData, postData } from '../../Hooks/DataFetching';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import {Review} from "./Review";
+import {Rating} from "./Rating";
+import {RatingActive} from "./RatingActive"
 
 export const Job = () => {
-  const [jobData, setJobData] = useState({});
-  const { jobID } = useParams();
+    const [jobData, setJobData] = useState(false);
+    const [errorState, setErrorState] = useState({});
+    const [rate, setRate] = useState(0);
+    const [userData, setUserData] = useState (()=>{
+    // getting stored value
+        const saved = localStorage.getItem("userData");
+        const initialValue = JSON.parse(saved);
+        return initialValue || "";
+    })
+    const { jobID } = useParams();
 
   useEffect(() => {
-    getData(`job/${jobID}/`, setJobData);
-  }, []);
+    getData(`job/${jobID}/`, setJobData, setErrorState);
+  }, [setJobData, setErrorState]);
 
-  console.log(jobData);
+  const handelStatusChange = ()=>{
+          if (jobData.status !== 3 && userData.type === 2) {
+              const statusUpdate = {status: 2, helper_status: 2, helper: userData.id}
+              patchData(`job/`, jobID, statusUpdate, setErrorState);
+              setTimeout(() => {
+                  getData(`job/${jobID}/`, setJobData, setErrorState);
+              }, 200);
+          }
+  }
+
+  const handelStatusCompleteChange = (e)=>{
+    // change type to 1 after testing so only member can mark as complete
+    if(jobData.status !==1 && userData.type === 2) {
+        const statusUpdate = {status: 3, helper_status: 3}
+        patchData(`job/`, jobID, statusUpdate, setErrorState);
+        setTimeout(() => {
+            getData(`job/${jobID}/`, setJobData, setErrorState);
+        }, 200);
+    }
+  }
+
+  const handelMemberReview = (event)=>{
+      event.preventDefault();
+      console.log('need get form data', event.target.text_content.value);
+      console.log('request id ', jobData.id)
+      const bodyObject = {
+          text_content:event.target.text_content.value,
+          rating:rate,
+          member_request:jobData.id,
+          helper:jobData.member
+      }
+    // working on this need make for to post review should make component
+    if(jobData.status === 3 && userData.id === jobData.helper) {
+
+        postData(`job/review/member/`, bodyObject, setErrorState);
+        setTimeout(() => {
+            getData(`job/${jobID}/`, setJobData, setErrorState);
+        }, 200);
+    }
+  }
+
+  const HandelBalls = (e) =>{
+    console.log('balls', e.target.dataset.rate);
+    setRate(parseInt(e.target.dataset.rate));
+}
+
+  console.log('jobdata', jobData);
+  console.log('error', errorState);
+  console.log('user type', userData.type);
 
   // urgency options //
   const urgency = jobData.urgency;
@@ -46,13 +105,14 @@ export const Job = () => {
 
   }
 
-  return (
+   return (
     <div className='job  w-full max-w-sm  m-auto'>
+        {/*{!jobData ? <div>loading</div>: null}*/}
       <h1 className='text-3xl font-bold mt-6'>{jobData.title}</h1>
 
-      <div className='space-x-2 avatar-group mt-5 z-3'>
+      <div className='space-x-2 avatar-group mt-5 z-3 mb-4'>
         <div className='avatar'>
-          <div className='mb-4 rounded-full w-10 h-10'>
+          <div className='rounded-full w-10 h-10'>
             {jobData.member_profile_pic ? (
               <img src={jobData.member_profile_pic} alt='profile pic' />
             ) : (
@@ -138,8 +198,10 @@ export const Job = () => {
           Pending
         </button>
 
+
         <button
-          className={`w-1/3 font-semibold pt-1 pb-1 inline-block
+            onClick = {handelStatusChange}
+            className={`w-1/3 font-semibold pt-1 pb-1 inline-block
             ${jobData.status === 2
               ? 'bg-amber-400 text-indigo-900'
               : 'bg-white text-slate-400'
@@ -148,7 +210,8 @@ export const Job = () => {
         </button>
 
         <button
-          className={`w-1/3 font-semibold pt-1 pb-1 inline-block
+            onClick={handelStatusCompleteChange}
+            className={`w-1/3 font-semibold pt-1 pb-1 inline-block
             ${jobData.status === 3
               ? 'bg-amber-400 text-indigo-900'
               : 'bg-white text-slate-400'
@@ -160,82 +223,73 @@ export const Job = () => {
       {/* Only show assigned helper if state is not pending */}
       {jobData.helper_status !== 1 ? (
         <div className='helper-info'>
-          <p>
-            <strong>Assigned Helper</strong>
-          </p>
-
-          <div className='bg-indigo-900 text-amber-400 justify-center text-center rounded pt-1 pb-1 font-semibold mb-6'>
-            <p className='text-amber-400'>{jobData.helper_username}</p>
-          </div>
-
-          <div className='helper-rating mb-6'>
-            <p className='w-1/2 font-bold inline-block'>Helper Rating</p>
-            <div className='w-1/2 inline-block text-right'>
-                <span className={helper_rating >= 1 ? 'rating-big-ball' : 'rating-big-gray-ball'} />
-                <span className={helper_rating >= 2 ? 'rating-big-ball' : 'rating-big-gray-ball' } />
-                <span className={helper_rating >= 3 ? 'rating-big-ball' : 'rating-big-gray-ball'} />
-              <span
-                className={
-                  helper_rating >= 4
-                    ? 'rating-big-ball'
-                    : 'rating-big-gray-ball'
-                } />
-              <span
-                className={
-                  helper_rating === 5
-                    ? 'rating-big-ball'
-                    : 'rating-big-gray-ball'
-                } />
+            <p><strong>Assigned Helper</strong></p>
+            <div className='space-x-2 avatar-group mt-1 z-3 mb-3'>
+                <div className='avatar'>
+                    <div className='rounded-full w-10 h-10'>
+                        {jobData.helper_profile_pic ? (
+                        <img src={jobData.helper_profile_pic} alt='profile pic' />
+                        ) : (
+                        <img src={DefaultProfile} alt='profile pic' />
+                        )}
+                    </div>
+                </div>
+                    <p className='bg-indigo-900 h-8 leading-6 text-amber-400 text-center rounded pt-1 pb-1 font-semibold w-full text-amber-400 mt-2'>{jobData.helper_username}</p>
             </div>
-            <div className='bottom'>
-              <p>{jobData.helper_review ? jobData.helper_review.text_content: 'Available after completing'}</p>
-            </div>
-          </div>
-
-          <div className='member-rating'>
-            <p className='w-1/2 font-bold inline-block'>Member Rating</p>
-            <div className='w-1/2 inline-block text-right'>
-              <span
-                className={
-                  member_rating >= 1
-                    ? 'rating-big-ball'
-                    : 'rating-big-gray-ball'
-                } />
-              <span
-                className={
-                  member_rating >= 2
-                    ? 'rating-big-ball'
-                    : 'rating-big-gray-ball'
-                } />
-              <span
-                className={
-                  member_rating >= 3
-                    ? 'rating-big-ball'
-                    : 'rating-big-gray-ball'
-                } />
-              <span
-                className={
-                  member_rating >= 4
-                    ? 'rating-big-ball'
-                    : 'rating-big-gray-ball'
-                } />
-              <span
-                className={
-                  member_rating === 5
-                    ? 'rating-big-ball'
-                    : 'rating-big-gray-ball'
-                } />
-            </div>
-            <div className='bottom'>
-              <p>{jobData.member_review ? jobData.member_review.text_content: 'Available after completing'}</p>
-            </div>
-          </div>
         </div>
       ) : null}
+
+        {/* check that job is completed and display review form depending on type of user logged in or if a review already exits */}
+        {jobData.status === 3 && userData.type === 2  && !jobData.member_review
+            ? (<div className='member-rating mb-6 mt-5'>
+                    <p className='mb-3'>Please leave your member rating and review</p>
+                    <p className='w-1/2 font-bold inline-block mb-5'>Member Rating</p>
+                    <RatingActive rate={rate} HandelBalls={HandelBalls} />
+                    <Review type={1} userId = {userData.id} rate={rate} handelSubmit = {handelMemberReview} />
+                </div>)
+            : null}
+
+        {jobData.status === 3  && userData.type === 1 && !jobData.helper_review
+            ? (
+                <Review type={2} userId = {userData.id} handelSubmit = {handelMemberReview} />
+            ) : null}
+
+
+          {/*<div className='helper-rating mb-6'>*/}
+          {/*    <p className='w-1/2 font-bold inline-block'>Helper Rating</p>*/}
+
+          {/*    {jobData.helper_status === 3*/}
+          {/*        ? <RatingActive rate={rate} HandelBalls={HandelBalls} />*/}
+          {/*        : (*/}
+          {/*            <Rating rating={helper_rating} />*/}
+
+          {/*        )*/}
+
+          {/*    }*/}
+
+
+          {/*    <div className='bottom'>*/}
+          {/*      <p>{jobData.helper_review ? jobData.helper_review.text_content: 'Available after completing'}</p>*/}
+          {/*    </div>*/}
+          {/*</div>*/}
+
+          {/*<div className='member-rating'>*/}
+          {/*    <p className='w-1/2 font-bold inline-block'>Member Rating</p>*/}
+
+          {/*    <Rating rating={member_rating} />*/}
+
+          {/*    <div className='bottom'>*/}
+          {/*      <p>{jobData.member_review ? jobData.member_review.text_content: 'Available after completing'}</p>*/}
+          {/*    </div>*/}
+          {/*</div>*/}
+         {/*</div>*/}
+
+      {/*) : null}*/}
       {/* end helper info */}
       <Link to='/listing/jobs'>
         <button className='btn mt-8'>Back to list</button>
       </Link>
     </div>
-  );
+
+  )
 };
