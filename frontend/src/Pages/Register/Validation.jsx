@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Select from 'react';
-
-// const options = [
-//   { value: '1', label: 'member' },
-//   { value: '2', label: 'helper' },
-// ];
+import Select from 'react-select';
 
 export const Validation = (props) => {
+  const options = [
+    { value: '1', label: 'member' },
+    { value: '2', label: 'helper' },
+  ];
+
   const apiBaseURL = 'https://ping-pong.propulsion-learn.ch/backend/api/';
 
   const [password, setPassword] = useState('');
@@ -17,8 +17,8 @@ export const Validation = (props) => {
   const [username, setUsername] = useState('');
   const [first_name, setFirstName] = useState('');
   const [last_name, setLastName] = useState('');
-  // const [type, setType] = useState('');
   const [error, setError] = useState('');
+  const [type, setType] = useState('');
 
   let navigate = useNavigate();
 
@@ -34,8 +34,7 @@ export const Validation = (props) => {
       code: code,
       first_name: first_name,
       last_name: last_name,
-
-      // type: type,
+      type: type,
     };
     const headers = new Headers({
       'Content-type': 'application/json',
@@ -195,13 +194,11 @@ export const Validation = (props) => {
               {last_name['lastname']}
             </div>
           </div>
-
-          {/* <Select
+          <Select
             className='pb-9'
             options={options}
             onChange={(e) => setType(e.value)}
-          /> */}
-
+          />
           <input
             type='submit'
             className='btn'
