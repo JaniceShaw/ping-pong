@@ -41,7 +41,7 @@ class RetrieveUpdateDeleteJobView(RetrieveUpdateDestroyAPIView):
     queryset = MemberRequest.objects.all()
     serializer_class = MemberRequestSerializer
     lookup_field = 'id'
-    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+    permission_classes = [IsAuthenticated]
 
 
 # probably don't need this -- DELETE --
@@ -56,6 +56,13 @@ class CreateHelperReviewView(CreateAPIView):
 
     queryset = HelperReview.objects.all()
     serializer_class = HelperReviewSerializer
+    permission_classes = [IsAuthenticated]
+
+
+class CreateMemberReviewView(CreateAPIView):
+
+    queryset = MemberReview.objects.all()
+    serializer_class = MemberReviewSerializer
     permission_classes = [IsAuthenticated]
 
 
