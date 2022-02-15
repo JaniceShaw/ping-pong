@@ -51,10 +51,11 @@ class MemberRequestSerializer(serializers.ModelSerializer):
 
 class MemberReviewSerializer(serializers.ModelSerializer):
     member_username = serializers.CharField(source='member_request.member.username', read_only=True)
+    job_title = serializers.CharField(source='member_request.title', read_only=True)
 
     class Meta:
         model = MemberReview
-        fields = ['id', 'text_content', 'rating', 'member_request', 'member_username', 'member']
+        fields = ['id', 'text_content', 'rating', 'member_request', 'member_username', 'member', 'job_title']
 
 
 class HelperReviewSerializer(serializers.ModelSerializer):
