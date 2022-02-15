@@ -13,6 +13,7 @@ export const getData = (urlEnding, stateToUpdate, errorState) => {
     .get(`${apiBaseURL}${urlEnding}`, config)
     .then((response) => {
       stateToUpdate(response.data);
+      // console.log(response.data);
     })
     .catch((err) => {
       errorState(err.response);
