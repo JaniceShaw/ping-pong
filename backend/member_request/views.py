@@ -4,7 +4,7 @@ from member_request.serializers import ListMemberRequestSerializer, MemberReques
 from django.db.models import Q
 
 from rest_framework.permissions import IsAuthenticated
-from pingpong_app.permissions import IsOwnerOrReadOnly
+# from pingpong_app.permissions import IsOwnerOrReadOnly
 # from category.models import Category, SubCategory
 from member_request.models import MemberRequest, MemberReview, HelperReview
 

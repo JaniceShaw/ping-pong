@@ -48,18 +48,38 @@ export const Job = () => {
 
   const handelMemberReview = (event)=>{
       event.preventDefault();
-      console.log('need get form data', event.target.text_content.value);
+      console.log('text content', event.target.text_content.value);
       console.log('request id ', jobData.id)
       const bodyObject = {
           text_content:event.target.text_content.value,
           rating:rate,
           member_request:jobData.id,
-          helper:jobData.member
+          member:jobData.member
       }
-    // working on this need make for to post review should make component
+
     if(jobData.status === 3 && userData.id === jobData.helper) {
 
         postData(`job/review/member/`, bodyObject, setErrorState);
+        setTimeout(() => {
+            getData(`job/${jobID}/`, setJobData, setErrorState);
+        }, 200);
+    }
+  }
+
+    const handelHelperReview = (event)=>{
+      event.preventDefault();
+      console.log('text content', event.target.text_content.value);
+      console.log('request id ', jobData.id)
+      const bodyObject = {
+          text_content:event.target.text_content.value,
+          rating:rate,
+          member_request:jobData.id,
+          helper:jobData.helper
+      }
+
+    if(jobData.status === 3 && userData.id === jobData.member) {
+
+        postData(`job/review/helper/`, bodyObject, setErrorState);
         setTimeout(() => {
             getData(`job/${jobID}/`, setJobData, setErrorState);
         }, 200);
@@ -247,12 +267,43 @@ export const Job = () => {
                     <RatingActive rate={rate} HandelBalls={HandelBalls} />
                     <Review type={1} userId = {userData.id} rate={rate} handelSubmit = {handelMemberReview} />
                 </div>)
-            : null}
+            : null
+        }
 
         {jobData.status === 3  && userData.type === 1 && !jobData.helper_review
-            ? (
-                <Review type={2} userId = {userData.id} handelSubmit = {handelMemberReview} />
-            ) : null}
+            ? (<div className='helper-rating mb-6 mt-5'>
+                    <p className='mb-3'>Please leave your helper rating and review</p>
+                    <p className='w-1/2 font-bold inline-block mb-5'>Helper Rating</p>
+                    <RatingActive rate={rate} HandelBalls={HandelBalls} />
+                    <Review type={2} userId = {userData.id} rate={rate} handelSubmit = {handelHelperReview} />
+                </div>)
+            : null
+        }
+
+        {/* move this to the right place member */}
+        {jobData.helper_status !==1 ?(
+            <div>
+        <div className='member-rating mb-6 mt-5'>
+            <p className='w-1/2 font-bold inline-block'>Member Rating</p>
+            <Rating rating={member_rating} />
+
+            <div className='bottom'>
+                <p>{jobData.member_review ? jobData.member_review.text_content: 'Available after completing'}</p>
+            </div>
+        </div>
+        {/* move this to the right place Helper */}
+        <div className='helper-rating mb-6 mt-5'>
+            <p className='w-1/2 font-bold inline-block'>Helper Rating</p>
+            <Rating rating={helper_rating} />
+
+            <div className='bottom'>
+                <p>{jobData.helper_review ? jobData.helper_review.text_content: 'Available after completing'}</p>
+            </div>
+        </div>
+            </div>
+            ):null}
+
+
 
 
           {/*<div className='helper-rating mb-6'>*/}
@@ -273,15 +324,15 @@ export const Job = () => {
           {/*    </div>*/}
           {/*</div>*/}
 
-          {/*<div className='member-rating'>*/}
-          {/*    <p className='w-1/2 font-bold inline-block'>Member Rating</p>*/}
+         {/* <div className='member-rating'>*/}
+         {/*     <p className='w-1/2 font-bold inline-block'>Member Rating</p>*/}
 
-          {/*    <Rating rating={member_rating} />*/}
+         {/*     <Rating rating={member_rating} />*/}
 
-          {/*    <div className='bottom'>*/}
-          {/*      <p>{jobData.member_review ? jobData.member_review.text_content: 'Available after completing'}</p>*/}
-          {/*    </div>*/}
-          {/*</div>*/}
+         {/*     <div className='bottom'>*/}
+         {/*       <p>{jobData.member_review ? jobData.member_review.text_content: 'Available after completing'}</p>*/}
+         {/*     </div>*/}
+         {/* </div>*/}
          {/*</div>*/}
 
       {/*) : null}*/}
