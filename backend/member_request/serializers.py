@@ -26,6 +26,7 @@ class MemberRequestSerializer(serializers.ModelSerializer):
     member_username = serializers.CharField(source='member.username', read_only=True)
     member_profile_pic = serializers.ImageField(source='member.profile_pic', read_only=True)
     helper_username = serializers.CharField(source='helper.username', read_only=True)
+    helper_profile_pic = serializers.CharField(source='helper.profile_pic', read_only=True)
     member_zip = serializers.CharField(source='member.zip', read_only=True)
     member_city = serializers.CharField(source='member.city', read_only=True)
     member_lon = serializers.CharField(source='member.lon', read_only=True)
