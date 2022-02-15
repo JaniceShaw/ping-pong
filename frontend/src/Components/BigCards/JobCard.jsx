@@ -15,8 +15,8 @@ export const JobCard = (props) => {
     <Link to={`/job/${job.id}`} className='card_container border-2 p-2'>
       <div className='card-title'>
         <h1 className='font-bold'>{job.title}</h1>
-        <p className='text-xs'>
-          created: {moment(job.created).fromNow()} from {job.member_username}
+        <p className='text-xs font-normal'>
+          Created: {moment(job.created).fromNow()} from {job.member_username}
         </p>
       </div>
       <div className='card-body p-0'>

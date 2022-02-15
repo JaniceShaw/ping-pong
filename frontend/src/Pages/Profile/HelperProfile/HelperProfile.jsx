@@ -38,12 +38,14 @@ export const HelperProfilePage = () => {
           <div className='section flex  justify-evenly '>
             <button
               onClick={() => setShowJobs(false)}
-              className={`w-full p-1 ${!showJobs ? 'bg-secondary' : ''}`}>
+              className={`w-full p-1 ${!showJobs ? 'bg-secondary' : ''}`}
+            >
               Profile
             </button>
             <button
               onClick={() => setShowJobs(true)}
-              className={`w-full p-1 ${showJobs ? 'bg-secondary' : ''}`}>
+              className={`w-full p-1 ${showJobs ? 'bg-secondary' : ''}`}
+            >
               Jobs
             </button>
           </div>
@@ -56,7 +58,8 @@ export const HelperProfilePage = () => {
           {profileID === 'me' && showJobs === false ? (
             <button
               onClick={handleEditToggle}
-              className='font-semibold rounded pl-4 pr-4 bg-secondary'>
+              className='font-semibold rounded pl-4 pr-4 bg-secondary'
+            >
               Edit Profile
             </button>
           ) : null}
