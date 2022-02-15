@@ -7,13 +7,12 @@ export const HelperInfo = (props) => {
 
   const user = props.profileData;
 
-  // if (user) {
-  //   userRating = RatingCalculator(user.helper_reviews);
-
   return (
     <>
-      <div className='upper_container pt-5'>
-        <h1 className='text-4xl font-bold font-primary'>{user.username}</h1>
+      <div className='pt-5'>
+        <h1 className='text-3xl capitalize font-bold font-primary'>
+          {user.username}
+        </h1>
         <div className='flex space-x-8 pb-5'>
           <h2 className='text-base text-primary'>
             Last seen: {moment(user.last_login).fromNow()}
@@ -47,19 +46,20 @@ export const HelperInfo = (props) => {
         </div>
       </div>
 
-      <div className='middle_container pt-10 flex space-x-10 place-content-center justify-center'>
+      <div className='pt-4 grid grid-cols-2 gap-2'>
         <h1
-          className={`pl-4 pr-4 rounded font-semibold border
+          className={`text-center rounded-md font-semibold border
             ${
               user.helper_verified
                 ? 'bg-primary text-secondary border border-secondary'
                 : 'bg-bg_light text-primary border-primary '
-            }`}>
-          {user.helper_verified ? 'Verified' : 'Unverified'}
+            }`}
+        >
+          {user.helper_verified ? '✓ Verified' : '❔ Unverified'}
         </h1>
 
-        <Link to='/job/private' className='flex justify-end'>
-          <button className='border border-black rounded bg-orange-400 pr-4 pl-4 font-semibold'>
+        <Link to='/job/private' className='flex'>
+          <button className='border border-primary rounded-md bg-orange-400 w-full font-semibold'>
             Direct Request
           </button>
         </Link>

@@ -14,7 +14,7 @@ import { AboutPage } from './About/About';
 import { FAQPage } from './FAQ/FAQ';
 import { SupportPage } from './Support/Support';
 import { ErrorPage } from './Error/Error';
-// import { MyProfilePage } from './Profile/MyProfile';
+import { MyProfilePage } from './Profile/MyProfile';
 
 export {
   StartPage,
@@ -33,5 +33,5 @@ export {
   FAQPage,
   SupportPage,
   ErrorPage,
-  // MyProfilePage,
+  MyProfilePage,
 };

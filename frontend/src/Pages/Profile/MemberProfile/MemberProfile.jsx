@@ -16,11 +16,8 @@ export const MemberProfilePage = () => {
   const [memberInfo, setMemberInfo] = useState(true);
 
   useEffect(() => {
-    // console.log('Test from UseEffect');
-    getData(`user/member/${profileID}/`, setProfile, setError);
+    getData(`user/member/${profileID || userData.id}/`, setProfile, setError);
   }, []);
-
-  console.log(profile);
 
   const handleEditToggle = () => {
     if (editMember === false) {
@@ -34,7 +31,7 @@ export const MemberProfilePage = () => {
     <>
       {userData.type === 1 || profileID !== 'me' ? (
         <div className='member_profile'>
-          <div className='section flex  justify-evenly '>
+          <div className='section flex justify-evenly -mx-4 border-b border-primary'>
             <button
               onClick={() => setShowJobs(false)}
               className={`w-full p-1 ${!show_jobs ? 'bg-secondary' : ''}`}
