@@ -9,8 +9,9 @@ const config = {
 };
 
 export const getData = (urlEnding, stateToUpdate, errorState) => {
+  console.log(config);
   axios
-    .get(`${apiBaseURL}${urlEnding}`, config)
+    .get(`${apiBaseURL}${urlEnding}`, token ? config : '')
     .then((response) => {
       stateToUpdate(response.data);
     })
