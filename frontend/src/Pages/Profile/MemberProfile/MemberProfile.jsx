@@ -11,20 +11,25 @@ export const MemberProfilePage = () => {
 
   return (
     <>
-      <div className='list-container flex w-screen border-b -mx-4 border-primary bg-white z-40 relative'>
+      <div className='list-container flex w-screen border-b -mx-4 border-primary bg-white z-30 relative'>
         <button
           onClick={() => setShowJobs(false)}
-          
-          className={`w-full p-1 ${!show_jobs ? 'bg-secondary' : ''}`}>
+          className={`w-full p-1 ${!show_jobs ? 'bg-secondary' : ''}`}
+        >
           Profile
         </button>
         <button
           onClick={() => setShowJobs(true)}
-          className={`w-full p-1 ${show_jobs ? 'bg-secondary' : ''}`}>
+          className={`w-full p-1 ${show_jobs ? 'bg-secondary' : ''}`}
+        >
           Jobs
         </button>
       </div>
-      {!show_jobs ? <MemberInfo profileID={profileID} /> : <MemberJobs profileID={profileID} />}
+      {!show_jobs ? (
+        <MemberInfo profileID={profileID} />
+      ) : (
+        <MemberJobs profileID={profileID} />
+      )}
     </>
   );
 };
