@@ -12,8 +12,8 @@ export const getData = (urlEnding, stateToUpdate, errorState) => {
   axios
     .get(`${apiBaseURL}${urlEnding}`, config)
     .then((response) => {
-      console.log(response.data);
       stateToUpdate(response.data);
+      // console.log(response.data);
     })
     .catch((err) => {
       errorState(err.response);

@@ -5,18 +5,20 @@ import { Smallcard } from '../SmallCards/SmallCard';
 
 export const MemberJobs = (props) => {
   const [allJobs, setAllJobs] = useState([]);
-  // const currentProfile = localStorage.getItem('username');
-  // console.log(currentProfile);
+  const currentProfile = JSON.parse(localStorage.getItem('userData'));
+  console.log(currentProfile.username);
   useEffect(() => {
     getData('job/list/', setAllJobs);
   }, []);
-  console.log(allJobs);
+
   return (
     <>
       {allJobs && (
         <div className='jobs-container flex flex-col border justify-around items-center'>
           {allJobs
-            .filter(({ member_username }) => member_username.includes('costas'))
+            .filter(({ member_username }) =>
+              member_username.includes(currentProfile.username)
+            )
             .map((job, i) => (
               <Smallcard key={i} job={job} />
             ))}

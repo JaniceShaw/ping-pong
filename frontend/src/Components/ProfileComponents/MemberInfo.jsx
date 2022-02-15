@@ -1,14 +1,8 @@
 import moment from 'moment';
-import { useEffect } from 'react';
-import { useState } from 'react';
 import RatingBalls from '../../Assets/icons/Rating balls.svg';
 
 export const MemberInfo = (props) => {
-  const [user, setUserData] = useState(null);
-
-  useEffect(() => {
-    setUserData(props.profileData);
-  }, [props.profileData]);
+  const user = props.profileData;
 
   return (
     <>
