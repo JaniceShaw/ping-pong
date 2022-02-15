@@ -28,14 +28,14 @@ export const AddressAutoComplete = (props) => {
   }
 
   useEffect(() => {
-    getData('user/helper/me/', setUser, setError);
+    setUser(JSON.parse(localStorage.getItem('userData')));
+    // getData('user/helper/me/', setUser, setError);
   }, [setUser]);
 
   return (
     <>
       <div className=''>
         <p>{error}</p>
-
         <GeoapifyContext apiKey={geocoderToken}>
           <GeoapifyGeocoderAutocomplete
             placeholder='Enter address here'
@@ -46,11 +46,12 @@ export const AddressAutoComplete = (props) => {
             filterByCountryCode={['ch']}
             // type={['amenity']}
             // lang={language}
-            // position={`${(coordUser.lat, coordUser.lon)}`}
+            // position={`${(user.lat, user.lon)}`}
             // position={position}
             // countryCodes={countryCodes}
             // filterByCircle={filterByCircle}
             // filterByRect={filterByRect}
+            biasByLocation={`${(user.lat, user.lon)}`}
             // biasByCountryCode={biasByCountryCode}
             // biasByCircle={biasByCircle}
             // biasByRect={biasByRect}
