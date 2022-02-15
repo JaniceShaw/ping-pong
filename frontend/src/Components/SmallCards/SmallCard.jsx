@@ -17,7 +17,7 @@ export const Smallcard = (props) => {
               <div className='flex'>
                 {[...Array(5)].map((rate, i) =>
                   i >= job.rating ? (
-                    <span className='rating-big-gray-ball' />
+                    <span key={i} className='rating-big-gray-ball' />
                   ) : (
                     <span key={i} className='rating-big-ball'></span>
                   )
