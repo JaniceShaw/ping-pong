@@ -6,7 +6,7 @@ export const ListingPage = () => {
 
   return (
     <>
-      <div className='list-container flex w-screen border-b -mx-4 border-primary bg-white z-40 relative'>
+      <div className='list-container flex w-screen border-b -mx-4 border-primary bg-white z-30 relative'>
         <Link
           to='jobs/'
           className='jobs_list w-full text-center border-r border-blue-900'

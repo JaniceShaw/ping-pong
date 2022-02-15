@@ -20,7 +20,7 @@ export const HelperCard = (props) => {
           {UserRating ? (
             <div className='flex'>
               {[...Array(UserRating)].map((x, i) => (
-                <span key={i} className='rating-ball mr-1'></span>
+                <span key={i} className='rating-ball'></span>
               ))}
             </div>
           ) : (
@@ -39,10 +39,10 @@ export const HelperCard = (props) => {
             <ul>
               <li>
                 <span>📍</span>
-                {helper.zip} {helper.city}
+                {helper.zip} {helper.city} {helper.distance.toFixed(0)} km
               </li>
               <li>
-                <span>💪</span>{' '}
+                <span>💪</span>
                 <ul>
                   {helper.helper_categories.map((category, i) => {
                     return <li key={i}>{category.name}</li>;

@@ -2,14 +2,16 @@ import { useState, useEffect } from 'react';
 import { AddressAutoComplete } from '../AddressAutoComplete/AddressAutoComplete';
 import { Category } from '../TailwindComp/CategorySelectJob';
 import './style.scss';
+import Moment from 'moment';
 
 export const ListingFilter = (props) => {
   const [filterDistance, setFilterDistance] = useState(null);
   const [filterCategory, setFilterCategory] = useState(null);
+  const user = JSON.parse(localStorage.getItem('userData'));
 
   const [coordUser, setCoordUser] = useState({
-    lat: 47.4007317,
-    lon: 8.537520210699132,
+    lat: user.lat,
+    lon: user.lon,
   });
 
   const distanceOptions = [10, 30, 50];
@@ -34,34 +36,35 @@ export const ListingFilter = (props) => {
   const filterEntries = () => {
     const filteredEntries = [...props.unfilteredList]
       .filter((entry) => {
-        // entry is a job
-        if (entry.title) {
-          const d = getDistanceFromLatLonInKm(
-            coordUser.lat,
-            coordUser.lon,
-            entry.member_lat,
-            entry.member_lon
+        // set distance to every entry like job or helper
+        const d = getDistanceFromLatLonInKm(
+          coordUser.lat,
+          coordUser.lon,
+          entry.member_lat || entry.lat,
+          entry.member_lon || entry.lon
+        );
+        entry['distance'] = d;
+
+        let categories = [];
+
+        // check what kind of entry it is [Job OR Helper]
+        if (entry.helper_categories) {
+          categories = Array.from(
+            entry.helper_categories,
+            (category) => category.name
           );
-          entry['distance'] = d;
-
-          if (!filterDistance || d < filterDistance) {
-            if (filterCategory === 'General' || !filterCategory) {
-              return entry;
-            }
-            if (entry.category_name === filterCategory) {
-              return entry;
-            }
-          }
-          // entry is a job
         } else {
-          const categories = entry.helper_categories;
-          let matchCategory = false;
+          categories = Array.from([entry.category_name]);
+        }
 
+        let matchCategory = false;
+
+        if (!filterDistance || d < filterDistance) {
           if (!filterCategory || filterCategory === 'General') {
             return entry;
           }
-          categories.forEach((mobile) => {
-            if (mobile.name === filterCategory) {
+          categories.forEach((category) => {
+            if (category === filterCategory) {
               matchCategory = true;
             }
           });
@@ -69,10 +72,18 @@ export const ListingFilter = (props) => {
             return entry;
           }
         }
-
         return '';
       })
-      .sort((a, b) => a.distance - b.distance);
+      .sort((a, b) => {
+        if (a.created) {
+          return (
+            new Moment(b.created).format('YYYYMMDD') -
+            new Moment(a.created).format('YYYYMMDD')
+          );
+        } else {
+          return a.distance - b.distance;
+        }
+      });
     props.filteredList(filteredEntries);
   };
 

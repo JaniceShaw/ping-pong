@@ -3,7 +3,9 @@ import { Header } from './Components/Header/header';
 import { Footer } from './Components/Footer/footer';
 import {
   StartPage,
-  Register,
+  RegisterHomepage,
+  RegisterHelper,
+  RegisterMember,
   Validation,
   LoginPage,
   ListingPage,
@@ -31,7 +33,9 @@ export const RoutesIndex = () => {
           <Routes>
             <Route path='/' element={<StartPage />} />
 
-            <Route path='register' element={<Register />} />
+            <Route path='register' element={<RegisterHomepage />} />
+            <Route path='register/member' element={<RegisterMember />} />
+            <Route path='register/helper' element={<RegisterHelper />} />
             <Route path='register/validation' element={<Validation />} />
 
             <Route path='login' element={<LoginPage />} />

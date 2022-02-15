@@ -1,6 +1,8 @@
 import { StartPage } from './Start/Start';
-import { Register } from './Register/Register';
-import { Validation } from './Register/Validation';
+import { RegisterHomepage } from './Register/RegisterHomepage';
+import { RegisterHelper } from './Register/RegisterHelper/RegisterHelper';
+import { RegisterMember } from './Register/RegisterMember/RegisterMember';
+import { Validation } from './Register/Validation/Validation';
 import { LoginPage } from './Login/Login';
 import { ListingPage } from './Listing/Listing.jsx';
 import { HelperListPage } from './Listing/HelperList/HelperList';
@@ -18,7 +20,9 @@ import { ErrorPage } from './Error/Error';
 
 export {
   StartPage,
-  Register,
+  RegisterHomepage,
+  RegisterHelper,
+  RegisterMember,
   Validation,
   LoginPage,
   ListingPage,
