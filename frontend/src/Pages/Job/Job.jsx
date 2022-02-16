@@ -275,9 +275,11 @@ export const Job = () => {
               </div>
             </div>
 
-            <p className='bg-indigo-900 h-8 leading-6 text-amber-400 text-center rounded pt-1 pb-1 font-semibold w-full text-amber-400 mt-2'>
-              {jobData.helper_username}
-            </p>
+            <Link className='w-full' to={`/helper/${jobData.helper}`}>
+              <p className='bg-primary h-8 leading-6 text-secondary text-center rounded pt-1 pb-1 font-semibold w-full text-secondary mt-2'>
+                {jobData.helper_username}
+              </p>
+            </Link>
           </div>
         </div>
       ) : null}

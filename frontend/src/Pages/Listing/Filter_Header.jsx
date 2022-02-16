@@ -14,7 +14,7 @@ export const FilterHeader = (props) => {
         className='relative font-normal border-b border-primary h-8  w-full bg-white flex justify-between items-center px-4 z-40'
       >
         <p>
-          {props.filteredList.length}|{props.unfilteredList.length}{' '}
+          {props.filteredList.length} / {props.unfilteredList.length}{' '}
           {props.ListItemName}
         </p>
         <p className='flex'>

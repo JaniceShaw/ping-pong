@@ -5,7 +5,7 @@
     @apply grid grid-cols-2 gap-4;
     .image-btn {
       .btn-override {
-        @apply btn border-gray-200 shadow-lg bg-white text-primary w-full;
+        @apply btn border-gray-200 shadow-lg bg-white text-primary w-full hover:bg-secondary hover:border-transparent;
       }
     }
     .image-name {
