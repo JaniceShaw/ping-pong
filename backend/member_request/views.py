@@ -1,6 +1,6 @@
 # from django.shortcuts import render
 from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView, CreateAPIView
-from member_request.serializers import ListMemberRequestSerializer, MemberRequestSerializer, MemberReviewSerializer, HelperReviewSerializer
+from member_request.serializers import ListMemberRequestSerializer, MemberRequestSerializer, MemberReviewSerializer, HelperReviewSerializer, ListJobsSerializer
 from django.db.models import Q
 
 from rest_framework.permissions import IsAuthenticated
@@ -85,3 +85,21 @@ class HelperReviewsView(ListAPIView):
 
     def get_queryset(self):
         return HelperReview.objects.filter(helper=self.kwargs['helper_id'])
+
+
+class ListHelperJobsView(ListAPIView):
+    serializer_class = ListJobsSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_url_kwarg = 'helper_id'
+
+    def get_queryset(self):
+        return ListJobsSerializer.objects.filter(helper=self.kwargs['helper_id'])
+
+
+class ListMemberJobsView(ListAPIView):
+    serializer_class = ListJobsSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_url_kwarg = 'member_id'
+
+    def get_queryset(self):
+        return ListJobsSerializer.objects.filter(member=self.kwargs['member_id'])

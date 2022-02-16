@@ -1,6 +1,8 @@
 from django.urls import path
 
-from member_request.views import ListMemberRequestView, RetrieveUpdateDeleteJobView, ListMemberReviewView, CreateMemberRequest, ListHelperReviewView, HelperReviewsView, CreateHelperReviewView, CreateMemberReviewView
+from member_request.views import ListMemberRequestView, RetrieveUpdateDeleteJobView, ListMemberReviewView, \
+    CreateMemberRequest, ListHelperReviewView, HelperReviewsView, CreateHelperReviewView, CreateMemberReviewView, \
+    ListMemberJobsView, ListHelperJobsView
 
 urlpatterns = [
     # job request endpoints
@@ -12,7 +14,11 @@ urlpatterns = [
     path('review/member/', CreateMemberReviewView.as_view()),
     path('list/review/member/', ListMemberReviewView.as_view()),
     path('list/review/helper/', ListHelperReviewView.as_view()),
+
+    # for helper / member profile - jobs - (not logged in user)
+    path('helper/<int:helper_id>/', ListHelperJobsView()),
+    path('member/<int:member_id>/', ListMemberJobsView()),
+
     path('review/helper/<int:helper_id>/', HelperReviewsView.as_view()),
     # path('list/', ListMemberRequests.as_view()),
-
 ]
