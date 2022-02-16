@@ -16,8 +16,8 @@ urlpatterns = [
     path('list/review/helper/', ListHelperReviewView.as_view()),
 
     # for helper / member profile - jobs - (not logged in user)
-    path('helper/<int:helper_id>/', ListHelperJobsView()),
-    path('member/<int:member_id>/', ListMemberJobsView()),
+    path('helper/<int:helper_id>/', ListHelperJobsView.as_view()),
+    path('member/<int:member_id>/', ListMemberJobsView.as_view()),
 
     path('review/helper/<int:helper_id>/', HelperReviewsView.as_view()),
     # path('list/', ListMemberRequests.as_view()),

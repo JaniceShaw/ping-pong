@@ -118,4 +118,4 @@ class ListJobsSerializer(serializers.ModelSerializer):
     class Meta:
         model = MemberRequest
         fields = ['id', 'member', 'helper', 'title', 'description', 'urgency', 'status', 'member_username',
-                  'helper_username', 'updated', 'member_review', 'created']
+                  'helper_username', 'updated', 'member_review', 'helper_review', 'created']

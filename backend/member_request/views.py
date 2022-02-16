@@ -93,7 +93,7 @@ class ListHelperJobsView(ListAPIView):
     lookup_url_kwarg = 'helper_id'
 
     def get_queryset(self):
-        return ListJobsSerializer.objects.filter(helper=self.kwargs['helper_id'])
+        return MemberRequest.objects.filter(helper=self.kwargs['helper_id'])
 
 
 class ListMemberJobsView(ListAPIView):
@@ -102,4 +102,4 @@ class ListMemberJobsView(ListAPIView):
     lookup_url_kwarg = 'member_id'
 
     def get_queryset(self):
-        return ListJobsSerializer.objects.filter(member=self.kwargs['member_id'])
+        return MemberRequest.objects.filter(member=self.kwargs['member_id'])
