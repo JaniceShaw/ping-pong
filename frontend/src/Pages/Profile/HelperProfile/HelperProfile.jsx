@@ -6,9 +6,8 @@ import { EditHelper } from '../../../Components/ProfileComponents/EditHelper';
 import { useEffect } from 'react';
 import { getData } from '../../../Hooks/DataFetching';
 
-const userData = JSON.parse(localStorage.getItem('userData'));
-
 export const HelperProfilePage = () => {
+  const userData = JSON.parse(localStorage.getItem('userData'));
   const [showJobs, setShowJobs] = useState(false);
   const { profileID } = useParams();
   const [profile, setProfile] = useState([]);
