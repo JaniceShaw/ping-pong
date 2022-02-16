@@ -108,4 +108,15 @@ class ListMemberRequestSerializer(serializers.ModelSerializer):
                   'status', 'member_review', 'helper_review']
 
 
-# to get all the reviews of a given helper
+# class ListHelperJobsSerializer(serializers.ModelSerializer):
+
+class ListJobsSerializer(serializers.ModelSerializer):
+    member_username = serializers.CharField(source='member.username', read_only=True)
+    helper_username = serializers.CharField(source='helper.username', read_only=True)
+    member_review = MemberReviewRateSerializer(many=False)
+    helper_review = HelperReviewRateSerializer(many=False)
+
+    class Meta:
+        model = MemberRequest
+        fields = ['id', 'member', 'helper', 'title', 'description', 'urgency', 'status', 'member_username',
+                  'helper_username', 'updated', 'member_review', 'helper_review', 'created']
