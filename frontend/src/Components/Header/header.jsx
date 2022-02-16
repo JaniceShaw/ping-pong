@@ -7,14 +7,13 @@ import './Menu/Hamburgers/hamburgers.scss';
 export const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
 
-
   return (
     <>
       <header
         id='outer-container'
         className='flex justify-between items-center px-4 h-20 shadow-sm fixed bg-white w-full border-b border-primary z-50'
       >
-        <Link className='h-full py-2' to='/'>
+        <Link className='h-full py-2' to='/' onClick={() => setShowMenu(false)}>
           <img
             className='object-contain h-full'
             src={Logo}

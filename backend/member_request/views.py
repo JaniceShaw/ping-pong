@@ -3,7 +3,7 @@ from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView, C
 from member_request.serializers import ListMemberRequestSerializer, MemberRequestSerializer, MemberReviewSerializer, HelperReviewSerializer, ListJobsSerializer
 from django.db.models import Q
 
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 # from pingpong_app.permissions import IsOwnerOrReadOnly
 # from category.models import Category, SubCategory
 from member_request.models import MemberRequest, MemberReview, HelperReview
@@ -19,14 +19,12 @@ class CreateMemberRequest(CreateAPIView):
 class ListMemberRequestView(ListAPIView):
 
     serializer_class = ListMemberRequestSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         return MemberRequest.objects.filter(~Q(status=3))  # not equal to 3
 
 
-# todo: add security so that only the member that created the request can edit or delete it,
-#  also only a helper can except the job, change status
 class RetrieveUpdateDeleteJobView(RetrieveUpdateDestroyAPIView):
     """
     get:

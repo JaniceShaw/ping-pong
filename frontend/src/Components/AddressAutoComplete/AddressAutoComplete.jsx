@@ -15,8 +15,8 @@ export const AddressAutoComplete = (props) => {
   function onPlaceSelect(location) {
     if (!location) {
       props.passAddress({
-        lat: user.member_lat,
-        lon: user.member_lon,
+        lat: user?.member_lat,
+        lon: user?.member_lon,
       });
     } else {
       props.passAddress(location.properties);
@@ -28,8 +28,11 @@ export const AddressAutoComplete = (props) => {
   }
 
   useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem('userData')));
-    // getData('user/helper/me/', setUser, setError);
+    if (localStorage.getItem('userData')) {
+      setUser(JSON.parse(localStorage.getItem('userData')));
+    } else {
+      setUser({ street: 'Heinrichstrasse 200', zip: 8005, city: 'Zurich' });
+    }
   }, [setUser]);
 
   return (

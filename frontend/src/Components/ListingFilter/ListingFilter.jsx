@@ -10,8 +10,8 @@ export const ListingFilter = (props) => {
   const user = JSON.parse(localStorage.getItem('userData'));
 
   const [coordUser, setCoordUser] = useState({
-    lat: user.lat,
-    lon: user.lon,
+    lat: user?.lat || 47,
+    lon: user?.lon || 8.5,
   });
 
   const distanceOptions = [10, 30, 50];

@@ -10,10 +10,7 @@ export const HelperCard = (props) => {
 
   return (
     <>
-      <Link
-        to={`/helper/${helper.id}`}
-        className='card_container justify-around border border-blue-800 p-2 rounded-md'
-      >
+      <Link to={`/helper/${helper.id}`} className='card_container'>
         <div className='card-header mb-4'>
           <h1 className='font-bold'>{helper.username}</h1>
 
@@ -24,7 +21,7 @@ export const HelperCard = (props) => {
               ))}
             </div>
           ) : (
-            <p>not rated yet</p>
+            <p>Not rated yet</p>
           )}
         </div>
         <div className='card-body grid grid-cols-2 gap-2 p-0'>
@@ -49,10 +46,7 @@ export const HelperCard = (props) => {
                   })}
                 </ul>
               </li>
-              {/* <li>
-                <span>🎉</span>
-                helper since {moment(helper.date_joined).format('D MMM Y')}
-              </li> */}
+
               <li>
                 <span>♥️</span>
                 {helper.helper_reviews.length} jobs completed
@@ -61,7 +55,7 @@ export const HelperCard = (props) => {
           </div>
         </div>
         <p className='text-xs'>
-          helper since {moment(helper.date_joined).format('D MMM Y')}
+          Helper since {moment(helper.date_joined).format('D MMM Y')}
         </p>
       </Link>
     </>

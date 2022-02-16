@@ -1,8 +1,6 @@
 import { StartPage } from './Start/Start';
-import { RegisterHomepage } from './Register/RegisterHomepage';
-import { RegisterHelper } from './Register/RegisterHelper/RegisterHelper';
-import { RegisterMember } from './Register/RegisterMember/RegisterMember';
-import { Validation } from './Register/Validation/Validation';
+import { Register } from './Register/Register';
+import { Validation } from './Register/Validation';
 import { LoginPage } from './Login/Login';
 import { ListingPage } from './Listing/Listing.jsx';
 import { HelperListPage } from './Listing/HelperList/HelperList';
@@ -16,13 +14,11 @@ import { AboutPage } from './About/About';
 import { FAQPage } from './FAQ/FAQ';
 import { SupportPage } from './Support/Support';
 import { ErrorPage } from './Error/Error';
-// import { MyProfilePage } from './Profile/MyProfile';
+import { MyProfilePage } from './Profile/MyProfile';
 
 export {
   StartPage,
-  RegisterHomepage,
-  RegisterHelper,
-  RegisterMember,
+  Register,
   Validation,
   LoginPage,
   ListingPage,
@@ -37,5 +33,5 @@ export {
   FAQPage,
   SupportPage,
   ErrorPage,
-  // MyProfilePage,
+  MyProfilePage,
 };

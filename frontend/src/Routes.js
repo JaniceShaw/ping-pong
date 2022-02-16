@@ -3,9 +3,7 @@ import { Header } from './Components/Header/header';
 import { Footer } from './Components/Footer/footer';
 import {
   StartPage,
-  RegisterHomepage,
-  RegisterHelper,
-  RegisterMember,
+  Register,
   Validation,
   LoginPage,
   ListingPage,
@@ -20,7 +18,7 @@ import {
   FAQPage,
   SupportPage,
   ErrorPage,
-  // MyProfilePage,
+  MyProfilePage,
 } from './Pages';
 
 export const RoutesIndex = () => {
@@ -32,9 +30,7 @@ export const RoutesIndex = () => {
           <Routes>
             <Route path='/' element={<StartPage />} />
 
-            <Route path='register' element={<RegisterHomepage />} />
-            <Route path='register/member' element={<RegisterMember />} />
-            <Route path='register/helper' element={<RegisterHelper />} />
+            <Route path='register' element={<Register />} />
             <Route path='register/validation' element={<Validation />} />
 
             <Route path='login' element={<LoginPage />} />
@@ -53,8 +49,10 @@ export const RoutesIndex = () => {
             <Route path='job/private' element={<PrivateJob />} />
 
             <Route path='member' element={<MemberProfilePage />}>
-              <Route path=':profileID' element={<MemberProfilePage/>} />
+              <Route path=':profileID' element={<MemberProfilePage />} />
             </Route>
+
+            <Route path='profile' element={<MyProfilePage />} />
 
             <Route path='helper' element={<HelperProfilePage />}>
               <Route path=':profileID' element={<HelperProfilePage />} />

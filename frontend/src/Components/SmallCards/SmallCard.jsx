@@ -1,28 +1,34 @@
+import moment from 'moment';
 import { Link } from 'react-router-dom';
-import RatingBalls from '../../Assets/icons/Rating balls.svg';
 
 export const Smallcard = (props) => {
   const job = props.job;
   console.log(job);
   return (
     <>
-      <Link to={`/job/${job.id}`} className='pt-5'>
-        <div className='jobs-container flex flex-col justify-around items-center border border-blue-800 p-2 rounded-md'>
-          <div className='card-header mb-4 text-left flex'>
-            <h1 className='font-bold justify-items-start'>{job.job_title}</h1>
-          </div>
-          <div className='card-body grid grid-cols-2 gap-2 p-0'>
-            <div className='card-content'>
-              <h2>Finished: 21/2/2022</h2>
-              <div className='flex'>
-                {[...Array(5)].map((rate, i) =>
+      <Link to={`/job/${job.id}`} className='card_container p-2'>
+        <div className='card-header'>
+          <p className='font-bold justify-items-start capitalize'>
+            {job.title || job.job_title}
+          </p>
+          <p>For: {job.member_username || 'Bruna Burnhilde'}</p>
+        </div>
+        <div className='card-body p-0'>
+          <div className='card-content'>
+            {job.rating ? (
+              <p>Completed: {moment(job.created).format('DD MMM YY')}</p>
+            ) : (
+              <p>Urgency: {job.urgency}</p>
+            )}
+            <div className='flex'>
+              {job.rating &&
+                [...Array(5)].map((rate, i) =>
                   i >= job.rating ? (
                     <span key={i} className='rating-big-gray-ball' />
                   ) : (
                     <span key={i} className='rating-big-ball'></span>
                   )
                 )}
-              </div>
             </div>
           </div>
         </div>
