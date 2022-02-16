@@ -1,0 +1,15 @@
+.btns-container {
+  @apply grid gap-4;
+
+  .image-btn-container {
+    @apply grid grid-cols-2 gap-4;
+    .image-btn {
+      .btn-override {
+        @apply btn border-gray-200 shadow-lg bg-white text-primary w-full;
+      }
+    }
+    .image-name {
+      @apply text-primary text-left flex items-center text-xs;
+    }
+  }
+}
