@@ -5,10 +5,12 @@ import { HelperJobs } from '../../../Components/ProfileComponents/HelperJobs';
 import { EditHelper } from '../../../Components/ProfileComponents/EditHelper';
 import { useEffect } from 'react';
 import { getData } from '../../../Hooks/DataFetching';
+import { useNavigate } from 'react-router-dom';
 
-const userData = JSON.parse(localStorage.getItem('userData'));
+
 
 export const HelperProfilePage = () => {
+  const userData = JSON.parse(localStorage.getItem('userData'));
   const [showJobs, setShowJobs] = useState(false);
   const { profileID } = useParams();
   const [profile, setProfile] = useState([]);
@@ -16,7 +18,16 @@ export const HelperProfilePage = () => {
   const [editHelper, setEditHelper] = useState(false);
   const [helperInfo, setHelperInfo] = useState(true);
 
+  let navigate = useNavigate();
+  const HomeLink = () => {
+    navigate('/');
+};
+
   useEffect(() => {
+    if(!localStorage.getItem('token')){
+      HomeLink();
+    }
+
     getData(`user/helper/${profileID || userData.id}/`, setProfile, setError);
   }, []);
 
@@ -30,7 +41,7 @@ export const HelperProfilePage = () => {
 
   return (
     <>
-      {userData.type === 2 || profileID !== 'me' ? (
+      {userData?.type === 2 || profileID !== 'me' ? (
         <div className='helper_profile'>
           <div className='section flex  justify-evenly -mx-4 border-b border-primary bg-white'>
             <button

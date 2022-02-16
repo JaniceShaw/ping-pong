@@ -8,6 +8,8 @@ import moment from 'moment';
 import { Review } from './Review';
 import { Rating } from './Rating';
 import { RatingActive } from './RatingActive';
+import { useNavigate } from 'react-router-dom';
+
 
 export const Job = () => {
   const [jobData, setJobData] = useState(false);
@@ -21,7 +23,18 @@ export const Job = () => {
   });
   const { jobID } = useParams();
 
+
+  let navigate = useNavigate();
+
+  const HomeLink = () => {
+    navigate('/');
+  };
+
   useEffect(() => {
+    if(!localStorage.getItem('token')){
+      console.log("you are not logged in")
+      HomeLink();
+    }
     getData(`job/${jobID}/`, setJobData, setErrorState);
   }, [setJobData, setErrorState]);
 
