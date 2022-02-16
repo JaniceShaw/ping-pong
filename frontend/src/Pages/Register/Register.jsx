@@ -46,9 +46,10 @@ export const Register = () => {
 
   return (
     <>
-      <h1 className='text-xl mt-3 pb-6 font-bold'>Sign Up</h1>
+
       <br />
       <div className='loginForm w-full max-w-sm  text-center m-auto'>
+         <h1 className='text-xl mt-3 pb-6 font-bold'>Sign Up</h1>
         <form className='flex justify-center flex-col mt-5'>
           <div className='pb-9 relative'>
             <input

@@ -56,7 +56,7 @@ export const StartPage = () => {
               Log in
             </Link>{' '}
             or{' '}
-            <Link to='/login' className='underline underline-offset-2'>
+            <Link to='/register' className='underline underline-offset-2'>
               Register
             </Link>
           </span>
