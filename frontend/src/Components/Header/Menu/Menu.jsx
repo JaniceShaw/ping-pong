@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { logoutUser } from '../../../Hooks/DataFetching';
+import ProfilePlaceholder from '../../../Assets/placeholder/profile_placeholder.png';
 
 export const MenuBar = (props) => {
   let navigate = useNavigate();
@@ -33,7 +34,7 @@ export const MenuBar = (props) => {
           <>
             <div className='flex items-center border-b border-primary mb-8 pb-4'>
               <img
-                src={user.profile_pic}
+                src={user.profile_pic || ProfilePlaceholder}
                 className='w-16 h-16 mr-4 object-cover rounded-full'
                 alt=''
               />
