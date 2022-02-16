@@ -1,8 +1,11 @@
 import moment from 'moment';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 export const Smallcard = (props) => {
   const job = props.job;
+
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -25,7 +28,7 @@ export const Smallcard = (props) => {
             )}
             <div className='flex'>
               {job.status === 3 &&
-                job.member_review.rating &&
+                job.helper_review?.rating &&
                 [...Array(5)].map((rate, i) =>
                   i >= job.rating ? (
                     <span key={i} className='rating-big-gray-ball' />
