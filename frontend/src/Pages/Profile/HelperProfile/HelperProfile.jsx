@@ -8,7 +8,6 @@ import { getData } from '../../../Hooks/DataFetching';
 import { useNavigate } from 'react-router-dom';
 
 
-
 export const HelperProfilePage = () => {
   const userData = JSON.parse(localStorage.getItem('userData'));
   const [showJobs, setShowJobs] = useState(false);

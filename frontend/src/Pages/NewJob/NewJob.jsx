@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Category } from '../../Components/TailwindComp/CategorySelectJob';
-import { postData } from '../../Hooks/DataFetching';
+import {getData, postData} from '../../Hooks/DataFetching';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import './NewJob.scss';
@@ -18,6 +18,7 @@ export const NewJob = () => {
   const [error, setError] = useState('');
 
   const navigate = useNavigate();
+
   const ListingLink = () => {
     navigate('/listing/jobs/');
   };
@@ -54,7 +55,18 @@ export const NewJob = () => {
     setCategory(categoryOptions);
   };
 
-  useEffect(() => {}, []);
+
+  const HomeLink = () => {
+    navigate('/');
+  };
+
+  useEffect(() => {
+    if(!localStorage.getItem('token')){
+      console.log("you are not logged in")
+      HomeLink();
+    }
+
+  }, []);
   return (
     <div className='loginForm w-full max-w-sm  text-center m-auto bg-white p-2'>
       <h1 className='text-xl mt-3 pb-6 font-bold text-zinc-700'>
