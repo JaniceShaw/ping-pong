@@ -83,34 +83,34 @@ export const MenuBar = (props) => {
             ''
           )}
           <li>
-            <Link className='menu-item' to='/listing'>
-              📜 Listing
+            <Link className='menu-item border-b-2  border-solid block w-full leading-9 mb-3 hover:border-zinc-300' to='/listing'>
+              📜 Listings
             </Link>
             <ul className='ml-6'>
               <li>
-                <Link className='menu-item' to='/listing/jobs'>
+                <Link className='menu-item leading-9 font-normal border-b 2 border-dotted block ' to='/listing/jobs'>
                   💪 Jobs
                 </Link>
               </li>
               <li>
-                <Link className='menu-item' to='/listing/helpers'>
+                <Link className='menu-item leading-9 font-normal border-b 2 border-dotted block ' to='/listing/helpers'>
                   🙋‍♀️ Helpers
                 </Link>
               </li>
             </ul>
           </li>
           <li>
-            <Link className='menu-item' to='/job/new'>
-              ✐ Create Job Request
+            <Link className='menu-item leading-9 border-b-2  border-solid block w-full leading-9 mb-3 hover:border-zinc-300' to='/job/new'>
+              ✐ Create a Job Request
             </Link>
           </li>
           <li>
-            <Link className='menu-item' to='/about'>
+            <Link className='menu-item leading-9 border-b-2  border-solid block w-full leading-9 mb-3 hover:border-zinc-300' to='/about'>
               💡 About
             </Link>
           </li>
           <li>
-            <Link className='menu-item' to='/faq'>
+            <Link className='menu-item leading-9 border-b-2  border-solid block w-full leading-9 mb-3 hover:border-zinc-300' to='/faq'>
               ❓ FAQ
             </Link>
           </li>
