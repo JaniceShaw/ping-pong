@@ -6,7 +6,7 @@ export const ListingPage = () => {
 
   return (
     <div className='absolute left-0'>
-      <div className='list-container flex w-screen border-b -mx-4 border-primary bg-white z-30 relative'>
+      <div className='list-container flex w-screen border-b  border-primary bg-white z-30 relative '>
         <Link
           to='jobs/'
           className='jobs_list w-full text-center border-r border-blue-900'
@@ -19,7 +19,7 @@ export const ListingPage = () => {
             Open Jobs
           </button>
         </Link>
-        <Link to='helpers/' className={`helpers_list w-full text-center `}>
+        <Link to='helpers/' className={`helpers_list w-full text-center`}>
           <button
             className={`w-full p-1 hover:bg-secondary ${
               location.pathname.includes('helper') ? 'bg-secondary' : ''
