@@ -38,7 +38,7 @@ export const HelperProfilePage = () => {
   };
 
   return (
-    <>
+    <div className='max-w-lg  m-auto'>
       {userData?.type === 2 || profileID !== 'me' ? (
         <div className='helper_profile'>
           <div className='section flex  justify-evenly -mx-4 border-b border-primary bg-white'>
@@ -75,6 +75,6 @@ export const HelperProfilePage = () => {
       ) : (
         <h1 className='text-2xl font-extrabold'>Wrong Page Buddy</h1>
       )}
-    </>
+    </div>
   );
 };

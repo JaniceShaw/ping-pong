@@ -5,7 +5,7 @@ export const ListingPage = () => {
   const location = useLocation();
 
   return (
-    <>
+    <div className='absolute left-0'>
       <div className='list-container flex w-screen border-b -mx-4 border-primary bg-white z-30 relative'>
         <Link
           to='jobs/'
@@ -30,6 +30,6 @@ export const ListingPage = () => {
         </Link>
       </div>
       <Outlet />
-    </>
+    </div>
   );
 };

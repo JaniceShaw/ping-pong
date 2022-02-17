@@ -8,7 +8,7 @@ export const FilterHeader = (props) => {
   };
 
   return (
-    <div className='filter-container relative -mx-4 w-screen z-10'>
+    <div className='filter-container relative -mx-4 w-screen z-10 pl-4'>
       <button
         onClick={toggleFilterVisibility}
         className='relative font-normal border-b border-primary h-8  w-full bg-white flex justify-between items-center px-4 z-40'

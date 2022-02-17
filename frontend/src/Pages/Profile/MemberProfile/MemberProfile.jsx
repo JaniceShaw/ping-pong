@@ -28,7 +28,7 @@ export const MemberProfilePage = () => {
   };
 
   return (
-    <>
+    <div className='max-w-lg  m-auto'>
       {userData.type === 1 || profileID !== 'me' ? (
         <div className='member_profile'>
           <div className='section flex justify-evenly -mx-4 border-b border-primary'>
@@ -66,6 +66,6 @@ export const MemberProfilePage = () => {
         <h1 className='text-2xl font-extrabold'>Wrong Page Buddy</h1>
       )}
       {/* <p>{error}</p> */}
-    </>
+    </div>
   );
 };

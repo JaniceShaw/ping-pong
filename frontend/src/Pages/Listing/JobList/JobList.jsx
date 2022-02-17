@@ -24,7 +24,7 @@ export const JobListPage = () => {
         ReturningFunction={setFilteredJobsList}
       />
 
-      <div id='results_list' className='grid gap-4 pt-4'>
+      <div id='results_list' className='grid gap-4 pt-4 max-w-md m-auto'>
         <p>{error}</p>
         <Link to='/job/new' className='btn'>
           create job request

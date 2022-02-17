@@ -15,6 +15,6 @@ export const MyProfilePage = (props) => {
   //   });
 
   return (
-    <>{userData.type === 2 ? <HelperProfilePage /> : <MemberProfilePage />}</>
+    <div className='max-w-lg  m-auto'>{userData.type === 2 ? <HelperProfilePage /> : <MemberProfilePage />}</div>
   );
 };
