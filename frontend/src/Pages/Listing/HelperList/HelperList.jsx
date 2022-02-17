@@ -20,7 +20,7 @@ export const HelperListPage = () => {
         ListItemName={'helpers'}
         ReturningFunction={setFilteredHelpersList}
       />
-      <div id='results_list' className='grid gap-4 '>
+      <div id='results_list' className='grid gap-4 max-w-md m-auto'>
         <p>{error}</p>
         <h1 className='text-lg font-bold py-4'>
           These helpers are ready to lend a helping hand
