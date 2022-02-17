@@ -8,6 +8,12 @@ const config = {
   },
 };
 
+const configVal = {
+  headers: {
+    'Content-type': 'application/json',
+  },
+};
+
 export const getData = (urlEnding, stateToUpdate, errorState) => {
   axios
     .get(`${apiBaseURL}${urlEnding}`, token ? config : '')
@@ -100,4 +106,18 @@ function UserToLocalStorage(passedToken) {
 export const logoutUser = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('userData');
+};
+
+export const patchValData = (urlEnding, bodyObject, errorState) => {
+  const formData = new FormData();
+
+  for (let entry in bodyObject) {
+    formData.append(entry, bodyObject[entry]);
+  }
+  axios
+    .patch(`${apiBaseURL}${urlEnding}`, formData, configVal)
+    .then((response) => {errorState(response.status)})
+    .catch((err) => {
+      errorState(err.response.data);
+    });
 };
