@@ -16,9 +16,15 @@ export const HelperProfilePage = () => {
   const [editHelper, setEditHelper] = useState(false);
   const [helperInfo, setHelperInfo] = useState(true);
 
+  console.log('profileid', profileID);
+  // console.log('me', me);
+
   let navigate = useNavigate();
   const HomeLink = () => {
     navigate('/');
+};
+  const HelperLink = () => {
+    navigate('/helper');
 };
 
   useEffect(() => {
@@ -36,6 +42,7 @@ export const HelperProfilePage = () => {
       setEditHelper(false) && setHelperInfo(true);
     }
   };
+
 
   return (
     <div className='max-w-lg  m-auto'>
@@ -61,7 +68,7 @@ export const HelperProfilePage = () => {
             <HelperJobs profileID={profileID} profileData={profile} />
           )}
 
-          {profileID === 'me' && showJobs === false ? (
+          {!profileID && showJobs === false ? (
             <button
               onClick={handleEditToggle}
               className='font-semibold rounded pl-4 pr-4 bg-secondary'
