@@ -1,5 +1,10 @@
 # Ping-Pong (Final Project with [SIT Academy Full-Stack Bootcamp](https://sit.academy/full-stack))
 
+![Ping-pong](https://www.janiceshaw.com/images/github/ping-pong.jpg)
+## Where students and apprentices help you with anything.
+
+---
+
 - Janice Shaw (backend & frontend)
 - Giuseppe Di Guglielmo (frontend) 
 - Max Hagen (frontend)
@@ -7,9 +12,12 @@
 
 ---
 
-## Goals
+## Goals, concept and aims
 - Provide a platform where people can get help for whatever Problem they have.
-- The helpers would be only Students,  Who want to make some extra money.
+- A platform that connects students and apprentices with small jobs in an easy way.
+- Allow users to easily find locally available students or apprentices.
+- Gamify the experience by demanding and providing services through reviews and ratings.
+- Facilitate contact between helper and member users. 
 
 ---
 
@@ -24,3 +32,22 @@
 - Reviews & ratings
 - Profile (for everyone)
 - List of skills(sorted in categories)
+
+---
+## Stack
+### Dev Ops
+- Docker
+- DigitalOcean
+- GitLab
+
+### Backend
+- python
+- django REST
+
+### Frontend
+- Sass
+- tailwindcss
+- JavaScript
+- React
+- axios
+
